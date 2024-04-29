@@ -1,0 +1,49 @@
+core requirements
+as a user I must be able to navigate to different pages with ease using a navigation bar - High
+
+as a user I must be able to change my profile to keep it up to date - High
+
+as a user I must be able to find jobs by their category - High
+
+as a user I would like to be able to search for jobs based on their name - High
+
+as a user I would like to be able to be able to find jobs that are from a specific company - Medium
+
+as a user I would like to be able to filter jobs that I have already applied to - Medium
+
+as a user I would like to be able to order jobs by when the posting expires - Medium
+
+as a user I would like to know more about the creaters of the job searching platform Im using - low
+
+as a user I would like to be able to select a job to see more information about it -High
+
+as a user I would like to see the job title of a job that I select - High
+
+as a user I would like to see the time investment of a job I select(part/full time) - High
+
+as a user I would like to see the location of a job I select - High
+
+as a user I would like to see when the job posting of a job I select expires - Medium
+
+as a user I would like to see at what time a job that I select starts - High
+
+as a user I would like to see a description of a job that I select - High
+
+as a user I would like to see more information about the company that posted a job that I select, like name and address etc. - High
+
+as a user I would like to apply for jobs with ease with the use of a button - High
+
+as a user I would like to find pages about various companies - High
+
+as a user I would like for company pages to have their logi displayed - low
+
+as a user I would like for company pages to have their name displayed - High
+
+as a user I would like for company pages to have the job postings that have not reached their due date displayed - High
+
+as a user I would like to see the companies address displayed on the company pages - Medium
+
+as a user I would like to see companies have descriptions about them on the company page - High
+
+as a user I would like a page that makes it easy to apply to a job - High
+
