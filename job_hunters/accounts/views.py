@@ -5,13 +5,13 @@ from django.views import generic
 
 # Create your views here.
 class LogInView(views.LoginView):
-    template_name = "accounts/login.html"
+    template_name = "account/login.html"
     next_page = "jobs/"
 
     def get_user():
         return None
 
 class SignUpView(generic.CreateView):
-    template_name = "accounts/signup.html"
+    template_name = "account/signup.html"
     model = User
     fields = ["first_name","last_name","email","password"]

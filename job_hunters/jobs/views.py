@@ -7,7 +7,7 @@ from .models import Category, Company, Job
 # Create your views here.
 def index(request):
     jobs = Job.objects.all()
-    return render(request, 'jobs/index.html',{"jobs":jobs})
+    return render(request, 'job/index.html',{"jobs":jobs})
 
 def detail(request, job_id):
     job = get_object_or_404(Job, pk = job_id)
@@ -40,4 +40,4 @@ def index(request):
     
     filter_jobs(request)
 
-    return render(request, 'jobs/index.html', context)
+    return render(request, 'job/index.html', context)
