@@ -4,9 +4,8 @@ from django.views import generic
 
 # Create your views here.
 class LogInView(views.LoginView):
-    #template_name = "accounts/login.html"
+    template_name = "accounts/login.html"
     next_page = "jobs/"
-    redirect_authenticated_user = "jobs/"
 
     def get_user():
         return None
