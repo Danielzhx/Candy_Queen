@@ -26,6 +26,3 @@ class Job(models.Model):
     company = models.ForeignKey(Company, on_delete=models.CASCADE)
     due_date = models.DateField("Due date")
     start_date = models.DateField("Start date")
-
-class Application(models.Model):
-    pass

@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'accounts.apps.AccountsConfig',
     'jobs.apps.JobsConfig',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -81,7 +82,10 @@ DATABASES = {
         'USER': 'vln2_assignment_groups_7_user',
         'PASSWORD': 'hzO9Wr8GzP',
         'HOST': 'verklegt-namskeid-ii.northeurope.cloudapp.azure.com',
-        'PORT': '5432', }
+        'PORT': '5432',
+        'OPTIONS': {
+                        'options': '-c search_path=vln2_assignment_groups_7'}
+                    }
 }
 
 
