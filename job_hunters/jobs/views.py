@@ -1,18 +1,13 @@
 from django.shortcuts import render, get_object_or_404
+from jobs.models import Job
 from django.http import HttpResponse
 
 from .models import Category, Company, Job
 
 # Create your views here.
 def index(request):
-    context = {
-        "categories": Category.objects,
-        "companies": Company.objects
-               }
-    
-    filter_jobs(request)
-
-    return render(request, 'jobs/index.html', context)
+    jobs = Job.objects.all()
+    return render(request, 'jobs/index.html',{"jobs":jobs})
 
 def detail(request, job_id):
     job = get_object_or_404(Job, pk = job_id)
@@ -36,3 +31,13 @@ def filter_jobs(request):
         jobs.filter(job_type = 1)
     if 'internship' in request.POST:
         jobs.filter(job_type = 2)
+        
+def index(request):
+    context = {
+        "categories": Category.objects,
+        "companies": Company.objects
+               }
+    
+    filter_jobs(request)
+
+    return render(request, 'jobs/index.html', context)
