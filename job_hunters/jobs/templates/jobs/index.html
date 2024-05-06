@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Jobs</title>
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'jobs/style.css' %}" />
+</head>
+<body id="jobs" style="display: block;">
+    <div id="top_of_page">
+        <nav id="Navbar">
+            <a href="/jobs/" >Jobs</a>
+            <a href="#companies">Companies</a>
+            <a href="#categories">Categories</a>
+            <a href="signup.html" class="split">Sign Up</a>
+            <a href="login.html" class="split">Log In</a>
+        </nav>
+    </div>
+
+    <div style="display: flex; justify-content: space-between; width: 100vw;">
+    <!-- Filter sidebar -->
+        <div id="sidebar">
+            <form>
+                <input type="search" id="searchName" name="searchName" placeholder="Search">
+                <br/><br/>
+                <select id="Category" name="Category">
+                    <option value="allCats" selected>All categories</option>
+                    <option value="CS">Computer Science</option>
+                </select> <br/>
+                <select id="Company" name="Company">
+                    <option value="allComps" selected>All companies</option>
+                </select> <br/>
+            </form>
+            <form>
+                <input type="checkbox" class="jobFilter" name="Full time" checked> <label for="Full time">Full Time</label> <br/>
+                <input type="checkbox" class="jobFilter" name="Part time" checked> <label for="Part time">Part Time</label> <br/>
+                <input type="checkbox" class="jobFilter" name="Internships" checked> <label for="Internships">Internships</label> <br/>
+                <br/>
+                <input type="checkbox" class="jobFilter" name="Already applied" checked> <label for="Already applied">Already applied</label> <br/>
+            </form> <br/>
+            <form>
+                <input type="radio" class="jobFilter" name="Order_by" id="posted"> <label for="Order_created">Order by date posted</label> <br/>
+                <input type="radio" class="jobFilter" name="Order_by" id="due"> <label for="Order_due">Order by due date</label>
+            </form>
+        </div>
+
+        <!-- Posting Display -->
+        <div class="listing">
+            <div class="jobPost">
+                <h4>Sample job posting</h4>
+            </div>
+
+            <div class="jobPost">
+                <h4>Sample job posting</h4>
+            </div>
+
+            <div class="jobPost">
+                <h4>Sample job posting</h4>
+            </div>
+
+            <div class="jobPost">
+                <h4>Sample job posting</h4>
+            </div>
+        </div>
+    </div>
+</body>
