@@ -1,0 +1,22 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Test - Login</title>
+  <link rel="stylesheet" href="{% static 'accounts/style.css' %}" />
+</head>
+<body>
+  <div id="top_of_page">
+    <nav id="Navbar">
+        <a href="{% url 'jobs:index' %}" >Jobs</a>
+        <a href="{% url 'jobs:index' %}">Companies</a>  <!-- Update these as functionality is added -->
+        <a href="{% url 'jobs:index' %}">Categories</a>  <!-- Update these as functionality is added -->
+        <a href="{% url 'accounts:signup' %}" class="split">Sign Up</a>
+        <a href="{% url 'accounts:login' %}" class="split">Log In</a>
+    </nav>
+  </div>
+  {% block content %}{% endblock %}
+</body>

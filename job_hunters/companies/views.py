@@ -1,11 +1,16 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_list_or_404
 from django.views import generic
+
+from jobs.models import Company
 
 
 # Create your views here.
 def index(request):
     template = "companies/index.html"
-    return render(request, template)
+    companies = Company.objects.all()
+    return render(request, template, {'companies': companies})
 
-class CompDetailView(generic.DetailView):
-    template_name = "companies/detail."
+def details(request, comp_id):
+    template = "companies/profile.html"
+    company = get_list_or_404(Company, pk=comp_id)
+    return render(request, template, {'company': company})

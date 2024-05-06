@@ -1,0 +1,17 @@
+{% extends "jobs/base.html" %}
+{% block content %}
+<div style="display: flex; justify-content: space-around;">
+    <div>
+        <h2>{{ job.title }}</h2>
+        <p>{{ job.description }}</p>
+    </div>
+    <div>
+        <p>{{ job.job_type }}</p>
+        <p>{{ job.category }}</p>
+        <p>{{ job.address }}</p>
+        <p>Due date: {{ job.due_date}}</p>
+        <p>Start date: {{ job.start_date}}</p>
+    </div>
+</div>
+
+{% endblock %}
