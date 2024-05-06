@@ -33,6 +33,7 @@
     <div class="listing">
         {% for job in jobs%}
         <a href="jobs" class="jobPost">
+        <!-- TODO: change the href of job postings--> 
             <h4>{{ job.title }}</h4>
             <h3>Type: {{ job.job_type.job_type }}</h3>
             <h3>Field: {{ job.category.category }}</h3>
