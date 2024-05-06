@@ -3,29 +3,27 @@
     <div style="display: flex; justify-content: space-between; width: 100vw;">
     <!-- Filter sidebar -->
         <div id="sidebar">
-            <form>
+            <form method="get" action="{% url 'jobs:index' %}">
+                <p>{{ cat_select }}, {{ comp_select }}</p>
                 <input type="search" id="searchName" name="searchName" placeholder="Search">
                 <br/><br/>
-                <select name="category_select">
-                    <option value="all" selected>All categories</option>
-                    {% for category in categories.all %}
+                <select name="category_select" onchange="update_filter()">
+                    <option value="all">All categories</option>
+                    {% for category in categories %}
                         <option value="{{category.id}}">{{ category.category }}</option>
                     {% endfor %}
                 </select> <br/>
                 <select name="company_select">
                     <option value="all" selected>All companies</option>
                 </select> <br/>
-            </form>
-            <form>
                 <input type="checkbox" class="jobFilter" name="full_time" checked> <label for="Full time">Full Time</label> <br/>
                 <input type="checkbox" class="jobFilter" name="part_time" checked> <label for="Part time">Part Time</label> <br/>
                 <input type="checkbox" class="jobFilter" name="internships" checked> <label for="Internships">Internships</label> <br/>
                 <br/>
                 <input type="checkbox" class="jobFilter" name="already_applied" checked> <label for="Already applied">Already applied</label> <br/>
-            </form> <br/>
-            <form>
                 <input type="radio" class="jobFilter" name="Order_by" id="posted"> <label for="Order_created">Order by date posted</label> <br/>
                 <input type="radio" class="jobFilter" name="Order_by" id="due"> <label for="Order_due">Order by due date</label>
+                <input type="submit" value="Filter">
             </form>
         </div>
 
@@ -45,3 +43,12 @@
         </div>
     </div>
     {% endblock %}
+
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+       document.getElementById("demo").innerHTML = this.responseText;
+      }
+    };
+    xhttp.open("GET", "ajax_info.txt", true);
+    xhttp.send();
