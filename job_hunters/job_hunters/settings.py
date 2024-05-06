@@ -84,8 +84,9 @@ DATABASES = {
         'HOST': 'verklegt-namskeid-ii.northeurope.cloudapp.azure.com',
         'PORT': '5432',
         'OPTIONS': {
-                        'options': '-c search_path=vln2_assignment_groups_7'}
-                    }
+                        'options': '-c search_path=vln2_assignment_groups_7'
+                }
+        }
 }
 
 
