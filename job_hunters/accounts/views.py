@@ -6,14 +6,14 @@ from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 class LogInView(views.LoginView):
-    template_name = "account/login.html"
+    template_name = "accounts/login.html"
     next_page = "jobs/"
 
     def get_user():
         return None
 
 class SignUpView(generic.CreateView):
-    template_name = "account/signup.html"
+    template_name = "accounts/signup.html"
     model = User
     fields = ["first_name","last_name","email","password"]
 
