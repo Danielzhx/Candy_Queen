@@ -7,6 +7,7 @@ from django.contrib.auth.decorators import login_required
 # Create your views here.
 class LogInView(views.LoginView):
     template_name = "accounts/login.html"
+    next_page = "jobs/"
 
     def get_user():
         return None

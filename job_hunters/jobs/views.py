@@ -1,9 +1,5 @@
 from django.shortcuts import render, get_object_or_404
-from jobs.models import Job
 from django.http import HttpResponse
-
-from asgiref.sync import sync_to_async
-
 from .models import Category, Company, Job, JobType
 
 # Create your views here.
