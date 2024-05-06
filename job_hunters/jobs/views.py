@@ -31,7 +31,7 @@ def filter_jobs(request):
         jobs.filter(job_type = 1)
     if 'internship' in request.POST:
         jobs.filter(job_type = 2)
-        
+          
 def index(request):
     context = {
         "categories": Category.objects,
