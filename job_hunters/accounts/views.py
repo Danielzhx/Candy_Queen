@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.contrib.auth.models import User
 from django.contrib.auth import views, authenticate, login
 from django.views import generic
 
@@ -15,4 +16,5 @@ class LogInView(views.LoginView):
 
 class SignUpView(generic.CreateView):
     template_name = "accounts/signup.html"
-    queryset = None
+    model = User
+    fields = ["first_name","last_name","email","password"]
