@@ -10,9 +10,6 @@ class LogInView(views.LoginView):
 
     def get_user():
         return None
-"""
-class LogInView(views.LoginView):
-    pass"""
 
 class SignUpView(generic.CreateView):
     template_name = "accounts/signup.html"
