@@ -3,7 +3,7 @@ from django.contrib.auth import views, authenticate, login
 from django.views import generic
 
 # Create your views here.
-"""class LogInView(views.LoginView):
+class LogInView(views.LoginView):
     #template_name = "accounts/login.html"
     next_page = "jobs/"
     redirect_authenticated_user = "jobs/"
@@ -11,9 +11,8 @@ from django.views import generic
     def get_user():
         return None
 """
-
 class LogInView(views.LoginView):
-    pass
+    pass"""
 
 class SignUpView(generic.CreateView):
     template_name = "accounts/signup.html"
