@@ -1,7 +1,5 @@
 from django.shortcuts import render, get_object_or_404
-from jobs.models import Job
 from django.http import HttpResponse
-
 from .models import Category, Company, Job, JobType
 
 # Create your views here.
