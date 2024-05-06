@@ -48,13 +48,13 @@
         <!-- Posting Display -->
         <div class="listing">
             {% for job in jobs%}
-            <div class="jobPost">
+            <button class="jobPost">
                 <h4>{{ job.title }}</h4>
                 <h3>Type: {{ job.job_type.job_type }}</h3>
                 <h3>Field: {{ job.category.category }}</h3>
                 <h3>Due: {{ job.due_date }}</h3>
                 <h3>Starts: {{ job.start_date }}</h3>
-            </div>
+            </button>
             {% endfor %}
         </div>
     </div>
