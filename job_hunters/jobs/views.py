@@ -2,7 +2,7 @@ from django.shortcuts import render, get_object_or_404
 from jobs.models import Job
 from django.http import HttpResponse
 
-from .models import Category, Company, Job
+from .models import Category, Company, Job, JobType
 
 # Create your views here.
 def index(request):
@@ -11,8 +11,10 @@ def index(request):
 
 def detail(request, job_id):
     job = get_object_or_404(Job, pk = job_id)
-    response = "You're looking at the results of question %s"
-    return HttpResponse(response % job_id)
+    context = {
+        'job': job
+    }
+    return render(request, 'jobs/profile.html', context)
 
 def apply(request, job_id):
     pass
