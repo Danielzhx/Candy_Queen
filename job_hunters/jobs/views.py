@@ -31,13 +31,22 @@ def filter_jobs(request):
         jobs.filter(job_type = 1)
     if 'internship' in request.POST:
         jobs.filter(job_type = 2)
-          
-def index(request):
+
+def index2(request):
     context = {
         "categories": Category.objects,
         "companies": Company.objects
                }
-    
-    filter_jobs(request)
+    jobs = Job.objects
+    if 'category_select' in request.POST:
+        jobs.filter(category = request.POST['category_select'])
+    if 'company_select' in request.POST:
+        jobs.filter(company = request.POST['company_select'])
+    if 'full_time' in request.POST:
+        jobs.filter(job_type = 0)
+    if 'part_time' in request.POST:
+        jobs.filter(job_type = 1)
+    if 'internship' in request.POST:
+        jobs.filter(job_type = 2)
 
     return render(request, 'jobs/index.html', context)
