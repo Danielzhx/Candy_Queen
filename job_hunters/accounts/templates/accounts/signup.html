@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Test - Login</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>    
+  <div id="top_of_page">
+    <nav id="Navbar">
+      <a href="{% url 'jobs:index' %}" >Jobs</a>
+      <a href="{% url 'jobs:index' %}">Companies</a>  <!-- Update these as functionality is added -->
+      <a href="{% url 'jobs:index' %}">Categories</a>  <!-- Update these as functionality is added -->
+      <a href="{% url 'accounts:signup' %}" class="split">Sign Up</a>
+      <a href="{% url 'accounts:login' %}" class="split">Log In</a>
+    </nav>
+  </div>
+  <div class="loginDiv">
+    <h1 style="text-align: center;">Sign Up</h1>
+      <div style="text-align: center;">
+          <form>
+            <input type="text" id="first_name" placeholder="First name"> <br/>
+            <input type="text" id="last_name" placeholder="Last name"> <br/>
+            <input type="date" id="dob" placeholder="date of birth dd/mm/yy"> <br/>
+            <input type="text" id="address" placeholder="Address"> <br/>
+            <input type="email" id="email" placeholder="Email"> <br/>
+            <input type="password" id="password" placeholder="Password"> <br/>
+            <input type="password" id="repeatpassword" placeholder="Repeat Password"> <br/>
+            <button id="login">Log in</button> <br/>
+          </form>
+      </div>
+    </div>
+</body>
+<script type="text/javascript">
+  document.getElementById("login").onclick = () => {
+    if (document.getElementById("email").value === "test@email.com" ^ document.getElementById("password").value === "12345") {
+      location.href = "test.html";
+    }
+  };
+</script>

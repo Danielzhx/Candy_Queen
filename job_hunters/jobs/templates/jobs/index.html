@@ -10,11 +10,11 @@
 <body id="jobs" style="display: block;">
     <div id="top_of_page">
         <nav id="Navbar">
-            <a href="/jobs/" >Jobs</a>
-            <a href="#companies">Companies</a>
-            <a href="#categories">Categories</a>
-            <a href="signup.html" class="split">Sign Up</a>
-            <a href="login.html" class="split">Log In</a>
+            <a href="{% url 'jobs:index' %}" >Jobs</a>
+            <a href="{% url 'jobs:index' %}">Companies</a>  <!-- Update these as functionality is added -->
+            <a href="{% url 'jobs:index' %}">Categories</a>  <!-- Update these as functionality is added -->
+            <a href="{% url 'accounts:signup' %}" class="split">Sign Up</a>
+            <a href="{% url 'accounts:login' %}" class="split">Log In</a>
         </nav>
     </div>
 
