@@ -4,9 +4,7 @@ from .models import Category, Company, Job, JobType
 
 # Create your views here.
 def index(request):
-    if 'search_name' in request.GET:
-        search_name = request.GET['search_name']
-        jobs = [{
+    jobs = [{
         'id': x.id,
         'title': x.title,
         'description': x.description,
@@ -16,6 +14,10 @@ def index(request):
         'due_date': x.due_date,
         'start_date': x.start_date
         } for x in Job.objects.all()]
+    
+    if 'search_name' in request.GET:
+        jobs = [x for x in jobs if request.GET['search_name'].lower() in x['title'].lower()]
+        
         return JsonResponse({'data':jobs})
 
     context = {
