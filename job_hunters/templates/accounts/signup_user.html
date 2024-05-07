@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+  <div class="loginDiv">
+    <h1 style="text-align: center; padding-top: 2rem;">Sign Up</h1>
+      <div style="text-align: center; align-items: center;">
+        <form method="post">
+          {% csrf_token %}
+          <table style="margin: auto;">
+            {{ form.as_table }}
+            <td></td>  
+            <td><input type="submit" name="submit" value="Register" /></td>
+          </table>
+        </form>
+      </div>
+    </div>
+</body>
+{% endblock %}

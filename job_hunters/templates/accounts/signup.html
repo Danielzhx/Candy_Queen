@@ -1,21 +1,12 @@
 {% extends 'base.html' %}
 {% block content %}
-{% load static %}
   <div class="LoginDiv">
     <h1 style="text-align: center;">Sign Up</h1>
       <div style="text-align: center;">
-         <form action="{% url 'accounts:new_user' %}" method="POST">
-            {% csrf_token %}
-            <input type="image" name="profile_pic" src="{% static accounts.default.jpg %}"> <br/>
-            <input type="text" name="first_name" placeholder="First name"> <br/>
-            <input type="text" name="last_name" placeholder="Last name"> <br/>
-            <input type="date" name="date_of_birth" placeholder="date of birth dd/mm/yy"> <br/>
-            <input type="text" name="address" placeholder="Address"> <br/>
-            <input type="email" name="email" placeholder="Email"> <br/>
-            <input type="password" name="password" placeholder="Password"> <br/>
-            <input type="password" name="repeat_password" placeholder="Repeat Password"> <br/>
-            <button id="Signup">Sign Up</button> <br/>
-          </form>
+          <a href="{% url 'accounts:register' %}">
+            <button type="button" name="Individual_Account">Individual Account</button> <br/>
+          </a>
+          <button type="button" name="Company_Account" >Company Account</button>
       </div>
     </div>
 </body>
