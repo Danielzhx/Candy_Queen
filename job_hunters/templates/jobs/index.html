@@ -7,9 +7,8 @@
             <input type="search" id="searchName" name="searchName" placeholder="Search">
             <br/><br/>
             <select name="category_select">
-                <option value="all" selected>All categories</option>
                 {% for category in categories.all %}
-                    <option value="{{category.id}}">{{ category.category }}</option>
+                    <option value="{{category.id}}" selected>{{ category.category }}</option>
                 {% endfor %}
             </select>
             <br/>
@@ -21,7 +20,7 @@
             <input type="checkbox" class="jobFilter" name="part_time" checked> <label for="Part time">Part Time</label> <br/>
             <input type="checkbox" class="jobFilter" name="internships" checked> <label for="Internships">Internships</label> <br/>
             <br/>
-            <input type="checkbox" class="jobFilter" name="already_applied" checked> <label for="Already applied">Already applied</label> <br/>
+            <input type="checkbox" class="jobFilter" name="already_applied"> <label for="Already applied">Already applied</label> <br/>
             <br/>
             <input type="radio" class="jobFilter" name="Order_by" id="posted"> <label for="Order_created">Order by date posted</label> <br/>
             <input type="radio" class="jobFilter" name="Order_by" id="due"> <label for="Order_due">Order by due date</label> <br/>
@@ -33,7 +32,6 @@
     <div class="listing">
         {% for job in jobs%}
         <a href="{{ job.id }}" class="jobPost">
-        <!-- TODO: change the href of job postings--> 
             <h4>{{ job.title }}</h4>
             <h3>Type: {{ job.job_type.job_type }}</h3>
             <h3>Field: {{ job.category.category }}</h3>

@@ -14,7 +14,6 @@
             <a href="{% url 'jobs:index' %}">Companies</a>  <!-- Update these as functionality is added -->
             <a href="{% url 'jobs:index' %}">Categories</a>  <!-- Update these as functionality is added -->
             {% if user.is_authenticated %}
-            {% csrf token %}
             <a href="{% url 'accounts:logout' %}" class="split">Log Out</a>
             <a href="{% url 'accounts:profile' %}" class="split">{{ user.username }}</a>
             {% else %}
