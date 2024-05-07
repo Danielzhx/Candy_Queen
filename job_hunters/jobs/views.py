@@ -1,14 +1,16 @@
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse
 from .models import Category, Company, Job, JobType
+from Forms.filter_form import FilterForm,ORDERS
 
 # Create your views here.
 def index(request):
+    form  = FilterForm(request.GET)
     context = {
+        'form':form,
         "categories": Category.objects.all(),
         "companies": Company.objects.all(),
-               }
-    
+    }
     context['jobs'] = filter_jobs(request)
     return render(request, 'jobs/index.html', context)
 
@@ -26,17 +28,29 @@ def apply(request, job_id):
 
 def filter_jobs(request):
     jobs = Job.objects.all()
-    if 'category_select' in request.POST and request.POST['category_select'] != "all":
-        jobs.filter(category = request.POST['category_select'])
-    if 'company_select' in request.POST and request.POST['company_select'] != "all":
-        jobs.filter(company = request.POST['company_select'])
-    if 'full_time' in request.POST and request.POST['full_time'] != 'on':
-        fulltime = get_object_or_404(JobType, job_type = "Full time")
-        jobs.filter(job_type = fulltime)
-    if 'part_time' in request.POST and request.POST['part_time'] != 'on':
-        jobs.filter(job_type = 1)
-    if 'internship' in request.POST and request.POST['internship'] != 'on':
-        jobs.filter(job_type = 2)
+    if not request.GET:
+        return jobs
+
+    type_selection = request.GET.getlist("job_type")
+    if len(type_selection) > 0:
+        jobs = jobs.filter(job_type__in=type_selection)
+
+    if request.GET['title']:
+        jobs = jobs.filter(title__contains=request.GET['title'])
+
+    if request.GET['company']:
+        jobs = jobs.filter(company=request.GET['company'])
+
+    if request.GET['category']:
+        jobs = jobs.filter(category=request.GET['category'])
+
+    if request.GET['order_by']:
+        order = ORDERS[int(request.GET['order_by'])][1]
+        if not order:
+            return jobs
+
+        jobs = jobs.order_by(order)
+
     return jobs
 
 

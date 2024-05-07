@@ -4,26 +4,9 @@
 <!-- Filter sidebar -->
     <div id="sidebar">
         <form method="get", action="{% url 'jobs:index' %}">
-            <input type="search" id="searchName" name="searchName" placeholder="Search">
-            <br/><br/>
-            <select name="category_select">
-                {% for category in categories.all %}
-                    <option value="{{category.id}}" selected>{{ category.category }}</option>
-                {% endfor %}
-            </select>
-            <br/>
-            <select name="company_select">
-                <option value="all" selected>All companies</option>
-            </select>
-            <br/>
-            <input type="checkbox" class="jobFilter" name="full_time" checked> <label for="Full time">Full Time</label> <br/>
-            <input type="checkbox" class="jobFilter" name="part_time" checked> <label for="Part time">Part Time</label> <br/>
-            <input type="checkbox" class="jobFilter" name="internships" checked> <label for="Internships">Internships</label> <br/>
-            <br/>
-            <input type="checkbox" class="jobFilter" name="already_applied"> <label for="Already applied">Already applied</label> <br/>
-            <br/>
-            <input type="radio" class="jobFilter" name="Order_by" id="posted"> <label for="Order_created">Order by date posted</label> <br/>
-            <input type="radio" class="jobFilter" name="Order_by" id="due"> <label for="Order_due">Order by due date</label> <br/>
+            <div class="mb3">
+                {{ form }}
+            </div>
             <input type="submit" value="Filter">
         </form>
     </div>
