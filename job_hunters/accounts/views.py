@@ -44,7 +44,7 @@ def register(request):
     """
     template_name = "accounts/signup_user.html"
     if request.method == 'POST':
-        form = UserCreationForm(data = request.POST)
+     form = UserCreationForm(data = request.POST)
         if form.is_valid():
             form.save()
             return redirect('accounts:login')
