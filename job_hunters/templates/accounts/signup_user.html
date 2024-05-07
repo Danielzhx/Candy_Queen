@@ -1,15 +1,27 @@
 {% extends 'base.html' %}
 {% block content %}
-{% load static %}
   <div class="loginDiv">
     <h1 style="text-align: center; padding-top: 2rem;">Sign Up</h1>
       <div style="text-align: center; align-items: center;">
         <form method="post">
           {% csrf_token %}
+          
+          {% if error in form.errors %}
+          <p> {{ form.is_valid }}</p>
+          {% endif %}
+          <p> {{ form.is_valid }}</p>
+          <!-- 
           <table style="margin: auto;">
             {{ form.as_table }}
             <td></td>  
             <td><input type="submit" name="submit" value="Register" /></td>
+          </table>
+          -->
+          <table style="margin: auto;">
+            <tr><td><input type="email" name="username" placeholder="Email"></td></tr>
+            <tr><td><input type="password" name="password1" placeholder="Password"></td></tr>
+            <tr><td><input type="password" name="password2" placeholder="Repeat Password"></td></tr>
+            <tr><td><input type="submit" name="submit" value="Register" /></td></tr>
           </table>
         </form>
       </div>

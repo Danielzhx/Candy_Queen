@@ -29,13 +29,13 @@ class CustomUserForm(authforms.UserCreationForm):
         model=User
         fields = ('username', 'password1', 'password2')
     
-    username = forms.CharField(
+    """username = forms.CharField(
         label=False,
         widget=forms.TextInput(attrs={'class': 'form-control',
                                   'type': 'email',
                                   'placeholder': 'Email address',
                                   'required': 'true'
-    }))
+                                  }))
     password1 = forms.CharField(
         label=False,
         widget=forms.PasswordInput(attrs={'class': 'form-control',
@@ -47,4 +47,4 @@ class CustomUserForm(authforms.UserCreationForm):
         widget=forms.PasswordInput(attrs={'class': 'form-control',
                                       'required': 'true',
                                       'placeholder': 'Repeat Password'
-    }))
+    }))"""
