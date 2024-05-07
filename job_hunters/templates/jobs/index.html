@@ -1,7 +1,38 @@
 {% extends "base.html" %}
+{% block sidebar %}
+<div id="sidebar">
+    <form>
+        <div class="mb-3">
+            <input class="form-control-sm" type="search" id="search_name" name="search_name" placeholder="Search" onkeypress="return event.keyCode != 13;">
+            <select class="form-select" name="category_select">
+                <option value="undefined" selected>All categories</option>
+                {% for category in categories.all %}
+                <option value="{{ category.id }}">{{ category.category }}</option>
+                {% endfor %}
+            </select>
+            <select class="form-select" name="company_select">
+                <option value="undefined" selected>All Companies</option>
+                {% for company in companies.all %}
+                <option value="{{ company.id }}">{{ company.company }}</option>
+                {% endfor %}
+            </select>
+            <div class="mb-2">
+                <input type="checkbox" class="form-check-input" name="full_time" id="full_time"><label class="form-check-label" for="full_time">Full time</label>
+                <input type="checkbox" class="form-check-input" name="part_time" id="part_time"><label class="form-check-label" for="part_time">Part time</label> <br/>
+                <input type="checkbox" class="form-check-input" name="internships" id="internships"><label class="form-check-label" for="internships">Internships</label>
+            </div>
+            <button class="btn-outline-secondary" type="button" id="filter_button" style="align-self: center;">Search</button>
+            {% if searchName %}
+            <p>searchName</p>
+            {% endif %}
+        </div>
+    </form>
+</div>
+{% endblock %}
 {% block content %}
+<!--
 <div style="display: flex; justify-content: space-between; width: 100vw;">
-<!-- Filter sidebar -->
+
     <div id="sidebar">
         <form method="get", action="{% url 'jobs:index' %}">
             <input type="search" id="searchName" name="searchName" placeholder="Search">
@@ -23,24 +54,39 @@
             <br/>
             <input type="checkbox" class="jobFilter" name="already_applied" checked> <label for="Already applied">Already applied</label> <br/>
             <br/>
-            <input type="radio" class="jobFilter" name="Order_by" id="posted"> <label for="Order_created">Order by date posted</label> <br/>
-            <input type="radio" class="jobFilter" name="Order_by" id="due"> <label for="Order_due">Order by due date</label> <br/>
+            <input type="radio" class="jobFilter" name="Order_by_posted" id="posted"> <label for="Order_created">Order by date posted</label> <br/>
+            <input type="radio" class="jobFilter" name="Order_by_due" id="due"> <label for="Order_due">Order by due date</label> <br/>
             <input type="submit" value="Filter">
         </form>
     </div>
+-->
 
     <!-- Posting Display -->
-    <div class="listing">
+    <div class="row row-cols-1 row-cols-md-2 g-4" id="job_list" style="margin: auto; margin-left: 15%; width: 80%;">
+        
+    </div>
+        <!--
         {% for job in jobs%}
+        <div class="col">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">{{ job.title }}</h5>
+              <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+            </div>
+          </div>
+        {% endfor %}
+        -->
+
+
+<!--
+    <div class="listing">
         <a href="{{ job.id }}" class="jobPost">
-        <!-- TODO: change the href of job postings--> 
             <h4>{{ job.title }}</h4>
             <h3>Type: {{ job.job_type.job_type }}</h3>
             <h3>Field: {{ job.category.category }}</h3>
             <h3>Due: {{ job.due_date }}</h3>
             <h3>Starts: {{ job.start_date }}</h3>
         </a>
-        {% endfor %}
     </div>
-</div> 
+</div>-->
 {% endblock %}

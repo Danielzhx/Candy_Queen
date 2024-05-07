@@ -1,14 +1,27 @@
 from django.shortcuts import render, get_object_or_404
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from .models import Category, Company, Job, JobType
 
 # Create your views here.
 def index(request):
+    if 'search_name' in request.GET:
+        search_name = request.GET['search_name']
+        jobs = [{
+        'id': x.id,
+        'title': x.title,
+        'description': x.description,
+        'job_type': x.job_type.job_type,
+        'category': x.category.category,
+        'company': x.company.name,
+        'due_date': x.due_date,
+        'start_date': x.start_date
+        } for x in Job.objects.all()]
+        return JsonResponse({'data':jobs})
+
     context = {
         "categories": Category.objects.all(),
         "companies": Company.objects.all(),
                }
-    
     context['jobs'] = filter_jobs(request)
     return render(request, 'jobs/index.html', context)
 
@@ -25,7 +38,18 @@ def apply(request, job_id):
 
 
 def filter_jobs(request):
-    jobs = Job.objects.all()
+    #jobs = Job.objects.all()
+
+    """if 'search_filter' in request.GET:
+        jobs = Job.objects.filter(name__icontains = request.GET['search_filter'])
+    if 'category_select' in request.POST and request.POST['category_select'] != "undefined":
+        jobs.filter(category = request.POST['category_select'])
+    if 'company_select' in request.POST and request.POST['company_select'] != "undefined":
+        jobs.filter(company = request.POST['company_select'])"""
+    
+
+    """if 'search_filter' in request.GET:
+        jobs = Job.objects.filter(name__icontains = request.GET['search_filter'])
     if 'category_select' in request.POST and request.POST['category_select'] != "all":
         jobs.filter(category = request.POST['category_select'])
     if 'company_select' in request.POST and request.POST['company_select'] != "all":
@@ -34,9 +58,19 @@ def filter_jobs(request):
         fulltime = get_object_or_404(JobType, job_type = "Full time")
         jobs.filter(job_type = fulltime)
     if 'part_time' in request.POST and request.POST['part_time'] != 'on':
+        fulltime = get_object_or_404(JobType, job_type = "Full time")
         jobs.filter(job_type = 1)
     if 'internship' in request.POST and request.POST['internship'] != 'on':
+        fulltime = get_object_or_404(JobType, job_type = "Full time")
         jobs.filter(job_type = 2)
-    return jobs
+    if 'order_by_due' == 'on':
+        jobs.order_by('due_date')
+    else:
+        jobs.order_by('start_date')"""
+    
+    """
+    print(jobs)
+
+    return JsonResponse({'data': jobs})"""
 
 
