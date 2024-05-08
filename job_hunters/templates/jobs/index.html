@@ -1,18 +1,25 @@
 {% extends "base.html" %}
+{% block sidebar %}
+<div class="container bg-body-secondary rounded border border-secondary" style="width: 15%; margin-left: 0.25rem; position:fixed">
+    <form id="job_filter">
+        {{ form }}
+    </form>
+</div>
+<style>
+    #job_filter select{
+        margin:1%; 
+        width: 98%;
+        padding-top: -5px;
+    }
+    #job_filter input[type=search]{
+        margin:1%; 
+        width: 98%;
+    }
+</style>
+{% endblock %}
 {% block content %}
-<div style="display: flex; justify-content: space-between; width: 100vw;">
-<!-- Filter sidebar -->
-    <div id="sidebar">
-        <form method="get", action="{% url 'jobs:index' %}">
-            <div class="mb3">
-                {{ form }}
-            </div>
-            <input type="submit" value="Filter">
-        </form>
-    </div>
-
     <!-- Posting Display -->
-    <div class="listing">
+       <div class="listing">
         {% for job in jobs%}
         <a href="{{ job.id }}" class="jobPost">
             <h4>{{ job.title }}</h4>
@@ -22,6 +29,5 @@
             <h3>Starts: {{ job.start_date }}</h3>
         </a>
         {% endfor %}
-    </div>
-</div> 
+    </div>    </div>
 {% endblock %}

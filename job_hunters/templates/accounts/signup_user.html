@@ -7,17 +7,9 @@
           {% csrf_token %}
           
           {% if error in form.errors %}
-          <p> {{ form.is_valid }}</p>
+          <p> {{ error }}</p>
           {% endif %}
-          <p> {{ form.is_valid }}</p>
-          <!-- 
-          <table style="margin: auto;">
-            {{ form.as_table }}
-            <td></td>  
-            <td><input type="submit" name="submit" value="Register" /></td>
-          </table>
-          -->
-          <table style="margin: auto;">
+          <table>
             <tr><td><input type="email" name="username" placeholder="Email"></td></tr>
             <tr><td><input type="password" name="password1" placeholder="Password"></td></tr>
             <tr><td><input type="password" name="password2" placeholder="Repeat Password"></td></tr>

@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from .models import Category, Company, Job, JobType
 from Forms.filter_form import FilterForm,ORDERS
 
@@ -15,6 +15,8 @@ def index(request):
     return render(request, 'jobs/index.html', context)
 
 def detail(request, job_id):
+    """Detail view for individual job posting.
+    """
     job = get_object_or_404(Job, pk = job_id)
     context = {
         'job': job
@@ -22,6 +24,8 @@ def detail(request, job_id):
     return render(request, 'jobs/profile.html', context)
 
 def apply(request, job_id):
+    """Application view for job posting.
+    """
     pass
 
 
@@ -52,5 +56,3 @@ def filter_jobs(request):
         jobs = jobs.order_by(order)
 
     return jobs
-
-
