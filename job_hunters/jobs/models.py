@@ -1,11 +1,6 @@
 from django.db import models
-<<<<<<< HEAD
 from companies.models import Company
 from signup.models import Individual
-=======
-
-from companies.models import Company
->>>>>>> 87de94c0023a12c1b80f29ccb21a7732190f86a7
 
 # Create your models here.
 class JobType(models.Model):
@@ -21,10 +16,6 @@ class Category(models.Model):
     def __str__(self) -> str:
         return str(self.category)
 
-<<<<<<< HEAD
-
-=======
->>>>>>> 87de94c0023a12c1b80f29ccb21a7732190f86a7
 class Job(models.Model):
     title = models.CharField(max_length=200)
     description = models.CharField(max_length=1000)
