@@ -8,6 +8,7 @@ from django.http import HttpResponse
 
 from . import models
 
+
 # Create your views here.
 class LogInView(views.LoginView):
     """View for login page. Uses built in LoginView.
@@ -17,14 +18,14 @@ class LogInView(views.LoginView):
 
     def get_user(self):
         return self.request.user
-    
+
 
 def log_out(request):
     """Logs user out and returns them to job listing page.
     """
     logout(request)
     return redirect("jobs:index")
-    
+
 
 def signup_type(request):
     """First step in new account registration.
@@ -44,11 +45,11 @@ def register(request):
     """
     template_name = "accounts/signup_user.html"
     if request.method == 'POST':
-        form = UserCreationForm(data = request.POST)
+        form = UserCreationForm(data=request.POST)
         if form.is_valid():
             form.save()
             return redirect('accounts:login')
-    
+
     return render(request, template_name, {'form': UserCreationForm({})})
 
 
@@ -61,6 +62,7 @@ def register_profile(request):
     template_name = "accounts/signup_profile.html"
     if request.method == 'POST':
         profile_form = models.IndividualForm(data=request.POST, user=request.user)
+
 
 @login_required
 def user_profile(request):
