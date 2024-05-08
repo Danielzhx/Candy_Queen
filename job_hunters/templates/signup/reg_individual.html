@@ -1,22 +1,35 @@
 {% extends 'base.html' %}
 {% block content %}
-  <div class="loginDiv">
-    <h1 style="text-align: center; padding-top: 2rem;">Sign Up</h1>
-      <div style="text-align: center; align-items: center;">
-        <form method="post">
-          {% csrf_token %}
-          
-          {% if error in form.errors %}
-          <p> {{ error }}</p>
-          {% endif %}
-          <table>
-            <tr><td><input type="email" name="username" placeholder="Email"></td></tr>
-            <tr><td><input type="password" name="password1" placeholder="Password"></td></tr>
-            <tr><td><input type="password" name="password2" placeholder="Repeat Password"></td></tr>
-            <tr><td><input type="submit" name="submit" value="Register" /></td></tr>
-          </table>
-        </form>
+<div class="container bg-body-secondary w-75 rounded" style="margin-top:1rem">
+  <div class="col">
+    <h1 class="mb-3" style="text-align: center;">Sign Up</h1>
+    <form class="row g-3 align-center w-50" method="post" action="{% url 'signup:index' %}">
+      {% csrf_token %}
+      <!-- Email/Username -->
+      <div class="col-md-8">
+        <label for="login_email" class="form-label">Email address</label>
+        <input type="email" class="form-control" id="login_email" name="username">
       </div>
-    </div>
-</body>
+
+      <!-- Password -->
+      <div class="col-md-4">
+        <label for="login_password" class="form-label">Password</label>
+        <input type="password" class="form-control" id="form_password" name="password1">
+      </div>
+
+      <!-- Repeat password-->
+      <div class="col-md-4 justify-content-center">
+        <label for="login_password" class="form-label">Repeat password</label>
+        <input type="password" class="form-control" id="form_password" name="password2">
+      </div>
+      
+          <!-- Error display TODO: Format error display -->
+          {% if form.errors %}
+          {{ form.error }}
+          {% endif %}
+          <div style="text-align: center;"><input class="btn btn-secondary" type="submit" value="Log in"><br/></div>
+        </div>
+    </form>
+  </div>
+</div>
 {% endblock %}

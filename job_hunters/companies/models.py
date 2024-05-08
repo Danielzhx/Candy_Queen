@@ -14,4 +14,6 @@ class Company(models.Model):
     contact_email = models.CharField(max_length=255)
     description = models.CharField(max_length=1000)
     email = models.CharField(max_length=255) #The difference between contact_email and email is that contact email is for other users to contact the company, while email is the company's own email that they sign up with
-    password = models.CharField(max_length=255)
+
+    def __str__(self) -> str:
+        return self.name
