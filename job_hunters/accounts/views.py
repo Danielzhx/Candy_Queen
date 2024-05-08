@@ -27,42 +27,6 @@ def log_out(request):
     return redirect("jobs:index")
 
 
-def signup_type(request):
-    """First step in new account registration.
-    
-    Allows the user to choose whether they want to create a 
-    company or individual account.
-    """
-    template_name = "accounts/signup.html"
-    return render(request, template_name, None)
-
-
-def register(request):
-    """Second step in new account registration for individuals.
-    
-    Takes in only the required info to create a new user. Project specific 
-    info is handled in the next step.
-    """
-    template_name = "accounts/signup_user.html"
-    if request.method == 'POST':
-        form = UserCreationForm(data=request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('accounts:login')
-
-    return render(request, template_name, {'form': UserCreationForm({})})
-
-
-def register_profile(request):
-    """Third step in new account registration for individuals.
-    
-    Gets project specific info which is added to both the user object and 
-    its associated individual object.
-    """
-    template_name = "accounts/signup_profile.html"
-    if request.method == 'POST':
-        profile_form = models.IndividualForm(data=request.POST, user=request.user)
-
 
 @login_required
 def user_profile(request):
