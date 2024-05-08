@@ -33,6 +33,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'companies.apps.CompaniesConfig',
+    'login.apps.LoginConfig',
     'signup.apps.SignupConfig',
     'accounts.apps.AccountsConfig',
     'jobs.apps.JobsConfig',

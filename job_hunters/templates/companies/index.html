@@ -23,7 +23,7 @@
 {% block content %}
 <div class="row row-cols-1 row-cols-md-2" id="comp_list" style="margin-top:0.25rem; margin-left: 16%;">
     <div class="col-3">
-    {% for company in companies%}
+    {% for company in companies %}
         <div class="card bg-body-secondary" style="width:18%; margin-right:0.25rem; margin-bottom:0.25rem;">
             <div class="card-body">
                 <h5 class="card-title"><a href="{{ company.id }}">{{ company.name }}</a></h5>

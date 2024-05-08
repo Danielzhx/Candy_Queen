@@ -48,7 +48,7 @@
                 <li class="nav-item">
                   <a class="nav-link" href="{% url 'accounts:profile' %}">{{ user.username }}</a>
                 </li>
-              <form class="d-flex" method="post" action="{% url 'accounts:logout' %}">
+              <form class="d-flex" method="post" action="{% url 'login:logout' %}">
                 {% csrf_token %}
                 <button class="btn btn-outline-secondary" type="submit" style="--bs-btn-padding-y: .2rem">Log Out</button>
               </form>
@@ -57,7 +57,7 @@
               {% else %}
               <span class="navbar-nav">
                 <li class="nav-item">
-                  <a class="nav-link" href="{% url 'accounts:login' %}">Log In</a>
+                  <a class="nav-link" href="{% url 'login:login' %}">Log In</a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link" href="{% url 'signup:index' %}">Sign Up</a>
