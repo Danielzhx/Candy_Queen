@@ -1,34 +1,35 @@
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse, JsonResponse
 from .models import Category, Company, Job, JobType
-from Forms.filter_form import FilterForm,ORDERS
+from Forms.filter_form import FilterForm, ORDERS
+
 
 # Create your views here.
 def index(request):
-    form  = FilterForm(request.GET)
+    form = FilterForm(request.GET)
     context = {
-        'form':form,
+        'form': form,
         "categories": Category.objects.all(),
         "companies": Company.objects.all(),
-
     }
     context['jobs'] = filter_jobs(request)
     return render(request, 'jobs/index.html', context)
 
+
 def detail(request, job_id):
     """Detail view for individual job posting.
     """
-    job = get_object_or_404(Job, pk = job_id)
+    job = get_object_or_404(Job, pk=job_id)
     context = {
         'job': job
     }
     return render(request, 'jobs/profile.html', context)
 
+
 def apply(request, job_id):
     """Application view for job posting.
     """
     pass
-
 
 
 def filter_jobs(request):
@@ -42,7 +43,6 @@ def filter_jobs(request):
 
     if request.GET['title']:
         jobs = jobs.filter(title__contains=request.GET['title'])
-
 
     if request.GET['company']:
         jobs = jobs.filter(company=request.GET['company'])
