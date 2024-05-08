@@ -1,5 +1,6 @@
 from django.db import models
 
+from companies.models import Company
 
 # Create your models here.
 class JobType(models.Model):
@@ -14,12 +15,6 @@ class Category(models.Model):
 
     def __str__(self) -> str:
         return str(self.category)
-
-
-class Company(models.Model):
-    name = models.CharField(max_length=200)
-    address = models.CharField(max_length=200)
-
 
 class Job(models.Model):
     title = models.CharField(max_length=200)
