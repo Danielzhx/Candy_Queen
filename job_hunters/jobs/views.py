@@ -10,6 +10,7 @@ def index(request):
         'form':form,
         "categories": Category.objects.all(),
         "companies": Company.objects.all(),
+
     }
     context['jobs'] = filter_jobs(request)
     return render(request, 'jobs/index.html', context)
@@ -41,6 +42,7 @@ def filter_jobs(request):
 
     if request.GET['title']:
         jobs = jobs.filter(title__contains=request.GET['title'])
+
 
     if request.GET['company']:
         jobs = jobs.filter(company=request.GET['company'])
