@@ -1,91 +1,34 @@
 {% extends "base.html" %}
 {% block sidebar %}
-<div id="sidebar">
-    <form>
-        <div class="mb-3">
-            <input class="form-control-sm" type="search" id="search_name" name="search_name" placeholder="Search" onkeypress="return event.keyCode != 13;">
-            <select class="form-select" name="category_select">
-                <option value="undefined" selected>All categories</option>
-                {% for category in categories.all %}
-                <option value="{{ category.id }}">{{ category.category }}</option>
-                {% endfor %}
-            </select>
-            <select class="form-select" name="company_select">
-                <option value="undefined" selected>All Companies</option>
-                {% for company in companies.all %}
-                <option value="{{ company.id }}">{{ company.company }}</option>
-                {% endfor %}
-            </select>
-            <div class="mb-2">
-                <input type="checkbox" class="form-check-input" name="full_time" id="full_time"><label class="form-check-label" for="full_time">Full time</label>
-                <input type="checkbox" class="form-check-input" name="part_time" id="part_time"><label class="form-check-label" for="part_time">Part time</label> <br/>
-                <input type="checkbox" class="form-check-input" name="internships" id="internships"><label class="form-check-label" for="internships">Internships</label>
-            </div>
-            <button class="btn-outline-secondary" type="button" id="filter_button" style="align-self: center;">Search</button>
-            {% if searchName %}
-            <p>searchName</p>
-            {% endif %}
-        </div>
+<div class="container bg-body-secondary rounded border border-secondary" style="width: 15%; margin-left: 0.25rem; position:fixed">
+    <form id="job_filter">
+        {{ form }}
+        <input type="submit">
     </form>
 </div>
+<style>
+    #job_filter select{
+        margin:1%; 
+        width: 98%;
+        padding-top: -5px;
+    }
+    #job_filter input[type=search]{
+        margin:1%; 
+        width: 98%;
+    }
+</style>
 {% endblock %}
 {% block content %}
-<!--
-<div style="display: flex; justify-content: space-between; width: 100vw;">
-
-    <div id="sidebar">
-        <form method="get", action="{% url 'jobs:index' %}">
-            <input type="search" id="searchName" name="searchName" placeholder="Search">
-            <br/><br/>
-            <select name="category_select">
-                {% for category in categories.all %}
-                    <option value="{{category.id}}" selected>{{ category.category }}</option>
-                {% endfor %}
-            </select>
-            <br/>
-            <select name="company_select">
-                <option value="all" selected>All companies</option>
-            </select>
-            <br/>
-            <input type="checkbox" class="jobFilter" name="full_time" checked> <label for="Full time">Full Time</label> <br/>
-            <input type="checkbox" class="jobFilter" name="part_time" checked> <label for="Part time">Part Time</label> <br/>
-            <input type="checkbox" class="jobFilter" name="internships" checked> <label for="Internships">Internships</label> <br/>
-            <br/>
-            <input type="checkbox" class="jobFilter" name="already_applied"> <label for="Already applied">Already applied</label> <br/>
-            <br/>
-            <input type="radio" class="jobFilter" name="Order_by_posted" id="posted"> <label for="Order_created">Order by date posted</label> <br/>
-            <input type="radio" class="jobFilter" name="Order_by_due" id="due"> <label for="Order_due">Order by due date</label> <br/>
-            <input type="submit" value="Filter">
-        </form>
-    </div>
--->
-
-    <!-- Posting Display -->
-    <div class="row row-cols-1 row-cols-md-2 g-4" id="job_list" style="margin: auto; margin-left: 15%; width: 80%;">
-        
-    </div>
-        <!--
-        {% for job in jobs%}
-        <div class="col">
-          <div class="card">
+<div class="row row-cols-1 row-cols-md-2" id="job_list" style="margin-top:0.25rem; margin-left: 16%;">
+    <div class="col-3">
+    {% for job in jobs%}
+        <div class="card bg-body-secondary" style="width:18%; margin-right:0.25rem; margin-bottom:0.25rem;">
             <div class="card-body">
-              <h5 class="card-title">{{ job.title }}</h5>
-              <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                <h5 class="card-title"><a href="{{ job.id }}">{{ job.title }}</a></h5>
+                <p class="card-text">{{ job.description }}</p>
             </div>
-          </div>
-        {% endfor %}
-        -->
-
-
-<!--
-    <div class="listing">
-        <a href="{{ job.id }}" class="jobPost">
-            <h4>{{ job.title }}</h4>
-            <h3>Type: {{ job.job_type.job_type }}</h3>
-            <h3>Field: {{ job.category.category }}</h3>
-            <h3>Due: {{ job.due_date }}</h3>
-            <h3>Starts: {{ job.start_date }}</h3>
-        </a>
+        </div>
+    {% endfor %}
     </div>
-</div>-->
+</div>
 {% endblock %}

@@ -1,21 +1,25 @@
 from django.db import models
 
+
 # Create your models here.
 class JobType(models.Model):
     job_type = models.CharField(max_length=200)
 
     def __str__(self) -> str:
-        return self.job_type
+        return str(self.job_type)
+
 
 class Category(models.Model):
     category = models.CharField(max_length=200)
 
     def __str__(self) -> str:
-        return self.category
+        return str(self.category)
+
 
 class Company(models.Model):
     name = models.CharField(max_length=200)
     address = models.CharField(max_length=200)
+
 
 class Job(models.Model):
     title = models.CharField(max_length=200)

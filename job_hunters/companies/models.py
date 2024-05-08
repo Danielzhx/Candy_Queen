@@ -1,6 +1,7 @@
-
 from django.db import models
 from django.contrib.auth.models import User
+
+
 # Create your models here.
 
 class Company(models.Model):
@@ -14,4 +15,3 @@ class Company(models.Model):
     description = models.CharField(max_length=1000)
     email = models.CharField(max_length=255) #The difference between contact_email and email is that contact email is for other users to contact the company, while email is the company's own email that they sign up with
     password = models.CharField(max_length=255)
-
