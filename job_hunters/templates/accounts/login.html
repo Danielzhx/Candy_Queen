@@ -17,4 +17,26 @@
       </form>
   </div>
 </div>
+<!-- Bootstrap login screen -->
+<div class="container-xl">
+  <table>
+    <tr><th><h1>Log In</h1></th></tr>
+    <tr><td><h3>Enter email and password</h3></td></tr>
+    <tr><td><input class="form-control" type="text" placeholder="Email"></td></tr>
+    <tr><td>
+      <!-- Email -->
+      <div class="mb-3">
+        <label for="login_email" class="form-label">Email address</label>
+        <input type="email" class="form-control" id="login_email" name="username" placeholder="Email">
+      </div>
+    </td></tr>
+    <tr><td>
+      <!-- Password -->
+      <div class="mb-3">
+        <label for="login_password" class="form-label">Password</label>
+        <input type="password" class="form-control" id="form_password" name="password">
+      </div>
+    </td></tr>
+  </table>
+</div>
 {% endblock %}

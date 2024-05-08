@@ -14,9 +14,9 @@
             </select>
             <!-- Select company -->
             <select class="form-select-sm" name="company_select">
-                <option class="light_option" value="undefined" selected>All Companies</option>
+                <option class="bg-dark text-light" value="undefined" selected>All Companies</option>
                 {% for company in companies.all %}
-                <option class="light_option" value="{{ company.id }}">{{ company.company }}</option>
+                <option class="bg-dark text-light" value="{{ company.id }}">{{ company.company }}</option>
                 {% endfor %}
             </select>
             <div class="row align-items-start">
@@ -99,7 +99,7 @@
 
     <!-- Posting Display -->
         <div class="row row-cols-1 row-cols-md-2" id="job_list" style="margin-top:0.25rem; margin-left: 16%;">
-            <div class="col-3">
+            <div class="col-3" id="job_list_col">
             <!-- PLACEHOLDER - CODE CREATED INSIDE jobs.js FOR EACH JOB
             <div class="card bg-body-secondary">
                 <div class="card-body">

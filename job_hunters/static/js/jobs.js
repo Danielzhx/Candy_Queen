@@ -25,7 +25,7 @@ $(document).ready(function() {
                                 </div>
                             </div>`
                 });
-                $('#job_list').html(newHTML.join(''));
+                $('#job_list_col').html(newHTML.join(''));
                 $('#searchName').val('');
             },
             error: function(xhr, status, error) {
