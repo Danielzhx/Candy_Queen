@@ -1,5 +1,6 @@
 from django.db import models
 from companies.models import Company
+from signup.models import Individual
 
 # Create your models here.
 class JobType(models.Model):
@@ -25,3 +26,30 @@ class Job(models.Model):
     company = models.ForeignKey(Company, on_delete=models.CASCADE)
     due_date = models.DateField("Due date")
     start_date = models.DateField("Start date")
+
+class Application(models.Model):
+    user = models.ForeignKey(Individual, on_delete=models.CASCADE)
+    job = models.ForeignKey(Job,on_delete=models.CASCADE)
+    name = models.CharField(max_length = 200)
+    street_name = models.CharField(max_length = 200)
+    house_number = models.IntegerField()
+    city = models.CharField(max_length = 200)
+    country = models.CharField(max_length = 200)
+    postal = models.IntegerField()
+    cover_letter = models.FileField()
+
+    class Meta:
+        unique_together = ("user", "job")
+
+class References(models.Model):
+    application = models.ForeignKey(Application, on_delete=models.CASCADE)
+    name = models.CharField(max_length = 200)
+    phone_number = models.IntegerField()
+
+class Experiences(models.Model):
+    application = models.ForeignKey(Application, on_delete=models.CASCADE)
+    role = models.CharField(max_length = 300)
+    start_date = models.DateField()
+    end_date = models.DateField()
+
+

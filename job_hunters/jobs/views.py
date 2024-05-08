@@ -1,4 +1,5 @@
 from django.shortcuts import render, get_object_or_404
+from django.http import HttpResponse
 from .models import Category, Company, Job
 from Forms.filter_form import FilterForm, ORDERS
 
@@ -27,7 +28,8 @@ def detail(request, job_id):
 def apply(request, job_id):
     """Application view for job posting.
     """
-    pass
+    print(request.user)
+    return render(request, 'applications/apply.html')
 
 
 def filter_jobs(request):
