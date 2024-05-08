@@ -4,6 +4,10 @@ from .models import Category, Company, Job, JobType
 
 # Create your views here.
 def index(request):
+    """Initial job listing page.
+    
+    Shows the job listings and also returns a JsonResponse to filter queries.
+    """
     jobs = [{
         'id': x.id,
         'title': x.title,
@@ -29,6 +33,8 @@ def index(request):
     return render(request, 'jobs/index.html', context)
 
 def detail(request, job_id):
+    """Detail view for individual job posting.
+    """
     job = get_object_or_404(Job, pk = job_id)
     context = {
         'job': job
@@ -36,6 +42,8 @@ def detail(request, job_id):
     return render(request, 'jobs/profile.html', context)
 
 def apply(request, job_id):
+    """Application view for job posting.
+    """
     pass
 
 

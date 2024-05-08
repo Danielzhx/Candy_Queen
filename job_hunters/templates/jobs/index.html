@@ -1,47 +1,52 @@
 {% extends "base.html" %}
 {% block sidebar %}
-<div id="container-xxl" style="width: 15%; margin-left: 0.25rem; margin-top: 0.25rem; position:fixed">
+<div class="container bg-body-secondary rounded border border-secondary" style="width: 15%; margin-left: 0.25rem; margin-top: 0.25rem; position:fixed">
     <form id="job_filter">
-        <div class="mb-3 bg-secondary rounded border border-secondary">
+        <div class="mb-3">
             <!-- Search bar-->
             <input class="form-control" type="search" id="search_name" name="search_name" placeholder="Search" onkeypress="return event.keyCode != 13;">
             <!-- Select category -->
             <select class="form-select-sm" name="category_select" id="category_select">
-                <option value="undefined" selected>All categories</option>
+                <option class="bg-dark text-light" value="undefined" selected>All categories</option>
                 {% for category in categories.all %}
-                <option value="{{ category.id }}">{{ category.category }}</option>
+                <option class="bg-dark text-light" value="{{ category.id }}">{{ category.category }}</option>
                 {% endfor %}
             </select>
             <!-- Select company -->
             <select class="form-select-sm" name="company_select">
-                <option value="undefined" selected>All Companies</option>
+                <option class="light_option" value="undefined" selected>All Companies</option>
                 {% for company in companies.all %}
-                <option value="{{ company.id }}">{{ company.company }}</option>
+                <option class="light_option" value="{{ company.id }}">{{ company.company }}</option>
                 {% endfor %}
             </select>
-            <!-- Check job types -->
-            <div class="container">
-                <div class="form-check">
-                    <input type="checkbox" class="form-check-input" name="full_time" id="full_time" checked>
-                    <label class="form-check-label" for="full_time">Full time</label>
+            <div class="row align-items-start">
+                <!-- Check job types -->
+                <div class="col">
+                    <div class="form-check">
+                        <input type="checkbox" class="form-check-input" name="full_time" id="full_time" checked>
+                        <label class="form-check-label" for="full_time">Full time</label>
+                    </div>
+                    <div class="form-check">
+                        <input type="checkbox" class="form-check-input" name="part_time" id="part_time" checked>
+                        <label class="form-check-label" for="part_time">Part time</label>
+                    </div>
+                    <div class="form-check">
+                        <input type="checkbox" class="form-check-input" name="internships" id="internships" checked>
+                        <label class="form-check-label" for="internships">Internships</label>
+                    </div>
                 </div>
-                <div class="form-check">
-                    <input type="checkbox" class="form-check-input" name="part_time" id="part_time" checked>
-                    <label class="form-check-label" for="part_time">Part time</label>
+                <!-- Check whether user wants to see jobs they've already applied for -->
+                <div class="col">
+                    <div class="form-check">
+                        <input type="checkbox" class="form-check-input" name="applied" id="applied" checked>
+                        <label class="form-check-label" for="applied">Already applied</label>
+                    </div>
                 </div>
-                <div class="form-check">
-                    <input type="checkbox" class="form-check-input" name="internships" id="internships" checked>
-                    <label class="form-check-label" for="internships">Internships</label>
-                </div>
-            </div>
-            <!-- Check whether user wants to see jobs they've already applied for -->
-            <div class="container">
-                <div class="form-check"></div>
             </div>
             <!-- Filter button -->
-                <div class="col">
-                    <button class="btn-outline-secondary" type="button" id="filter_button">Filter</button>
-                </div>
+            <div class="col">
+                <button class="btn btn-secondary float-end" type="button" id="filter_button" style="margin-bottom: 0.5rem;">Filter</button>
+            </div>
             
             {% if searchName %}
             <p>searchName</p>
@@ -94,30 +99,14 @@
 
     <!-- Posting Display -->
     <div class="row row-cols-1 row-cols-md-2 g-4" id="job_list" style="margin: auto; margin-left: 15%; width: 80%;">
-        
-    </div>
-        <!--
-        {% for job in jobs%}
+        <!-- PLACEHOLDER - CODE CREATED INSIDE jobs.js FOR EACH JOB
         <div class="col">
-          <div class="card">
+          <div class="card bg-body-secondary">
             <div class="card-body">
-              <h5 class="card-title">{{ job.title }}</h5>
+              <h5 class="card-title">Demo Job</h5>
               <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
             </div>
           </div>
-        {% endfor %}
         -->
-
-
-<!--
-    <div class="listing">
-        <a href="{{ job.id }}" class="jobPost">
-            <h4>{{ job.title }}</h4>
-            <h3>Type: {{ job.job_type.job_type }}</h3>
-            <h3>Field: {{ job.category.category }}</h3>
-            <h3>Due: {{ job.due_date }}</h3>
-            <h3>Starts: {{ job.start_date }}</h3>
-        </a>
     </div>
-</div>-->
 {% endblock %}
