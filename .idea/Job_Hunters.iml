@@ -1,7 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <module type="PYTHON_MODULE" version="4">
   <component name="NewModuleRootManager">
+<<<<<<< HEAD
+    <content url="file://$MODULE_DIR$">
+      <excludeFolder url="file://$MODULE_DIR$/ENV" />
+    </content>
+=======
     <content url="file://$MODULE_DIR$" />
+>>>>>>> fb865ed5be38b418a0004b848907eb054fe797af
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
   </component>
@@ -9,6 +15,8 @@
     <option name="format" value="PLAIN" />
     <option name="myDocStringFormat" value="Plain" />
   </component>
+<<<<<<< HEAD
+=======
   <component name="TemplatesService">
     <option name="TEMPLATE_CONFIGURATION" value="Jinja2" />
     <option name="TEMPLATE_FOLDERS">
@@ -17,4 +25,5 @@
       </list>
     </option>
   </component>
+>>>>>>> fb865ed5be38b418a0004b848907eb054fe797af
 </module>

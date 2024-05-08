@@ -1,8 +1,6 @@
 from django.shortcuts import render, get_object_or_404
-from django.http import HttpResponse, JsonResponse
-from .models import Category, Company, Job, JobType
+from .models import Category, Company, Job
 from Forms.filter_form import FilterForm, ORDERS
-
 
 # Create your views here.
 def index(request):

@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_list_or_404
 from django.views import generic
 
-from jobs.models import Company
+from .models import Company
 
 
 # Create your views here.
