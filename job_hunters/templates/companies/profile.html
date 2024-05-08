@@ -1,4 +1,22 @@
 {% extends 'base.html' %}
 {% block content %}
+<div style="display: flex; justify-content: space-around;">
+  <div id="company_cover_img"> <img src= {{company.cover_image}} alt= "company coverimage"> </div>
+  <div id="company_logo"> <img src= {{company.logo}} alt= "company logo"> </div>
+  <div>
+    <h1>{{company.name}}</h1>
+  </div>
 
+  <div>
+    <h3>Company's info:</h3>
+    <p>{{company.address}}</p>
+    <p>{{company.phone_number}}</p>
+    <p>{{company.contact_email}}</p>
+  </div>
+
+  <div>
+    <h3>Company's description:</h3>
+    <p>{{company.description}}</p>
+  </div>
+</div>
 {% endblock %}
