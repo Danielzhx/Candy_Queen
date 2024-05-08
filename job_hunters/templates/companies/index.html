@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends "base.html" %}
 {% block sidebar %}
 <div class="container bg-body-secondary rounded border border-secondary" style="width: 15%; margin-left: 0.25rem; position:fixed">
     <form id="job_filter">
@@ -19,14 +19,14 @@
 </style>
 {% endblock %}
 
-{% block content %}
 
+{% block content %}
 <div class="row row-cols-1 row-cols-md-2" id="comp_list" style="margin-top:0.25rem; margin-left: 16%;">
     <div class="col-3">
     {% for company in companies%}
         <div class="card bg-body-secondary" style="width:18%; margin-right:0.25rem; margin-bottom:0.25rem;">
             <div class="card-body">
-                <h5 class="card-title"><a href="{{ company.id }}">{{ company.title }}</a></h5>
+                <h5 class="card-title"><a href="{{ company.name }}">{{ company.contact_email }}</a></h5>
                 <p class="card-text">{{ company.description }}</p>
             </div>
         </div>
