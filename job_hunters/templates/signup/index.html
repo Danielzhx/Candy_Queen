@@ -1,12 +1,12 @@
 {% extends 'base.html' %}
 {% block content %}
-  <div class="LoginDiv">
+  <div class="container bg-body-secondary w-25 rounded">
     <h1 style="text-align: center;">Sign Up</h1>
       <div style="text-align: center;">
           <a href="{% url 'signup:reg_individual' %}">
-            <button type="button" name="Individual_Account">Individual Account</button> <br/>
+            <button class="btn btn-secondary mb-3" type="button" name="Individual_Account">Individual Account</button> <br/>
           </a>
-          <button type="button" name="Company_Account" >Company Account</button>
+          <button class="btn btn-secondary mb-3" type="button" name="Company_Account">Company Account</button>
       </div>
     </div>
 </body>
