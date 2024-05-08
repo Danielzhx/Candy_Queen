@@ -1,33 +1,65 @@
 {% extends "base.html" %}
 {% block sidebar %}
-<div id="sidebar">
-    <form>
-        <div class="mb-3">
-            <input class="form-control-sm" type="search" id="search_name" name="search_name" placeholder="Search" onkeypress="return event.keyCode != 13;">
-            <select class="form-select" name="category_select">
+<div id="container-xxl" style="width: 15%; margin-left: 0.25rem; margin-top: 0.25rem; position:fixed">
+    <form id="job_filter">
+        <div class="mb-3 bg-secondary rounded border border-secondary">
+            <!-- Search bar-->
+            <input class="form-control" type="search" id="search_name" name="search_name" placeholder="Search" onkeypress="return event.keyCode != 13;">
+            <!-- Select category -->
+            <select class="form-select-sm" name="category_select" id="category_select">
                 <option value="undefined" selected>All categories</option>
                 {% for category in categories.all %}
                 <option value="{{ category.id }}">{{ category.category }}</option>
                 {% endfor %}
             </select>
-            <select class="form-select" name="company_select">
+            <!-- Select company -->
+            <select class="form-select-sm" name="company_select">
                 <option value="undefined" selected>All Companies</option>
                 {% for company in companies.all %}
                 <option value="{{ company.id }}">{{ company.company }}</option>
                 {% endfor %}
             </select>
-            <div class="mb-2">
-                <input type="checkbox" class="form-check-input" name="full_time" id="full_time"><label class="form-check-label" for="full_time">Full time</label>
-                <input type="checkbox" class="form-check-input" name="part_time" id="part_time"><label class="form-check-label" for="part_time">Part time</label> <br/>
-                <input type="checkbox" class="form-check-input" name="internships" id="internships"><label class="form-check-label" for="internships">Internships</label>
+            <!-- Check job types -->
+            <div class="container">
+                <div class="form-check">
+                    <input type="checkbox" class="form-check-input" name="full_time" id="full_time" checked>
+                    <label class="form-check-label" for="full_time">Full time</label>
+                </div>
+                <div class="form-check">
+                    <input type="checkbox" class="form-check-input" name="part_time" id="part_time" checked>
+                    <label class="form-check-label" for="part_time">Part time</label>
+                </div>
+                <div class="form-check">
+                    <input type="checkbox" class="form-check-input" name="internships" id="internships" checked>
+                    <label class="form-check-label" for="internships">Internships</label>
+                </div>
             </div>
-            <button class="btn-outline-secondary" type="button" id="filter_button" style="align-self: center;">Search</button>
+            <!-- Check whether user wants to see jobs they've already applied for -->
+            <div class="container">
+                <div class="form-check"></div>
+            </div>
+            <!-- Filter button -->
+                <div class="col">
+                    <button class="btn-outline-secondary" type="button" id="filter_button">Filter</button>
+                </div>
+            
             {% if searchName %}
             <p>searchName</p>
             {% endif %}
         </div>
     </form>
 </div>
+<style>
+    #job_filter select{
+        margin:1%; 
+        width: 98%;
+        padding-top: -5px;
+    }
+    #job_filter input[type=search]{
+        margin:1%; 
+        width: 98%;
+    }
+</style>
 {% endblock %}
 {% block content %}
 <!--

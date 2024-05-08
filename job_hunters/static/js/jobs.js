@@ -11,7 +11,7 @@ $(document).ready(function() {
         e.preventDefault();        
         let search = $('#search_name').val();
         $.ajax({
-            url: '?search_name=' + search,
+            url: '?query=True' + '&search_name=' + search,
             type: 'GET',
             success: function(resp) {
                 let newHTML = resp.data.map(d => {
@@ -31,6 +31,6 @@ $(document).ready(function() {
                 console.error(error);
             }
         })
-    }}
-    window.onload = get_jobs(Event())
+    }};
+    get_jobs(new Event('click'))
 });

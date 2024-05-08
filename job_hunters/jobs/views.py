@@ -15,9 +15,10 @@ def index(request):
         'start_date': x.start_date
         } for x in Job.objects.all()]
     
-    if 'search_name' in request.GET:
-        jobs = [x for x in jobs if request.GET['search_name'].lower() in x['title'].lower()]
-        
+    if 'query' in request.GET:
+        if 'search_name' in request.GET:
+            jobs = [x for x in jobs if request.GET['search_name'].lower() in x['title'].lower()]
+            
         return JsonResponse({'data':jobs})
 
     context = {
