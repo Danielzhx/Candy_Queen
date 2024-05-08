@@ -21,13 +21,27 @@ def reg_individual(request):
     info is handled in the next step.
     """
     template_name = "signup/reg_individual.html"
-    if request.method == 'POST':
-        form = UserCreationForm(data=request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('accounts:login')
 
-    return render(request, template_name, {'form': UserCreationForm({})})
+    if request.method == 'POST':
+        print(f"POST request received: {request.POST['username']}, {request.POST['password1']}, {request.POST['password2']}")
+        userform = UserCreationForm(data={'username':request.POST['username'], 
+                                          'password1':request.POST['password1'], 
+                                          'password2':request.POST['password2']})
+        indform = IndividualForm(data=request.POST)
+        user_valid = userform.is_valid()
+        print(userform.errors)
+        print(f"user_valid: {user_valid}")
+        ind_valid = indform.is_valid()
+        print(f"ind_valid: {ind_valid}")
+        if user_valid and ind_valid:
+            user = userform.save(commit=True)
+            indform.user_id = user
+            print(indform.user_id)
+            #indform.save(commit=True)
+
+        return render(request, template_name, {'userError':userform.errors, 'indError':indform.errors})
+    else:
+        return render(request, template_name, {})
 
 
 def register_profile(request):
