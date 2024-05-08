@@ -18,12 +18,10 @@ $(document).ready(function() {
             type: 'GET',
             success: function(resp) {
                 let newHTML = resp.data.map(d => {
-                    return `<div class="col">
-                                <div class="card bg-body-secondary" style="width:40%">
-                                    <div class="card-body">
-                                        <h5 class="card-title"><a href="${d.id}">${d.title}</a></h5>
-                                        <p class="card-text">${d.company}</p>
-                                    </div>
+                    return `<div class="card bg-body-secondary" style="width:18%; margin-right:0.25rem; margin-bottom:0.25rem;">
+                                <div class="card-body">
+                                    <h5 class="card-title"><a href="${d.id}">${d.title}</a></h5>
+                                    <p class="card-text">${d.company}</p>
                                 </div>
                             </div>`
                 });
