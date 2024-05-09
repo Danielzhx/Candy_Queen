@@ -31,10 +31,8 @@
                 <p>{{ job.address }}</p>
                 <p>Due date: {{ job.due_date}}</p>
                 <p>Start date: {{ job.start_date}}</p>
-                <input class="btn btn-secondary" type="submit" action="applications" value="Apply" style="margin-bottom:0.1rem">
+                <a class="btn btn-secondary" href="{% url 'jobs:application' job.id %}"> Apply </a>
             </div>
     </div>
 </div>
-
-
 {% endblock %}
