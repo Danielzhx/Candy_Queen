@@ -32,7 +32,11 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+<<<<<<< HEAD
+    'django_countries',
+=======
     'betterforms',
+>>>>>>> 79f22f3ad5f92a779d47efd1333df357c79f2430
     'companies.apps.CompaniesConfig',
     'login.apps.LoginConfig',
     'signup.apps.SignupConfig',
