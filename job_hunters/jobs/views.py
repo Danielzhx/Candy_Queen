@@ -28,17 +28,21 @@ def detail(request, job_id):
 
 
 def apply(request, job_id):
-    """Application view for job posting.
+    """
+        Application view for job posting.
     """
     form = ApplicationForm()
     content = {
         'form':form
     }
+    # TODO: Remove the try except and replace with djangos permissions
     """ try:
-        individual = Individual.get(user_id=request.user.id)
+        Individual.get(user_id=request.user.id)
     except:
-        return redirect('/jobs')
-"""
+        return redirect('/jobs') """
+
+    if request.method == "POST":
+        print(request.POST)
     return render(request, 'applications/apply.html',content)
 
 
