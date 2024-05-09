@@ -44,9 +44,12 @@ class References(models.Model):
     application = models.ForeignKey(Application, on_delete=models.CASCADE)
     name = models.CharField(max_length = 200)
     phone_number = models.IntegerField()
+    email = models.CharField(max_length=200)
+    contact_bool = models.BooleanField()
 
 class Experiences(models.Model):
     application = models.ForeignKey(Application, on_delete=models.CASCADE)
+    workplace = models.CharField(max_length=200)
     role = models.CharField(max_length = 300)
     start_date = models.DateField()
     end_date = models.DateField()
