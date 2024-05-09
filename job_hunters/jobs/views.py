@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponse
-from .models import Category, Company, Job
+from .models import Category, Company, Job, Application
 from signup.models import Individual
 from Forms.filter_form import FilterForm, ORDERS
 from Forms.application_form import ApplicationForm
@@ -31,19 +31,30 @@ def apply(request, job_id):
     """
         Application view for job posting.
     """
-    form = ApplicationForm()
+    
+    # TODO: Remove the try except and replace with djangos permissions
+    try:
+        individual = Individual.get(user_id=request.user.id)
+    except:
+        return redirect('/jobs')
+
+    if request.method == "POST":
+        job = Job.objects.get(pk=job_id)
+        form = ApplicationForm(request.POST)
+        if form.is_valid():
+            application = Application(form.data, user=individual, job=job_id)
+            application.save()
+            # TODO: Change redirect to application review page
+            return redirect('/jobs')
+
+    else:
+        form = ApplicationForm()
+
     content = {
         'form':form
     }
-    # TODO: Remove the try except and replace with djangos permissions
-    """ try:
-        Individual.get(user_id=request.user.id)
-    except:
-        return redirect('/jobs') """
 
-    if request.method == "POST":
-        print(request.POST)
-    return render(request, 'applications/apply.html',content)
+    return render(request, 'applications/apply.html', content)
 
 
 def filter_jobs(request):

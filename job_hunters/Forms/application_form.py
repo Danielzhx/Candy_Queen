@@ -14,5 +14,5 @@ class ApplicationForm(ModelForm):
             "city": widgets.TextInput(attrs={"placeholder":"City", "class":"form-control"}),
             "postal": widgets.TextInput(attrs={"placeholder":"Postal code", "class":"form-control"}),
             "country": CountrySelectWidget(),
-            "cover_letter": widgets.FileInput(attrs={'label': 'Upload file'})
+            "cover_letter": widgets.Textarea()
         }

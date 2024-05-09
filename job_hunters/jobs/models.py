@@ -36,7 +36,7 @@ class Application(models.Model):
     city = models.CharField(max_length = 200)
     country = CountryField()
     postal = models.IntegerField()
-    cover_letter = models.FileField()
+    cover_letter = models.TextField(max_length=1000)
 
     class Meta:
         unique_together = ("user", "job")
