@@ -31,10 +31,13 @@ def apply(request, job_id):
     """
         Application view for job posting.
     """
-    
+    print(request.user.id)
     # TODO: Remove the try except and replace with djangos permissions
+    #if request.user.id not in Individual.objects.all()
+
     try:
         individual = Individual.objects.get(parent_user_id=request.user.id)
+
     except:
         return redirect('/jobs')
 
@@ -67,7 +70,7 @@ def filter_jobs(request):
         jobs = jobs.filter(job_type__in=type_selection)
 
     if request.GET['title']:
-        jobs = jobs.filter(title__contains=request.GET['title'])
+        jobs = jobs.filter(title__icontains=request.GET['title'])
 
     if request.GET['company']:
         jobs = jobs.filter(company=request.GET['company'])
