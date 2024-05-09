@@ -14,4 +14,4 @@ def index(request):
 def details(request, comp_id):
     template = "companies/profile.html"
     company = get_list_or_404(Company, pk=comp_id)
-    return render(request, template, {'company': company})
+    return render(request, template, {'company': company[0]})
