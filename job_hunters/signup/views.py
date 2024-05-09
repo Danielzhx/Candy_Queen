@@ -1,7 +1,8 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.models import User
 
-from .models import IndividualForm
+from .models import IndividualForm, SignupForm
 
 # Create your views here.
 def signup_type(request):
@@ -21,25 +22,16 @@ def reg_individual(request):
     info is handled in the next step.
     """
     template_name = "signup/reg_individual.html"
-
     if request.method == 'POST':
-        print(f"POST request received: {request.POST['username']}, {request.POST['password1']}, {request.POST['password2']}")
-        userform = UserCreationForm(data={'username':request.POST['username'], 
-                                          'password1':request.POST['password1'], 
-                                          'password2':request.POST['password2']})
-        indform = IndividualForm(data=request.POST)
-        user_valid = userform.is_valid()
-        print(userform.errors)
-        print(f"user_valid: {user_valid}")
-        ind_valid = indform.is_valid()
-        print(f"ind_valid: {ind_valid}")
-        if user_valid and ind_valid:
-            user = userform.save(commit=True)
-            indform.user_id = user
-            print(indform.user_id)
-            #indform.save(commit=True)
-
-        return render(request, template_name, {'userError':userform.errors, 'indError':indform.errors})
+        print('Post method received')
+        signup = SignupForm(data = request.POST)
+        print('Form created')
+        print(f"is signup valid? {signup.is_valid()}")
+        if signup.is_valid():
+            signup.save()
+            return redirect("jobs:index")
+        else:
+            return render(request, template_name, {'errors': signup.errors})
     else:
         return render(request, template_name, {})
 

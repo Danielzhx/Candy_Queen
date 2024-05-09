@@ -8,40 +8,40 @@
       <!-- Email/Username -->
       <div class="col-md-8">
         <!-- <label for="login_email" class="form-label">Email address</label> -->
-        <input type="email" class="form-control" id="login_email" name="username" placeholder="Email">
+        <input type="email" class="form-control" id="login_email" name="user-username" placeholder="Email">
       </div>
 
       <!-- Password -->
       <div class="col-md-4">
         <!-- <label for="login_password" class="form-label">Password</label> -->
-        <input type="password" class="form-control" id="form_password" name="password1" placeholder="Password">
+        <input type="password" class="form-control" id="form_password" name="user-password1" placeholder="Password">
       </div>
 
       <!-- Repeat password-->
       <div class="col-md-4 offset-md-8">
         <!-- <label for="login_password" class="form-label">Repeat password</label> -->
-        <input type="password" class="form-control" id="form_password" name="password2" placeholder="Repeat password">
+        <input type="password" class="form-control" id="form_password" name="user-password2" placeholder="Repeat password">
       </div>
 
       
       <!-- First name -->
       <div class="col-md-6">
-        <input type="text" class="form-control" id="first_name" name="first_name" placeholder="First name">
+        <input type="text" class="form-control" id="first_name" name="user-first_name" placeholder="First name">
       </div>
 
       <!-- Last name -->
       <div class="col-md-6">
-        <input type="text" class="form-control" id="last_name" name="last_name" placeholder="Last name">
+        <input type="text" class="form-control" id="last_name" name="user-last_name" placeholder="Last name">
       </div>
 
       <!-- Phone -->
       <div class="col-md-6">
-        <input type="text" class="form-control" id="phone" name="phone_number" placeholder="Phone">
+        <input type="text" class="form-control" id="phone" name="individual-phone_number" placeholder="Phone">
       </div>
       
       <!-- Address -->
       <div class="col-md-6">
-        <input type="text" class="form-control" id="address" name="address" placeholder="Address">
+        <input type="text" class="form-control" id="address" name="individual-address" placeholder="Address">
       </div>
 
       <!-- DoB label -->
@@ -52,7 +52,7 @@
 
       <!-- Date of birth -->
       <div class="col-md-4">
-        <input type="date" class="form-control" id="date_of_birth" name="date_of_birth">
+        <input type="date" class="form-control" id="date_of_birth" name="individual-date_of_birth">
       </div>
       
       <!-- Date of birth -->
@@ -64,11 +64,10 @@
       
       
           <!-- Error display TODO: Format error display -->
-          {% if userError %}
-          {{ userError }}
-          {% endif %}
-          {% if indError %}
-          {{ indError }}
+          {% if errors %}
+          {% for error in errors.values %}
+          {{ error }}
+          {% endfor %}
           {% endif %}
           <div style="text-align: center;"><br/></div>
         </div>

@@ -32,6 +32,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'betterforms',
     'companies.apps.CompaniesConfig',
     'login.apps.LoginConfig',
     'signup.apps.SignupConfig',
