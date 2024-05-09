@@ -3,7 +3,7 @@ from django.http import HttpResponse
 from .models import Category, Company, Job
 from signup.models import Individual
 from Forms.filter_form import FilterForm, ORDERS
-from Forms.application_form import ApplicationForm
+from Forms.application_form import ApplicationForm, ExperienceForm, ReferencesForm
 
 # Create your views here.
 def index(request):

@@ -28,7 +28,7 @@ class ExperienceForm(ModelForm):
             "end_date": widgets.TextInput(attrs={"placeholder":"End date", "class":"form-control"}),
         }
 
-class RefrencesForm(ModelForm):
+class ReferencesForm(ModelForm):
     model = References
     exclude = ["id", "application"]
     widgets = {
