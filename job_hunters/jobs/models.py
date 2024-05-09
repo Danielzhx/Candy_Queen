@@ -1,6 +1,7 @@
 from django.db import models
 from companies.models import Company
 from signup.models import Individual
+from django_countries.fields import CountryField
 
 # Create your models here.
 class JobType(models.Model):
@@ -33,7 +34,7 @@ class Application(models.Model):
     street_name = models.CharField(max_length = 200)
     house_number = models.IntegerField()
     city = models.CharField(max_length = 200)
-    country = models.CharField(max_length = 200)
+    country = CountryField()
     postal = models.IntegerField()
     cover_letter = models.FileField()
 
