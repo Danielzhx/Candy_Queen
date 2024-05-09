@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% block content %}
-<div class="container bg-body-secondary w-50 rounded" style="margin-top:1rem">
+<div class="container bg-body-secondary w-50 rounded border border-secondary" style="margin-top:1rem">
   <div class="col">
     <h1 class="mb-3" style="text-align: center;">Sign Up</h1>
     <form class="row g-3 w-75 mx-auto" method="post" action="{% url 'signup:reg_individual' %}">
@@ -59,6 +59,12 @@
       <div class="col-md-4 offset-md-4" style="text-align: center;">
         <input class="btn btn-secondary btn-lg" type="submit" value="Sign Up" >
       </div>
+
+      <!-- Profile pic -->
+      <div class="col-md-4 offset-md-12" style="text-align: center;">
+        <input class="btn btn-secondary btn-lg" type="file" name="pic" default="static/images/avatars/default_avatar.jpg">
+      </div>
+      
   
 
       

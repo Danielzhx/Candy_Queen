@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block content %}
 <!-- Login screen -->
-<div class="container bg-body-secondary w-25 rounded" style="margin-top:1rem">
+<div class="container bg-body-secondary w-25 rounded border border-secondary" style="margin-top:1rem">
   <div class="col">
     <form class="align-center" method="post" action="{% url 'login:login' %}">
       {% csrf_token %}
@@ -21,7 +21,7 @@
           {% if form.errors %}
           {{ form.error }}
           {% endif %}
-          <div style="text-align: center;"><input class="btn btn-secondary" type="submit" value="Log in"><br/></div>
+          <div style="text-align: center; margin-bottom:1rem"><input class="btn btn-secondary" type="submit" value="Log in"><br/></div>
         </div>
     </form>
   </div>

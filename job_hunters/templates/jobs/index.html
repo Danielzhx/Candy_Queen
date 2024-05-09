@@ -20,9 +20,10 @@
 {% endblock %}
 {% block content %}
 <div class="row row-cols-4 row-cols-md-2" id="job_list" style="margin-top:0.25rem; margin-left: 16%;">
-    <div class="col-3">
+    <div class="col-3 w-75" style="margin-top:1rem">
     {% for job in jobs%}
-        <div class="card bg-body-secondary d-inline-flex p-2" style="min-width: 10%; max-width: 20%; margin-right:0.25rem; margin-bottom:0.25rem;">
+    <!-- Each job card -->
+        <div class="card bg-body-secondary d-inline-flex p-2" style="width: 10rem; height: 8rem; margin-right:0.25rem; margin-bottom:0.25rem;">
             <div class="card-body">
                 <h5 class="card-title"><a href="{{ job.id }}">{{ job.title }}</a></h5>
                 <p class="card-text">{{ job.description }}</p>

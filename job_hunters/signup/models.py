@@ -8,7 +8,7 @@ from betterforms.multiform import MultiModelForm
 # Create your models here.
 class Individual(models.Model):
     parent_user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
-    pic = models.ImageField(default='default', upload_to='profile_images')
+    pic = models.ImageField('profile picture', upload_to='static/images/avatars/', null=True, blank=True)
     address = models.CharField(max_length=200)
     date_of_birth = models.DateField("Date of Birth")
     phone_number = models.CharField(max_length=20)
@@ -21,7 +21,7 @@ class IndividualForm(forms.ModelForm):
     class Meta:
         exclude = ('parent_user',)
         model = Individual
-        fields = ['address', 'date_of_birth', 'phone_number']
+        fields = ['pic', 'address', 'date_of_birth', 'phone_number']
     parent_user = models.OneToOneField(User, on_delete=models.CASCADE)
 
     def __init__(self, *args, **kwargs):
