@@ -70,7 +70,7 @@ def filter_jobs(request):
         jobs = jobs.filter(job_type__in=type_selection)
 
     if request.GET['title']:
-        jobs = jobs.filter(title__contains=request.GET['title'])
+        jobs = jobs.filter(title__icontains=request.GET['title'])
 
     if request.GET['company']:
         jobs = jobs.filter(company=request.GET['company'])
