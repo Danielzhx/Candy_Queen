@@ -14,6 +14,11 @@
   
 </head>
 <body>
+  <div class="container w-100">
+    {% if user.is_authenticated %}
+      <img src="{{ user.pic }}">
+    {% endif %}
+  </div>
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
         <div class="container-fluid">

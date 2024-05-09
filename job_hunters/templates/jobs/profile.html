@@ -1,8 +1,33 @@
 {% extends "base.html" %}
 {% block content %}
+<div class="container " style="margin-top:1rem">
+  <div class="col">
+    <div class="row g-1 mx-auto">
+        <!-- Insert image here -->
+        <div class="col-md-8 bg-body-secondary rounded border border-secondary" style="padding-bottom:6rem">
+            <h1>Cover image here</h1>
+            <div>
+                <h2>Logo here</h2>
+            </div>
+        </div>
+            <div class="col-md-8 bg-body-secondary rounded border border-secondary">
+            <!-- Job title -->
+            <div class="col-md-8">
+                <h2>{{ job.title }}</h2>
+            </div>
+            <!-- Job description -->
+            <div class="col-md-8">
+                <p>{{ job.description }}</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}
 <div style="display: flex; justify-content: space-around;">
     <div>
-        <h2>{{ job.title }}</h2>
+        
         <p>{{ job.description }}</p>
     </div>
     <div>
@@ -14,5 +39,3 @@
         <a href="applications">APPLY NOW</a>
     </div>
 </div>
-
-{% endblock %}
