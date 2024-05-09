@@ -1,6 +1,7 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponse
 from .models import Category, Company, Job
+from signup.models import Individual
 from Forms.filter_form import FilterForm, ORDERS
 
 # Create your views here.
@@ -28,7 +29,10 @@ def detail(request, job_id):
 def apply(request, job_id):
     """Application view for job posting.
     """
-    print(request.user)
+    try:
+        individual = Individual.get(user_id=request.user.id)
+    except:
+        return redirect('/jobs')
     return render(request, 'applications/apply.html')
 
 
