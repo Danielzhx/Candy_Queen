@@ -1,7 +1,7 @@
 $(document).ready(function() {
     /* Function to change light/dark theme */
     const change_mode = (e) => {
-        e.preventDefault();
+        /* e.preventDefault(); */
         if (html.getAttribute('data-bs-theme') === 'dark') {
             html.setAttribute('data-bs-theme', 'light');
             localStorage.setItem('bs-theme', 'light');
@@ -24,6 +24,7 @@ $(document).ready(function() {
     if (current === 'light') {
         $(".bg-dark.text-light").attr('class', 'light_option');
         button.text = "Dark Theme";
+        button.checked = true;
     };
 
     /* When to trigger the function */

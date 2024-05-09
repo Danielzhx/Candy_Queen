@@ -22,7 +22,6 @@
         <!-- <label for="login_password" class="form-label">Repeat password</label> -->
         <input type="password" class="form-control" id="form_password" name="user-password2" placeholder="Repeat password">
       </div>
-
       
       <!-- First name -->
       <div class="col-md-6">
@@ -60,15 +59,6 @@
         <input class="btn btn-secondary btn-lg" type="submit" value="Sign Up" >
       </div>
 
-      <!-- Profile pic -->
-      <div class="col-md-4 offset-md-12" style="text-align: center;">
-        <input class="btn btn-secondary btn-lg" type="file" name="pic" default="static/images/avatars/default_avatar.jpg">
-      </div>
-      
-  
-
-      
-      
           <!-- Error display TODO: Format error display -->
           {% if errors %}
           {% for error in errors.values %}

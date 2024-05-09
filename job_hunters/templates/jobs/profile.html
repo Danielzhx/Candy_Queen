@@ -1,41 +1,40 @@
 {% extends "base.html" %}
 {% block content %}
-<div class="container " style="margin-top:1rem">
-  <div class="col">
-    <div class="row g-1 mx-auto">
+<div class="row g-1 mx-auto w-75" style="margin-top:1rem">
+    <div class="col-md-9">
+        <div class="row g-1 mx-auto">
         <!-- Insert image here -->
-        <div class="col-md-8 bg-body-secondary rounded border border-secondary" style="padding-bottom:6rem">
-            <h1>Cover image here</h1>
-            <div>
-                <h2>Logo here</h2>
+            <div class="col-md-12 bg-body-secondary rounded border border-secondary" style="padding-bottom:6rem">
+                <h1>Cover image here</h1>
+                <div>
+                    <!-- TODO: Get the logo working-->
+                    <img src="{{ job.company.logo }}" alt="Logo">
+                </div>
             </div>
-        </div>
-            <div class="col-md-8 bg-body-secondary rounded border border-secondary">
+            <div class="col-md-12 bg-body-secondary rounded border border-secondary">
             <!-- Job title -->
-            <div class="col-md-8">
-                <h2>{{ job.title }}</h2>
-            </div>
+                <div class="col-md-8">
+                    <h2>{{ job.title }}</h2>
+                </div>
             <!-- Job description -->
-            <div class="col-md-8">
-                <p>{{ job.description }}</p>
+                <div class="col-md-8">
+                    <p>{{ job.description }}</p>
+                </div>
             </div>
         </div>
+    </div>
+    <div class="col-md-3">
+        <div class="row g-1 mx-auto">
+            <div class="col-md-12 bg-body-dark-subtle rounded border border-secondary">
+                <p>{{ job.job_type }}</p>
+                <p>{{ job.category }}</p>
+                <p>{{ job.address }}</p>
+                <p>Due date: {{ job.due_date}}</p>
+                <p>Start date: {{ job.start_date}}</p>
+                <input class="btn btn-secondary" type="submit" action="applications" value="Apply" style="margin-bottom:0.1rem">
+            </div>
     </div>
 </div>
 
 
 {% endblock %}
-<div style="display: flex; justify-content: space-around;">
-    <div>
-        
-        <p>{{ job.description }}</p>
-    </div>
-    <div>
-        <p>{{ job.job_type }}</p>
-        <p>{{ job.category }}</p>
-        <p>{{ job.address }}</p>
-        <p>Due date: {{ job.due_date}}</p>
-        <p>Start date: {{ job.start_date}}</p>
-        <a href="applications">APPLY NOW</a>
-    </div>
-</div>
