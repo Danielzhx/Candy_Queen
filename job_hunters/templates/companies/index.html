@@ -1,36 +1,17 @@
 {% extends "base.html" %}
-{% block sidebar %}
-<div class="container bg-body-secondary rounded border border-secondary" style="width: 15%; margin-left: 0.25rem; position:fixed">
-    <form id="job_filter">
-        {{ form }}
-        <input type="submit">
-    </form>
-</div>
-<style>
-    #job_filter select{
-        margin:1%;
-        width: 98%;
-        padding-top: -5px;
-    }
-    #job_filter input[type=search]{
-        margin:1%;
-        width: 98%;
-    }
-</style>
-{% endblock %}
-
 
 {% block content %}
-<div class="row row-cols-1 row-cols-md-2" id="comp_list" style="margin-top:0.25rem; margin-left: 16%;">
+<div class="row row-cols-4 row-cols-md-2" id="job_list" style="margin-top:0.25rem; margin-left: 16%;">
     <div class="col-3">
-    {% for company in companies %}
-        <div class="card bg-body-secondary" style="width:18%; margin-right:0.25rem; margin-bottom:0.25rem;">
+    {% for company in companies%}
+        <div class="card bg-body-secondary d-inline-flex p-2" style="min-width: 10%; max-width: 20%; margin-right:0.25rem; margin-bottom:0.25rem;">
             <div class="card-body">
-                <h5 class="card-title"><a href="{{ company.id }}">{{ company.name }}</a></h5>
+                <h5 class="card-title"><a href="{{ company.name }}">{{ job.address }}</a></h5>
                 <p class="card-text">{{ company.description }}</p>
             </div>
         </div>
     {% endfor %}
     </div>
 </div>
+
 {% endblock %}

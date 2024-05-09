@@ -1,7 +1,8 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.models import User
 
-from .models import IndividualForm
+from .models import IndividualForm, SignupForm
 
 # Create your views here.
 def signup_type(request):
@@ -22,12 +23,17 @@ def reg_individual(request):
     """
     template_name = "signup/reg_individual.html"
     if request.method == 'POST':
-        form = UserCreationForm(data=request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('accounts:login')
-
-    return render(request, template_name, {'form': UserCreationForm({})})
+        print('Post method received')
+        signup = SignupForm(data = request.POST)
+        print('Form created')
+        print(f"is signup valid? {signup.is_valid()}")
+        if signup.is_valid():
+            signup.save()
+            return redirect("jobs:index")
+        else:
+            return render(request, template_name, {'errors': signup.errors})
+    else:
+        return render(request, template_name, {})
 
 
 def register_profile(request):

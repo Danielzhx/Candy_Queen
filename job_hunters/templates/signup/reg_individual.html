@@ -1,33 +1,75 @@
 {% extends 'base.html' %}
 {% block content %}
-<div class="container bg-body-secondary w-75 rounded" style="margin-top:1rem">
+<div class="container bg-body-secondary w-50 rounded" style="margin-top:1rem">
   <div class="col">
     <h1 class="mb-3" style="text-align: center;">Sign Up</h1>
-    <form class="row g-3 align-center w-50" method="post" action="{% url 'signup:index' %}">
+    <form class="row g-3 w-75 mx-auto" method="post" action="{% url 'signup:reg_individual' %}">
       {% csrf_token %}
       <!-- Email/Username -->
       <div class="col-md-8">
-        <label for="login_email" class="form-label">Email address</label>
-        <input type="email" class="form-control" id="login_email" name="username">
+        <!-- <label for="login_email" class="form-label">Email address</label> -->
+        <input type="email" class="form-control" id="login_email" name="user-username" placeholder="Email">
       </div>
 
       <!-- Password -->
       <div class="col-md-4">
-        <label for="login_password" class="form-label">Password</label>
-        <input type="password" class="form-control" id="form_password" name="password1">
+        <!-- <label for="login_password" class="form-label">Password</label> -->
+        <input type="password" class="form-control" id="form_password" name="user-password1" placeholder="Password">
       </div>
 
       <!-- Repeat password-->
-      <div class="col-md-4 justify-content-center">
-        <label for="login_password" class="form-label">Repeat password</label>
-        <input type="password" class="form-control" id="form_password" name="password2">
+      <div class="col-md-4 offset-md-8">
+        <!-- <label for="login_password" class="form-label">Repeat password</label> -->
+        <input type="password" class="form-control" id="form_password" name="user-password2" placeholder="Repeat password">
+      </div>
+
+      
+      <!-- First name -->
+      <div class="col-md-6">
+        <input type="text" class="form-control" id="first_name" name="user-first_name" placeholder="First name">
+      </div>
+
+      <!-- Last name -->
+      <div class="col-md-6">
+        <input type="text" class="form-control" id="last_name" name="user-last_name" placeholder="Last name">
+      </div>
+
+      <!-- Phone -->
+      <div class="col-md-6">
+        <input type="text" class="form-control" id="phone" name="individual-phone_number" placeholder="Phone">
       </div>
       
+      <!-- Address -->
+      <div class="col-md-6">
+        <input type="text" class="form-control" id="address" name="individual-address" placeholder="Address">
+      </div>
+
+      <!-- DoB label -->
+      <div class="col-md-4">
+        <input type="text" readonly class="form-control-plaintext" value="Date of birth:" style="text-align:right">
+      </div>
+      
+
+      <!-- Date of birth -->
+      <div class="col-md-4">
+        <input type="date" class="form-control" id="date_of_birth" name="individual-date_of_birth">
+      </div>
+      
+      <!-- Date of birth -->
+      <div class="col-md-4 offset-md-4" style="text-align: center;">
+        <input class="btn btn-secondary btn-lg" type="submit" value="Sign Up" >
+      </div>
+  
+
+      
+      
           <!-- Error display TODO: Format error display -->
-          {% if form.errors %}
-          {{ form.error }}
+          {% if errors %}
+          {% for error in errors.values %}
+          {{ error }}
+          {% endfor %}
           {% endif %}
-          <div style="text-align: center;"><input class="btn btn-secondary" type="submit" value="Log in"><br/></div>
+          <div style="text-align: center;"><br/></div>
         </div>
     </form>
   </div>
