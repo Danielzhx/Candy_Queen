@@ -34,7 +34,7 @@ def apply(request, job_id):
     
     # TODO: Remove the try except and replace with djangos permissions
     try:
-        individual = Individual.get(user_id=request.user.id)
+        individual = Individual.objects.get(parent_user_id=request.user.id)
     except:
         return redirect('/jobs')
 
@@ -42,7 +42,7 @@ def apply(request, job_id):
         job = Job.objects.get(pk=job_id)
         form = ApplicationForm(request.POST)
         if form.is_valid():
-            application = Application(form.data, user=individual, job=job_id)
+            application = Application(name=form.data["name"], street_name=form.data["street_name"], house_number=form.data["house_number"], city=form.data["city"],country=form.data["country"], postal=form.data["postal"],cover_letter=form.data["cover_letter"],user=individual, job=job)
             application.save()
             # TODO: Change redirect to application review page
             return redirect('/jobs')
