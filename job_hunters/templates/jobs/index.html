@@ -25,6 +25,7 @@
     <!-- Each job card -->
         <div class="card bg-body-secondary d-inline-flex p-2" style="width: 10rem; height: 8rem; margin-right:0.25rem; margin-bottom:0.25rem;">
             <div class="card-body">
+                <img src="{{ job.company.logo }}" alt="Logo">
                 <h5 class="card-title"><a href="{{ job.id }}">{{ job.title }}</a></h5>
                 <p class="card-text">{{ job.description }}</p>
             </div>
