@@ -2,6 +2,7 @@ from django.db import models
 from django import forms
 from django.contrib.auth.models import User
 
+
 # Create your models here.
 class Individual(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
@@ -16,6 +17,7 @@ class IndividualForm(forms.ModelForm):
         exclude = ('user',)
         model = Individual
         fields = ['address', 'date_of_birth', 'phone_number']
+
     user = models.OneToOneField(User, on_delete=models.CASCADE)
 
     def __init__(self, *args, **kwargs):
