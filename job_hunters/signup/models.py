@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 from betterforms.multiform import MultiModelForm
 
+
 # Create your models here.
 class Individual(models.Model):
     parent_user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
