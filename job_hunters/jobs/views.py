@@ -72,3 +72,7 @@ def filter_jobs(request):
         jobs = jobs.order_by(order)
 
     return jobs
+
+def experience(request):
+    """Experiences view for applying to a job."""
+    return render(request, 'applications/experience.html')
