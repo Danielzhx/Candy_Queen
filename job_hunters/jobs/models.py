@@ -44,8 +44,8 @@ class Application(models.Model):
 class References(models.Model):
     application = models.ForeignKey(Application, on_delete=models.CASCADE)
     name = models.CharField(max_length = 200)
-    phone_number = models.IntegerField()
     email = models.CharField(max_length=200)
+    phone_number = models.IntegerField()
     contact_bool = models.BooleanField()
 
 class Experiences(models.Model):
