@@ -33,11 +33,8 @@ def apply(request, job_id):
     """
     print(request.user.id)
     # TODO: Remove the try except and replace with djangos permissions
-    #if request.user.id not in Individual.objects.all()
-
     try:
-        individual = Individual.get(parent_user_id=request.user.id)
-        all = Individual.objects.all()
+        individual = Individual.objects.get(parent_user_id=request.user.id)
     except:
         return redirect('/jobs')
 
