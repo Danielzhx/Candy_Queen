@@ -5,6 +5,7 @@ from signup.models import Individual
 from Forms.filter_form import FilterForm, ORDERS
 from Forms.application_form import ApplicationForm, ExperienceForm, ReferencesForm
 
+
 # Create your views here.
 def index(request):
     form = FilterForm(request.GET)
@@ -26,7 +27,6 @@ def detail(request, job_id):
     }
     return render(request, 'jobs/profile.html', context)
 
-
 def apply(request, job_id):
     """
         Application view for job posting.
@@ -39,12 +39,11 @@ def apply(request, job_id):
         return redirect('/jobs')
     
     # Autofill form based on user info
-    ind = Individual.objects.get(pk=request.user.id)
     autofill = {"country":"Country"}
     if request.user.first_name or request.user.last_name:
         autofill["name"] = f"{request.user.first_name} {request.user.last_name}"
-    if ind and ind.address:
-        autofill["street_name"] = ind.address
+    if individual and individual.address:
+        autofill["street_name"] = individual.address
 
     job = Job.objects.get(pk=job_id)
     if request.method == "POST":
@@ -60,7 +59,7 @@ def apply(request, job_id):
                                       user=individual, job=job)
             application.save()
             # TODO: Change redirect to application review page
-            return redirect('/jobs')
+            return redirect('/jobs/%d/applications/%d'.format(job.id,application.id))
 
     else:
         form = ApplicationForm(initial=autofill)
@@ -71,6 +70,13 @@ def apply(request, job_id):
     }
 
     return render(request, 'applications/apply.html', content)
+
+def experience(request):
+    form = ExperienceForm()
+    content = {
+        "form":form
+    }
+    return render(request, 'applications/experiences.html',content)
 
 
 def filter_jobs(request):
@@ -99,6 +105,7 @@ def filter_jobs(request):
         jobs = jobs.order_by(order)
 
     return jobs
+
 
 def experience(request):
     """Experiences view for applying to a job."""
