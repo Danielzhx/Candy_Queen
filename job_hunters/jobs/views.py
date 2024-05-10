@@ -34,28 +34,38 @@ def apply(request, job_id):
     """
     print(request.user.id)
     # TODO: Remove the try except and replace with djangos permissions
-    #if request.user.id not in Individual.objects.all()
-
     try:
-        individual = Individual.get(parent_user_id=request.user.id)
-        all = Individual.objects.all()
+        individual = Individual.objects.get(parent_user_id=request.user.id)
     except:
         return redirect('/jobs')
+    
+    # Autofill form based on user info
+    ind = Individual.objects.get(pk=request.user.id)
+    autofill = {"country":"Country"}
+    if request.user.first_name or request.user.last_name:
+        autofill["name"] = f"{request.user.first_name} {request.user.last_name}"
+    if ind and ind.address:
+        autofill["street_name"] = ind.address
 
+    job = Job.objects.get(pk=job_id)
     if request.method == "POST":
-        job = Job.objects.get(pk=job_id)
         form = ApplicationForm(request.POST)
         if form.is_valid():
-            application = Application(form.data, user=individual, job=job_id)
+            application = Application(name=form.data["name"], street_name=form.data["street_name"], house_number=form.data["house_number"], city=form.data["city"],country=form.data["country"], postal=form.data["postal"],cover_letter=form.data["cover_letter"],user=individual, job=job)
             application.save()
             # TODO: Change redirect to application review page
             return redirect('/jobs')
 
     else:
-        form = ApplicationForm()
+        form = ApplicationForm(initial=autofill)
 
     content = {
+<<<<<<< HEAD
         'form': form
+=======
+        'form':form,
+        'job':job
+>>>>>>> 72aa8a328732bd3f2629af4035765f13afa57bba
     }
 
     return render(request, 'applications/apply.html', content)

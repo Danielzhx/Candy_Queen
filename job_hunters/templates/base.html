@@ -23,7 +23,7 @@
     {% endif %}
   </div>
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg bg-body-tertiary bg-gradient">
+    <nav class="navbar navbar-expand-lg bg-body-tertiary bg-gradient justify-content-end border-bottom">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">Job Hunters</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -33,16 +33,17 @@
               <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <!-- Jobs -->
                 <li class="nav-item">
-                  <a class="nav-link active" aria-current="page" href="{% url 'jobs:index' %}">Jobs</a>
+                  <a class="nav-link active" aria-current="page" href="{% url 'jobs:index' %}" id="jobs_tab">Jobs</a>
                 </li>
                 <!-- Companies -->
                 <li class="nav-item">
-                  <a class="nav-link" href="{% url 'companies:index' %}">Companies</a>
+                  <a class="nav-link" href="{% url 'companies:index' %}" id="companies_tab">Companies</a>
                 </li>
                 
+            </div>
               <!-- Profile and logout if user is logged in-->
               {% if user.is_authenticated %}
-              <span class="navbar-nav">
+              <span class="navbar-text">
                 <!--
                 <li class="nav-item">
                   <a class="nav-link" href="{% url 'accounts:profile' %}">{{ user.username }}</a>
@@ -101,9 +102,10 @@
                   }
                 </style>
               </li>
-            </div>
           </div>        
     </nav>
+
+
     <!-- <div style="display: flex; justify-content: space-between; width: 100vw;"> -->
         {% block nosidebar %}
         <nav class="sidebar" >
@@ -128,7 +130,9 @@
   </script>
 </body>
 
-<!--TODO: implement a footer-->
+{% block footer %}
+<!--TODO: add some sort of content -->
 <div class="footer fixed-bottom bg-dark-subtle border-top border-secondary" style="text-align:center">
   <p> Here's a footer </p>
 </div>
+{% endblock %}
