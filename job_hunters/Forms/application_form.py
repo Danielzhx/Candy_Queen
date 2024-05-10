@@ -13,7 +13,9 @@ class ApplicationForm(ModelForm):
             "house_number": widgets.TextInput(attrs={"placeholder":"House number", "class":"form-control"}),
             "city": widgets.TextInput(attrs={"placeholder":"City", "class":"form-control"}),
             "postal": widgets.TextInput(attrs={"placeholder":"Postal code", "class":"form-control"}),
-            "country": CountrySelectWidget(attrs={"class":"form-control w-75"}),
+            "country": CountrySelectWidget(attrs={"class":"form-control w-75", "style":"display:inline"},
+                                           layout='{widget}<img class="country-select-flag" id="{flag_id}" style="margin-left: 0.5rem" src="{country.flag}" width=25>'
+),
             "cover_letter": widgets.Textarea(attrs={"class":"w-100", "placeholder":"Cover letter"})
         }
 
@@ -35,5 +37,5 @@ class ReferencesForm(ModelForm):
         "name": widgets.TextInput(attrs={"placeholder":"Full name", "class":"form-control"}),
         "email": widgets.TextInput(attrs={"placeholder":"Email", "class":"form-control"}),
         "phone_number": widgets.TextInput(attrs={"placeholder":"Phone number", "class":"form-control"}),
-        "contact_bool": widgets.CheckboxInput(attrs={"label":"Are we allowed to contact the refrence?", "class":"form-control"})
+        "contact_bool": widgets.CheckboxInput(attrs={"label":"Are we allowed to contact the reference?", "class":"form-control"})
     }
