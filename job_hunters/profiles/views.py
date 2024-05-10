@@ -21,4 +21,5 @@ def index(request):
 
 def view_applications(request):
     """Allows a user to see and manage their applications."""
-    return render(request, template_name='applications/index.html')
+    temp = {"applications": []}
+    return render(request, 'applications/index.html', temp)
