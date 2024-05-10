@@ -1,0 +1,81 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container bg-body-secondary w-50 rounded border border-secondary" style="margin-top:1rem">
+    <div class="col">
+      <h1 class="mb-3" style="text-align: center;">Sign Up</h1>
+      <form class="row gx-3 gy-4 w-75 mx-auto" method="post" action="{% url 'signup:reg_company' %}">
+        {% csrf_token %}
+        {{ form }}
+
+        <!-- Account header -->
+        <div class="col-md-12">
+          <h6>Account details</h6>
+        </div>
+
+        <!-- Email/Username -->
+        <div class="col-md-12 gy-0">
+          <input type="email" class="form-control" id="email" name="user-username" placeholder="Account email">
+        </div>
+  
+        <!-- Password -->
+        <div class="col-md-6 gy-2">
+          <!-- <label for="login_password" class="form-label">Password</label> -->
+          <input type="password" class="form-control" id="form_password" name="user-password1" placeholder="Password">
+        </div>
+        <!-- <div class="col-md-6"></div> -->
+  
+        <!-- Repeat password-->
+        <div class="col-md-6 gy-2">
+          <!-- <label for="login_password" class="form-label">Repeat password</label> -->
+          <input type="password" class="form-control" id="form_password" name="user-password2" placeholder="Repeat password">
+        </div>
+
+        <!-- Company header -->
+        <div class="col-md-12">
+            <h6>Company Information</h6>
+          </div>
+
+        <!-- Company name -->
+        <div class="col-md-6 gy-0">
+            <input type="text" class="form-control" id="name" name="company-name" placeholder="Company name">
+        </div>
+
+        <!-- Contact email -->
+        <div class="col-md-6 gy-0">
+          <input type="text" class="form-control" id="address" name="company-contact_email" placeholder="Contact email">
+        </div>
+                  
+        <!-- Phone -->
+        <div class="col-md-6 gy-2">
+          <input type="tel" class="form-control" id="phone" name="company-phone_number" placeholder="Phone">
+        </div>
+        
+        <!-- Address -->
+        <div class="col-md-6 gy-2">
+          <input type="text" class="form-control" id="address" name="company-address" placeholder="Address">
+        </div>
+
+        <!-- Description -->
+        <div class="col-md-12" style="height:12rem">
+            <textarea class="form-control h-100" id="description" name="company-description" placeholder="Company Description"  style="height=20rem"></textarea>
+          </div>
+
+        <!-- Sign up button -->
+        <div class="col-md-4 offset-md-4" style="text-align: center;">
+          <input class="btn btn-secondary btn-lg" type="submit" value="Sign Up" >
+        </div>
+  
+            <!-- Error display TODO: Format error display -->
+            {% if errors %}
+            {% for error in errors.values %}
+            {{ error }}
+            {% endfor %}
+            {% endif %}
+            <div style="text-align: center;"><br/></div>
+          </div>
+      </form>
+    </div>
+  </div>
+{% endblock %}
+{% block footer %}
+{% endblock %}

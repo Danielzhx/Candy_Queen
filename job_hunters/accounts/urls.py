@@ -1,6 +1,7 @@
 from django.urls import path
 from django.contrib.auth import views as authviews
 
+import accounts
 from . import views
 
 app_name = 'accounts'
