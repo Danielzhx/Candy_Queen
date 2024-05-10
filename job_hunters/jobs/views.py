@@ -60,12 +60,8 @@ def apply(request, job_id):
         form = ApplicationForm(initial=autofill)
 
     content = {
-<<<<<<< HEAD
-        'form': form
-=======
         'form':form,
         'job':job
->>>>>>> 72aa8a328732bd3f2629af4035765f13afa57bba
     }
 
     return render(request, 'applications/apply.html', content)
