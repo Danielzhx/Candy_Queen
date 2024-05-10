@@ -1,9 +1,10 @@
 {% extends "base.html"%}
 {% block content %}
 <div>
-    <form method="POST" action="experiences">
+    <form method="POST" action="{{ action }}">
+        {{ forms.management_form }}
         {% csrf_token %}
-        {{ form }}
+        {{ forms.as_p }}
         <input type="submit">
     </form>
 </div>

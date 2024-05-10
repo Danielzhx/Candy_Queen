@@ -1,9 +1,10 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponse
-from .models import Category, Company, Job, Application
+from .models import Category, Company, Job, Application, Experiences, References
 from signup.models import Individual
 from Forms.filter_form import FilterForm, ORDERS
 from Forms.application_form import ApplicationForm, ExperienceForm, ReferencesForm
+from django.forms import formset_factory
 
 
 # Create your views here.
@@ -49,17 +50,12 @@ def apply(request, job_id):
     if request.method == "POST":
         form = ApplicationForm(request.POST)
         if form.is_valid():
-            application = Application(name=form.data["name"], 
-                                      street_name=form.data["street_name"], 
-                                      house_number=form.data["house_number"], 
-                                      city=form.data["city"],
-                                      country=form.data["country"], 
-                                      postal=form.data["postal"],
-                                      cover_letter=form.data["cover_letter"],
-                                      user=individual, job=job)
+            application = form.save(commit = False)
+            application.job = job
+            application.user = individual
             application.save()
             # TODO: Change redirect to application review page
-            return redirect('/jobs/%d/applications/%d'.format(job.id,application.id))
+            return redirect('/jobs/%d/applications/%d/experiences'%(job.id,application.id))
 
     else:
         form = ApplicationForm(initial=autofill)
@@ -71,13 +67,52 @@ def apply(request, job_id):
 
     return render(request, 'applications/apply.html', content)
 
-def experience(request):
-    form = ExperienceForm()
-    content = {
-        "form":form
-    }
-    return render(request, 'applications/experiences.html',content)
+def experience(request, job_id, application_id):
+    experience_form_set = formset_factory(ExperienceForm, extra = 3)
+    post_data = request.POST.copy()
+    post_data['form-TOTAL_FORMS'] = 3
+    post_data['form-INITIAL_FORMS'] = 3
+    post_data['form-MAX_NUM_FORMS'] = 3
 
+    content = {
+        "forms":experience_form_set(post_data or None),
+        "action":"experiences"
+    }
+    if request.method != "POST":
+        return render(request, 'applications/experiences.html', content)
+    
+    application = Application.objects.get(pk=application_id)
+    for form in content["forms"].forms:
+        if form.is_valid():
+            experience = form.save(commit = False)
+            experience.application = application
+            experience.save()
+
+    return redirect("/jobs/%d/applications/%d/references"%(job_id, application_id))
+            
+def reference(request,job_id, application_id):
+    reference_form_set = formset_factory(ReferencesForm, extra = 3)
+    post_data = request.POST.copy()
+    post_data['form-TOTAL_FORMS'] = 3
+    post_data['form-INITIAL_FORMS'] = 3
+    post_data['form-MAX_NUM_FORMS'] = 3
+
+    content = {
+        "forms":reference_form_set(post_data or None),
+        "action":"references"
+    }
+    if request.method != "POST":
+        return render(request, 'applications/experiences.html', content)
+
+    application = Application.objects.get(pk=application_id)
+    for form in content["forms"]:
+        if form.is_valid():
+            reference = form.save(commit = False)
+            reference.application = application
+            reference.save()
+    print("redirect to jobs")
+    # TODO: Change redirect to the applications detail page
+    return redirect('/jobs')
 
 def filter_jobs(request):
     jobs = Job.objects.all()
@@ -106,7 +141,3 @@ def filter_jobs(request):
 
     return jobs
 
-
-def experience(request):
-    """Experiences view for applying to a job."""
-    return render(request, 'applications/experience.html')
