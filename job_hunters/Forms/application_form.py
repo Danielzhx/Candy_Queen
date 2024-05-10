@@ -13,8 +13,8 @@ class ApplicationForm(ModelForm):
             "house_number": widgets.TextInput(attrs={"placeholder":"House number", "class":"form-control"}),
             "city": widgets.TextInput(attrs={"placeholder":"City", "class":"form-control"}),
             "postal": widgets.TextInput(attrs={"placeholder":"Postal code", "class":"form-control"}),
-            "country": CountrySelectWidget(),
-            "cover_letter": widgets.Textarea(attrs={"class":"w-100"})
+            "country": CountrySelectWidget(attrs={"class":"form-control w-75"}),
+            "cover_letter": widgets.Textarea(attrs={"class":"w-100", "placeholder":"Cover letter"})
         }
 
 class ExperienceForm(ModelForm):

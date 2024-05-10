@@ -13,13 +13,9 @@
     crossorigin="anonymous">
 </head>
 <body>
-  <div class="container w-100">
+  <div class="container w-100 bg-danger">
     {% if user.is_authenticated %}
-    {% if user.pic %}
-      <img src="{{ user.pic }}">
-    {% else %}
-      <img src="{% static images.avatars.default %}">
-    {% endif %}
+    
     {% endif %}
   </div>
     <!-- Navbar -->
@@ -43,18 +39,16 @@
             </div>
               <!-- Profile and logout if user is logged in-->
               {% if user.is_authenticated %}
-              <span class="navbar-text">
-                <!--
-                <li class="nav-item">
-                  <a class="nav-link" href="{% url 'accounts:profile' %}">{{ user.username }}</a>
-                </li>
-              <form class="d-flex" method="post" action="{% url 'login:logout' %}">
-                {% csrf_token %}
-                <button class="nav-link" type="submit" style="--bs-btn-padding-y: .2rem">Log Out</button>
-              </form>
-              -->
-              <!-- Hover navbar test-->
-              <li class="nav-item dropdown">
+              <div class="nav-item mx-3">
+                {% if user.pic %}
+                  <img src="{{ user.pic }}">
+                {% else %}
+                  <img src="{% static 'images/avatars/default_avatar.jpg' %}" width=40, height=40 style="border-radius:50%">
+                {% endif %}
+              </div>
+              <span class="navbar-text">                
+              <!-- Hover navbar -->
+              <div class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="{% url 'accounts:profile' %}" data-bs-toggle="dropdown">  {{ user.username }}  </a>
                  <ul class="dropdown-menu">
                  <li><a class="dropdown-item" href="{% url 'accounts:profile' %}">Profile</a>
@@ -63,7 +57,7 @@
                   <button class="dropdown-item" type="submit" style="--bs-btn-padding-y: .2rem">Log Out</button>
                   </form></li>
                  </ul>
-              </li>
+                </div>
               <style>
                 @media all and (min-width: 992px) {
                   .navbar .nav-item .dropdown-menu{ display: none; }
@@ -72,9 +66,7 @@
                   .navbar .nav-item .dropdown-menu{ margin-top:0; }
                 }	
               </style>
-              <!-- end test -->
               </span>
-
               <!-- Log in and Sign up if user isn't signed in -->
               {% else %}
               <span class="navbar-nav">
