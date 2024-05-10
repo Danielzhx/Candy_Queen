@@ -1,10 +1,43 @@
 {% extends "base.html"%}
 {% block content %}
-<div>
-    <form method="POST" action="applications">
-        {% csrf_token %}
-        {{ form }}
-        <input type="submit">
-    </form>
+{% load static %}
+<div class="container bg-body-secondary w-50 rounded border border-secondary" style="margin-top:1rem">
+    <div class="col">
+    <h2 class="mb-3" style="text-align: center; margin-top:1rem">Apply for {{ job.title }}</h2>
+        <form class="row g-3 w-75 mx-auto" method="post" action="applications">
+            {% csrf_token %}
+            {{ form }}
+            <!-- Name -->
+            <div class="col-md-8">
+                {{ form.name }}
+            </div>
+            <!-- Address -->
+            <div class="col-md-9">
+                {{ form.street_name }}
+            </div>
+            <!-- Postal Code -->
+            <div class="col-md-3">
+                {{ form.postal }}
+            </div>
+            
+            <!-- Cover Letter 
+            <div class="col-md-12">
+                {{ form.cover_letter }}
+            </div>
+            -->
+
+            <!-- Postal Code -->
+            <div class="col-md-3">
+                {{ form.country }}
+            </div>
+
+            <!-- Submit Button -->
+            <div class="col-md-12" style="text-align: center;">
+                <input class="btn btn-secondary mx-auto" type="submit" style="margin-bottom:0.1rem">
+            </div>
+        </form>
+    </div>
 </div>
+{% endblock %}
+{% block footer %}
 {% endblock %}
