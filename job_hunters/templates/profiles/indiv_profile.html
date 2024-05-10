@@ -1,8 +1,12 @@
 {% extends 'base.html' %}
 {% block content %}
   <div>
-    <h2>{{ profile.username }}</h2>
-    <p>{{ user.address }} {{ user.phone_number }}</p>
+    <div><img src="{{profile.pic}}" alt="Profile picture"></div>
+    <h2>{{ user.username }}</h2>
+    <h3>{{ user.email }}</h3>
+    <h3>{{ profile.phone_number }}</h3>
+    <h3>{{ profile.address }}</h3>
+    <h3>{{ profile.date_of_birth }}</h3>
   </div>
 </body>
 {% endblock %}

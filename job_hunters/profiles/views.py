@@ -14,6 +14,6 @@ def index(request):
         user = Company.objects.get(parent_user_id=request.user.id)
         template_name = "profiles/company_profile.html"
 
-    content["user"] = user
-    content["profile"] = request.user
+    content["profile"] = user
+    content["user"] = request.user
     return render(request, template_name, content)
