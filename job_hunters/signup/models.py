@@ -28,14 +28,16 @@ class IndividualForm(forms.ModelForm):
 
     def is_valid(self):
         valid = super(forms.ModelForm, self).is_valid()
-        if not self.data['individual-address'][0].isnumeric():
-            valid = False
-        print(self.data['individual-date_of_birth'])
+        if not self.data['individual-phone_number'].isnumeric():
+            self.add_error("phone_number", "Phone number must be numeric.")
+            return False
         try:
             if datetime.strptime(self.data['individual-date_of_birth'], "%Y-%m-%d") > datetime.now():
-                self.add_error("Date of Birth", "Date of birth must be in the past.")
+                self.add_error("date_of_birth", "Date of birth must be in the past.")
+                return False
         except ValueError:
-            self.add_error("Invalid date of birth")
+            self.add_error("date_of_birth", "Invalid date of birth")
+            return False
         
         return valid
 

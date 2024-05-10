@@ -98,8 +98,11 @@ DATABASES = {
 
 if 'test' in sys.argv:
     DATABASES['default'] = {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': 'testdatabase'
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'Testdb',
+        'USER': 'postgres',
+        'PASSWORD': 'Iggebbh93',
+        'HOST': 'localhost',
     }
 
 

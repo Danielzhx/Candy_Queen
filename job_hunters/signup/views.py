@@ -29,7 +29,6 @@ def reg_individual(request):
             signup.save()
             return redirect("jobs:index")
         else:
-            print("errors appeared")
             return render(request, template_name, {'errors': signup.errors})
     else:
         return render(request, template_name, {})
