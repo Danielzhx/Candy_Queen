@@ -3,6 +3,7 @@ from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 from betterforms.multiform import MultiModelForm
+from datetime import datetime
 
 
 # Create your models here.
@@ -24,6 +25,19 @@ class IndividualForm(forms.ModelForm):
         fields = ['pic', 'address', 'date_of_birth', 'phone_number']
 
     parent_user = models.OneToOneField(User, on_delete=models.CASCADE)
+
+    def is_valid(self):
+        valid = super(forms.ModelForm, self).is_valid()
+        if not self.data['individual-address'][0].isnumeric():
+            valid = False
+        print(self.data['individual-date_of_birth'])
+        try:
+            if datetime.strptime(self.data['individual-date_of_birth'], "%Y-%m-%d") > datetime.now():
+                self.add_error("Date of Birth", "Date of birth must be in the past.")
+        except ValueError:
+            self.add_error("Invalid date of birth")
+        
+        return valid
 
     def __init__(self, *args, **kwargs):
         super(IndividualForm, self).__init__(*args, **kwargs)

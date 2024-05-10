@@ -24,14 +24,12 @@ def reg_individual(request):
     """
     template_name = "signup/reg_individual.html"
     if request.method == 'POST':
-        print('Post method received')
         signup = SignupForm(data=request.POST)
-        print('Form created')
-        print(f"is signup valid? {signup.is_valid()}")
         if signup.is_valid():
             signup.save()
             return redirect("jobs:index")
         else:
+            print("errors appeared")
             return render(request, template_name, {'errors': signup.errors})
     else:
         return render(request, template_name, {})

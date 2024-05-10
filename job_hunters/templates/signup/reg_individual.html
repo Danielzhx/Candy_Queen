@@ -3,25 +3,28 @@
 <div class="container bg-body-secondary w-50 rounded border border-secondary" style="margin-top:1rem">
   <div class="col">
     <h1 class="mb-3" style="text-align: center;">Sign Up</h1>
-    <form class="row g-3 w-75 mx-auto" method="post" action="{% url 'signup:reg_individual' %}">
+    <form class="row gx-3 gy-4 w-75 mx-auto" method="post" action="{% url 'signup:reg_individual' %}">
       {% csrf_token %}
       <!-- Email/Username -->
-      <div class="col-md-8">
+      <div class="col-md-12
+      ">
         <!-- <label for="login_email" class="form-label">Email address</label> -->
         <input type="email" class="form-control" id="login_email" name="user-username" placeholder="Email">
       </div>
 
       <!-- Password -->
-      <div class="col-md-4">
+      <div class="col-md-6">
         <!-- <label for="login_password" class="form-label">Password</label> -->
         <input type="password" class="form-control" id="form_password" name="user-password1" placeholder="Password">
       </div>
+      <div class="col-md-6"></div>
 
       <!-- Repeat password-->
-      <div class="col-md-4 offset-md-8">
+      <div class="col-md-6 gy-1">
         <!-- <label for="login_password" class="form-label">Repeat password</label> -->
         <input type="password" class="form-control" id="form_password" name="user-password2" placeholder="Repeat password">
       </div>
+      <div class="col-md-6"></div>
       
       <!-- First name -->
       <div class="col-md-6">
@@ -34,23 +37,23 @@
       </div>
 
       <!-- Phone -->
-      <div class="col-md-6">
+      <div class="col-md-6 gy-2">
         <input type="text" class="form-control" id="phone" name="individual-phone_number" placeholder="Phone">
       </div>
       
       <!-- Address -->
-      <div class="col-md-6">
+      <div class="col-md-6 gy-2">
         <input type="text" class="form-control" id="address" name="individual-address" placeholder="Address">
       </div>
 
       <!-- DoB label -->
-      <div class="col-md-4">
+      <div class="col-md-3">
         <input type="text" readonly class="form-control-plaintext" value="Date of birth:" style="text-align:right">
       </div>
       
 
       <!-- Date of birth -->
-      <div class="col-md-4">
+      <div class="col-md-6">
         <input type="date" class="form-control" id="date_of_birth" name="individual-date_of_birth">
       </div>
       
