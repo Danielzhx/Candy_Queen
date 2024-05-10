@@ -2,7 +2,8 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 
-from .models import IndividualForm, SignupForm
+from Forms.individual_form import IndividualForm
+from Forms.signup_form import SignupForm
 
 
 # Create your views here.
