@@ -31,7 +31,6 @@ def apply(request, job_id):
     """
         Application view for job posting.
     """
-    print(request.user.id)
     # TODO: Remove the try except and replace with djangos permissions
     try:
         individual = Individual.objects.get(parent_user_id=request.user.id)

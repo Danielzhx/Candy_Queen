@@ -16,7 +16,7 @@ class ApplicationForm(ModelForm):
             "country": CountrySelectWidget(attrs={"class":"form-control w-75", "style":"display:inline"},
                                            layout='{widget}<img class="country-select-flag" id="{flag_id}" style="margin-left: 0.5rem" src="{country.flag}" width=25>'
 ),
-            "cover_letter": widgets.Textarea(attrs={"class":"w-100", "placeholder":"Cover letter"})
+            "cover_letter": widgets.Textarea(attrs={"class":"form-control w-100", "placeholder":"Cover letter"})
         }
 
 class ExperienceForm(ModelForm):

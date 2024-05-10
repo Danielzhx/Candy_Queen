@@ -3,7 +3,10 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 
 from Forms.individual_form import IndividualForm
-from Forms.signup_form import SignupForm
+from Forms.signup_form import ISignupForm
+from Forms.company_form import CompanyForm
+from Forms.signup_form import CSignupForm
+from companies.models import Company
 
 
 # Create your views here.
@@ -20,12 +23,11 @@ def signup_type(request):
 def reg_individual(request):
     """Second step in new account registration for individuals.
     
-    Takes in only the required info to create a new user. Project specific 
-    info is handled in the next step.
+    Takes in the required info to create a new user.
     """
     template_name = "signup/reg_individual.html"
     if request.method == 'POST':
-        signup = SignupForm(data=request.POST)
+        signup = ISignupForm(data=request.POST)
         if signup.is_valid():
             signup.save()
             return redirect("jobs:index")
@@ -34,6 +36,21 @@ def reg_individual(request):
     else:
         return render(request, template_name, {})
 
+def reg_company(request):
+    """Second step in new account registration for companies.
+    
+    Takes in the required info to create a new company account.
+    """
+    template_name = "signup/reg_company.html"
+    if request.method == 'POST':
+        signup = CSignupForm(data=request.POST)
+        if signup.is_valid():
+            signup.save()
+            return redirect("jobs:index")
+        else:
+            return render(request, template_name, {'errors': signup.errors})
+    else:
+        return render(request, template_name, {})
 
 def register_profile(request):
     """Third step in new account registration for individuals.
