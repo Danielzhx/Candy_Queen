@@ -26,6 +26,10 @@ class IndividualForm(forms.ModelForm):
             self.add_error("date_of_birth", "Invalid date of birth")
             return False
         
+        address_list = self.data['individual-address'].split()
+        if len(address_list) < 2 or not address_list[0].isalpha() or not address_list[-1].isnumeric():
+            self.add_error("address", "Invalid address")
+            return False
         return valid
 
     def __init__(self, *args, **kwargs):
