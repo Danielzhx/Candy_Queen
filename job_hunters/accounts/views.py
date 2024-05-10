@@ -13,7 +13,7 @@ from . import models
 class LogInView(views.LoginView):
     """View for login page. Uses built in LoginView.
     """
-    template_name = "accounts/login.html"
+    template_name = "login/login.html"
     next_page = "jobs:index"
 
     def get_user(self):
@@ -25,6 +25,7 @@ def log_out(request):
     """
     logout(request)
     return redirect("jobs:index")
+
 
 
 

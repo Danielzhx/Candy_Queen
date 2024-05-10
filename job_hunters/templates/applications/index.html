@@ -1,0 +1,19 @@
+{% extends "base.html"%}
+{% block content %}
+    <div class="container bg-body-secondary w-50 rounded border border-secondary" style="margin-top:1rem"></div>
+    <div class="col"></div>
+    <h2 class="mb-3" style="text-align: center; margin-top:1rem">Your applications</h2>
+        
+    {% for application in applications %}
+        <!---fetch application with link to its details--->
+        <div class="card bg-body-secondary d-inline-flex p-2" style="width: 10rem; height: 8rem; margin-right:0.25rem; margin-bottom:0.25rem;">
+            <div class="card-body">
+                <a href="jobs/{{application.job.id}}/applications">
+                    <h5 class="card-title"><a href="{{ application.name }}"</h5></a>
+                <p class="card-text">{{ application.job }}</p>
+                
+            </div>
+        </div>
+    {% endfor %}
+
+{% endblock %}
