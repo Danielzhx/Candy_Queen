@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 
 from .models import IndividualForm, SignupForm
 
+
 # Create your views here.
 def signup_type(request):
     """First step in new account registration.
@@ -24,7 +25,7 @@ def reg_individual(request):
     template_name = "signup/reg_individual.html"
     if request.method == 'POST':
         print('Post method received')
-        signup = SignupForm(data = request.POST)
+        signup = SignupForm(data=request.POST)
         print('Form created')
         print(f"is signup valid? {signup.is_valid()}")
         if signup.is_valid():

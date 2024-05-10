@@ -5,6 +5,7 @@ from signup.models import Individual
 from Forms.filter_form import FilterForm, ORDERS
 from Forms.application_form import ApplicationForm, ExperienceForm, ReferencesForm
 
+
 # Create your views here.
 def index(request):
     form = FilterForm(request.GET)
@@ -97,6 +98,7 @@ def filter_jobs(request):
         jobs = jobs.order_by(order)
 
     return jobs
+
 
 def experience(request):
     """Experiences view for applying to a job."""
