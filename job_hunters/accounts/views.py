@@ -26,9 +26,13 @@ def log_out(request):
     logout(request)
     return redirect("jobs:index")
 
-
+def view_applications(request):
+    """Allows a user to see and manage their applications."""
+    return render(request, template_name='applications/index.html')
 
 @login_required
 def user_profile(request):
     """Allows a user to see and manage their profile."""
-    return render(request, 'accounts/profile.html', "context")
+    return render(request, 'accounts/profile.html', "context"
+
+
