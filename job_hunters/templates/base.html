@@ -49,9 +49,9 @@
               <span class="navbar-text">                
               <!-- Hover navbar -->
               <div class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="{% url 'accounts:profile' %}" data-bs-toggle="dropdown">  {{ user.username }}  </a>
+                <a class="nav-link dropdown-toggle" href="{% url 'profiles:profiles' %}" data-bs-toggle="dropdown">  {{ user.username }}  </a>
                  <ul class="dropdown-menu">
-                 <li><a class="dropdown-item" href="{% url 'accounts:profile' %}">Profile</a>
+                 <li><a class="dropdown-item" href="{% url 'profiles:profiles' %}">Profile</a>
                  <li><form class="d-flex" method="post" action="{% url 'login:logout' %}">
                   {% csrf_token %}
                   <button class="dropdown-item" type="submit" style="--bs-btn-padding-y: .2rem">Log Out</button>
