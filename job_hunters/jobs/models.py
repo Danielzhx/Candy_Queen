@@ -37,7 +37,7 @@ class Application(models.Model):
     street_name = models.CharField(max_length=200)
     house_number = models.IntegerField()
     city = models.CharField(max_length=200)
-    country = CountryField()
+    country = CountryField(blank_label="Country")
     postal = models.IntegerField()
     cover_letter = models.TextField(max_length=1000)
 

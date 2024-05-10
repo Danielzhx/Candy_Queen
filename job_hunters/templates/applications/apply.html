@@ -6,29 +6,34 @@
     <h2 class="mb-3" style="text-align: center; margin-top:1rem">Apply for {{ job.title }}</h2>
         <form class="row g-3 w-75 mx-auto" method="post" action="applications">
             {% csrf_token %}
-            {{ form }}
+            
             <!-- Name -->
-            <div class="col-md-8">
+            <div class="col-md-12">
                 {{ form.name }}
             </div>
-            <!-- Address -->
-            <div class="col-md-9">
+            <!-- Street Name -->
+            <div class="col-md-8">
                 {{ form.street_name }}
             </div>
+            <!-- House Number -->
+            <div class="col-md-4">
+                {{ form.house_number }}
+            </div>
+            <!-- City -->
+            <div class="col-md-4">
+                {{ form.city }}
+            </div>
             <!-- Postal Code -->
-            <div class="col-md-3">
+            <div class="col-md-4">
                 {{ form.postal }}
             </div>
-            
-            <!-- Cover Letter 
+            <!-- Country -->
+            <div class="col-md-4">
+                {{ form.country }}
+            </div>
+            <!-- Cover Letter -->
             <div class="col-md-12">
                 {{ form.cover_letter }}
-            </div>
-            -->
-
-            <!-- Postal Code -->
-            <div class="col-md-3">
-                {{ form.country }}
             </div>
 
             <!-- Submit Button -->

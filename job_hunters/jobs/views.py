@@ -50,7 +50,14 @@ def apply(request, job_id):
     if request.method == "POST":
         form = ApplicationForm(request.POST)
         if form.is_valid():
-            application = Application(name=form.data["name"], street_name=form.data["street_name"], house_number=form.data["house_number"], city=form.data["city"],country=form.data["country"], postal=form.data["postal"],cover_letter=form.data["cover_letter"],user=individual, job=job)
+            application = Application(name=form.data["name"], 
+                                      street_name=form.data["street_name"], 
+                                      house_number=form.data["house_number"], 
+                                      city=form.data["city"],
+                                      country=form.data["country"], 
+                                      postal=form.data["postal"],
+                                      cover_letter=form.data["cover_letter"],
+                                      user=individual, job=job)
             application.save()
             # TODO: Change redirect to application review page
             return redirect('/jobs')
