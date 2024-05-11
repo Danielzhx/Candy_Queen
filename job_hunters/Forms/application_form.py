@@ -26,8 +26,8 @@ class ExperienceForm(ModelForm):
         widgets = {
             "workplace": widgets.TextInput(attrs={"placeholder":"Workplace", "class":"form-control"}),
             "role": widgets.TextInput(attrs={"placeholder":"Role", "class":"form-control"}),
-            "start_date": widgets.DateInput(),
-            "end_date": widgets.DateInput()
+            "start_date": widgets.DateInput(attrs={"type":"date", "class":"form-control"}),
+            "end_date": widgets.DateInput(attrs={"type":"date", "class":"form-control"})
         }
 
 class ReferencesForm(ModelForm):

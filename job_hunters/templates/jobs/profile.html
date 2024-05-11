@@ -31,7 +31,11 @@
                 <p>{{ job.address }}</p>
                 <p>Due date: {{ job.due_date}}</p>
                 <p>Start date: {{ job.start_date}}</p>
-                <a class="btn btn-secondary" href="applications" style="margin-bottom:0.1rem">Apply now!</a>
+                {% if applied %}
+                    <a class="btn btn-secondary" href="applications" style="margin-bottom:0.1rem">Apply now!</a>
+                {% else %}
+                    <a class="btn btn-secondary" href="#" style="margin-bottom:0.1rem">Review Application</a>
+                {% endif %}
             </div>
     </div>
 </div>

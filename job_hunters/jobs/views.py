@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from django.http import HttpResponse
+from django.http import HttpResponse, Http404
 from .models import Category, Company, Job, Application, Experiences, References
 from signup.models import Individual
 from Forms.filter_form import FilterForm, ORDERS
@@ -23,8 +23,15 @@ def detail(request, job_id):
     """Detail view for individual job posting.
     """
     job = get_object_or_404(Job, pk=job_id)
+    try:
+        get_object_or_404(Application, user_id=request.user.id, job_id=job_id)
+        applied = True
+    except Http404:
+        applied = False
+
     context = {
-        'job': job
+        'job': job,
+        'applied': applied
     }
     return render(request, 'jobs/profile.html', context)
 
@@ -101,7 +108,7 @@ def reference(request,job_id, application_id):
         "action":"references"
     }
     if request.method != "POST":
-        return render(request, 'applications/experiences.html', content)
+        return render(request, 'applications/references.html', content)
 
     application = Application.objects.get(pk=application_id)
     for form in content["forms"]:

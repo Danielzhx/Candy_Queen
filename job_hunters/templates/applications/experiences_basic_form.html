@@ -1,0 +1,13 @@
+{% extends "base.html"%}
+{% block content %}
+<div>
+    <form method="POST" action="{{ action }}">
+        {{ forms.management_form }}
+        {% csrf_token %}
+        {{ forms.as_p }}
+        <input type="submit">
+    </form>
+</div>
+{% endblock %}
+{% block footer %}
+{% endblock%}
