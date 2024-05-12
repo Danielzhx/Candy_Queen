@@ -1,6 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from signup.models import Individual
 from companies.models import Company
+from jobs.models import Application, Experiences, References
 
 
 # Create your views here.
@@ -21,5 +22,17 @@ def index(request):
 
 def view_applications(request):
     """Allows a user to see and manage their applications."""
-    temp = {"applications": []}
+    try:
+        user = Individual.objects.get(parent_user_id=request.user.id)
+    except:
+        return redirect('/profile')
+
+    applications = Application.objects.all().filter(user=user)
+    temp = {"applications": [application for application in applications]}
     return render(request, 'applications/index.html', temp)
+
+def application_details(request,application_id):
+    application = Application.objects.get(pk=application_id)
+    experiences = Experiences.objects.all().filter(application=application)
+    references = References.objects.all().filter(application=application)
+    return render(request,"applications/details.html") 
