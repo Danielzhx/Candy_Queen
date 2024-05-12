@@ -12,7 +12,7 @@ def index(request):
         template_name = "profiles/indiv_profile.html"
 
     except:
-        user = Company.objects.get(parent_user_id=request.user.id)
+        user = Company.objects.get(user_id=request.user.id)
         template_name = "profiles/company_profile.html"
 
     content["profile"] = user
