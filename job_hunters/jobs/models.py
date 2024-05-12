@@ -29,6 +29,9 @@ class Job(models.Model):
     due_date = models.DateField("Due date")
     start_date = models.DateField("Start date")
 
+    def __str__(self) -> str:
+        return f"{self.title}, {self.company}"
+
 
 class Application(models.Model):
     user = models.ForeignKey(Individual, on_delete=models.CASCADE)

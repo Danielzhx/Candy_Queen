@@ -16,6 +16,9 @@ def signup_type(request):
     Allows the user to choose whether they want to create a 
     company or individual account.
     """
+    if request.user.is_authenticated:
+        return redirect("jobs:index")
+    
     template_name = "signup/index.html"
     return render(request, template_name, None)
 
@@ -25,6 +28,9 @@ def reg_individual(request):
     
     Takes in the required info to create a new user.
     """
+    if request.user.is_authenticated:
+        return redirect("jobs:index")
+    
     template_name = "signup/reg_individual.html"
     if request.method == 'POST':
         signup = ISignupForm(data=request.POST)
@@ -41,6 +47,9 @@ def reg_company(request):
     
     Takes in the required info to create a new company account.
     """
+    if request.user.is_authenticated:
+        return redirect("jobs:index")
+    
     template_name = "signup/reg_company.html"
     if request.method == 'POST':
         signup = CSignupForm(data=request.POST)
