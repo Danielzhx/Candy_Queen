@@ -47,15 +47,13 @@
             </div>
               <!-- Profile and logout if user is logged in-->
               {% if user.is_authenticated %}
+              <!-- Profile pic -->
               <div class="nav-item mx-3">
-                {% if user.pic %}
-                  <img src="{{ user.pic }}">
-                {% else %}
-                  <img src="{% static 'images/avatars/default_avatar.jpg' %}" width=40, height=40 style="border-radius:50%">
-                {% endif %}
+                <!-- TODO: Get profile pic working on all pages (get Individual everywhere?)-->
+                <img src="/{{ profile.pic }}" width=40, height=40 style="border-radius:50%">
               </div>
               <span class="navbar-text">                
-              <!-- Hover navbar -->
+              <!-- Profile Options -->
               <div class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="{% url 'profiles:profiles' %}" data-bs-toggle="dropdown">  {{ user.username }}  </a>
                  <ul class="dropdown-menu">
@@ -127,7 +125,7 @@
     </script>
     <script 
       src="{% static 'js/mode.js' %}">
-  </script>
+    </script>
 </body>
 
 {% block footer %}

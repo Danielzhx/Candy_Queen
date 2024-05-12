@@ -1,13 +1,53 @@
 {% extends 'base.html' %}
 {% block content %}
-<div>
-  <div><img src="{{profile.pic}}" alt="Profile picture"></div>
-  <h2>{{ user.username }}</h2>
-  <h3>{{ user.email }}</h3>
-  <h3>{{ profile.phone_number }}</h3>
-  <h3>{{ profile.address }}</h3>
-  <h3>{{ profile.date_of_birth }}</h3>
-  <a href="edit">Edit profile</a>
-  <a href="applications">View all my applications</a>
+{% load static %}
+<div class="row w-50 my-3 mx-auto rounded border border-secondary bg-secondary-subtle">
+  <div class="col-md-8">
+    <div class="row w-75 mx-auto">
+      <!-- Username -->
+      <div class="col-md-12" style="margin-top:1rem">
+        <h2>{{ user.username }}</h2>
+      </div>
+
+      <!-- Phone -->
+      <div class="col-md-7" style="margin-top:1rem">
+        <h6>Phone: {{ profile.phone_number }}</h6>
+      </div>
+
+      <!-- Address -->
+      <div class="col-md-7" style="margin-top:1rem">
+        <h6 m>Address: {{ profile.address }}</h6>
+      </div>
+
+      <!-- Date of birth -->
+      <div class="col-md-12">
+        <h6>Date of birth: {{ profile.date_of_birth }}</h6>
+      </div>
+
+      <div class="col-md-12" style="height:5rem"></div>
+
+      <!-- Edit button -->
+      <div class="col-md-4">
+        <a class="btn btn-secondary" href="edit">Edit profile</a>
+      </div>
+
+      <!-- View applications button -->
+      <div class="col-md-6">
+        <a class="btn btn-secondary" href="applications">View all my applications</a>
+      </div>
+
+
+    </div>
+    
+    <h3>{{ user.email }}</h3>
+  </div>
+  <div class="col-md-4">
+    <div class="row w-75">
+      <!-- Profile Pic -->
+      <div class="col-md-4" style="margin-top:1rem;">
+        <h2><img class="rounded border border-secondary" src="/{{ profile.pic }}" alt="Profile picture" width=150 height=150></h2>
+      </div>
+    </div>
+  </div>
 </div>
 {% endblock %}
