@@ -7,12 +7,10 @@
     {% for application in applications %}
         <!---fetch application with link to its details--->
         <div class="card bg-body-secondary d-inline-flex p-2" style="width: 10rem; height: 8rem; margin-right:0.25rem; margin-bottom:0.25rem;">
-            <div class="card-body">
-                <a href="jobs/{{application.job.id}}/applications">
-                    <h5 class="card-title"><a href="{{ application.name }}"</h5></a>
-                <p class="card-text">{{ application.job }}</p>
-                
-            </div>
+            <a href="applications/{{ application.id }}" class="card-body">
+                <h5 class="card-title">{{ application.job.title }}</h5>
+                <p class="card-text">{{ application.job.description }}</p>
+            </a>
         </div>
     {% endfor %}
 
