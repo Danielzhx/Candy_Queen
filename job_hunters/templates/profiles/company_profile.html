@@ -1,1 +1,16 @@
-{{profile.text}}
+{% extends 'base.html' %}
+{% block content %}
+<div>
+  <div><img src="{{profile.cover_image}}" alt="Cover image"></div>
+  <div><img src="{{profile.logo}}" alt="Company's logo"></div>
+  <h2>{{ profile.name }}</h2>
+  <div><h3>{{ profile.description }}</h3></div>
+  <div>
+    <h4>{{ profile.address }}</h4>
+    <h4>{{ profile.contact_email }}</h4>
+    <h4>{{ profile.phone_number }}</h4>
+  </div>
+  <a href="edit"><input type="button" value="Edit profile"></a>
+  <a href="applications"><input type="button" value="View all my applications"></a>
+</div>
+{% endblock %}
