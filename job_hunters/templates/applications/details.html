@@ -47,11 +47,13 @@
     <h6>Phone:</h6>
     <span class="card-text">{{reference.phone_number}}</span>
     <h6>Contactable:</h6>
-    {% if reference.contact_bool%}
+    {% if reference.contact_bool %}
         <span class="card-text">Yes</span>
     {% else %}
         <span class="card-text">No</span>
     {% endif %}
   {% endfor %}
 </div>
+{% endblock %}
+{% block footer%}
 {% endblock %}

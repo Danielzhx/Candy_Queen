@@ -27,6 +27,7 @@ def detail(request, job_id):
         application = get_object_or_404(Application, user_id=request.user.id, job_id=job_id)
         applied = True
     except Http404:
+        application = None
         applied = False
 
     context = {
