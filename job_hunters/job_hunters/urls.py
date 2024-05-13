@@ -18,6 +18,8 @@ from django.contrib import admin
 from django.urls import path, include
 from pages.views import index
 
+from . import views
+
 urlpatterns = [
     path('', index, name="home"),
     path('admin/', admin.site.urls),
@@ -26,5 +28,6 @@ urlpatterns = [
     path('login/', include('login.urls')),
     path('accounts/', include('accounts.urls')),
     path('companies/', include('companies.urls')),
-    path('profiles/', include('profiles.urls'))
+    path('profiles/', include('profiles.urls')),
+    path("get_pic/<int:user_id>", views.get_pic, name="get_pic")
 ]

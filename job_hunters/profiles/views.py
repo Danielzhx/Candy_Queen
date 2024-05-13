@@ -36,3 +36,4 @@ def application_details(request,application_id):
     experiences = Experiences.objects.all().filter(application=application)
     references = References.objects.all().filter(application=application)
     return render(request,"applications/details.html") 
+
