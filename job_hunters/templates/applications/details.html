@@ -1,3 +1,57 @@
 {% extends "base.html"%}
 {% block content %}
+<div class="card text-center">
+  <div class="card-header">
+      <h2>{{ application.job.title }}</h2>
+  </div>
+  <div class="card-body">
+    <h5 class="card-title">Application Details</h5>
+    <h6>Name:</h6>
+    <span class="card-text">{{application.name}}</span>
+    <h6>Street Name:</h6>
+    <span class="card-text">{{application.street_name}}</span>
+    <h6>House Number:</h6>
+    <span class="card-text">{{application.house_number}}</span>
+    <h6>City:</h6>
+    <span class="card-text">{{application.country}}</span>
+    <h6>Postal Code:</h6>
+    <span class="card-text">{{application.postal}}</span>
+    <h6>Cover Letter:</h6>
+    <span class="card-text">{{application.cover_letter}}</span>
+  </div>
+</div>
+<div class="card text-center">
+  <div class="card-header">
+      <h2>Experiences</h2>
+  </div>
+  {% for experience in experiences %}
+  <div class="card-body">
+    <h5 class="card-title">{{experience.workplace}}</h5>
+    <h6>Role:</h6>
+    <span class="card-text">{{experience.role}}</span>
+    <h6>Starting Date:</h6>
+    <span class="card-text">{{experience.start_date}}</span>
+    <h6>End Date:</h6>
+    <span class="card-text">{{experience.end_date}}</span>
+  {% endfor %}
+</div>
+<div class="card text-center">
+  <div class="card-header">
+      <h2>References</h2>
+  </div>
+  {% for reference in references %}
+  <div class="card-body">
+    <h5 class="card-title">{{reference.name}}</h5>
+    <h6>Email:</h6>
+    <span class="card-text">{{reference.email}}</span>
+    <h6>Phone:</h6>
+    <span class="card-text">{{reference.phone_number}}</span>
+    <h6>Contactable:</h6>
+    {% if reference.contact_bool%}
+        <span class="card-text">Yes</span>
+    {% else %}
+        <span class="card-text">No</span>
+    {% endif %}
+  {% endfor %}
+</div>
 {% endblock %}

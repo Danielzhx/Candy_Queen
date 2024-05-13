@@ -24,14 +24,15 @@ def detail(request, job_id):
     """
     job = get_object_or_404(Job, pk=job_id)
     try:
-        get_object_or_404(Application, user_id=request.user.id, job_id=job_id)
+        application = get_object_or_404(Application, user_id=request.user.id, job_id=job_id)
         applied = True
     except Http404:
         applied = False
 
     context = {
         'job': job,
-        'applied': applied
+        'applied': applied,
+        'application':application
     }
     return render(request, 'jobs/profile.html', context)
 

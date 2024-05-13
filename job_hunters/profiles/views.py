@@ -35,5 +35,9 @@ def application_details(request,application_id):
     application = Application.objects.get(pk=application_id)
     experiences = Experiences.objects.all().filter(application=application)
     references = References.objects.all().filter(application=application)
-    return render(request,"applications/details.html") 
-
+    content = {
+        "application":application,
+        "experiences":[experience for experience in experiences],
+        "references":[reference for reference in references]
+    }
+    return render(request, "applications/details.html", content) 
