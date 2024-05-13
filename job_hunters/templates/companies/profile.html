@@ -2,11 +2,9 @@
 {% block content %}
 {% load static %}
 <!-- TODO: Remove height and width and style images instead-->
-<div id="company_cover_img"> <img height="200px" width="200px"src= "{% static "companies/"%}{{company.cover_image }}" alt= "company cover image"> </div>
-<div id="company_logo"> <img height="200px" width="200px" src= "{% static "companies/"%}{{company.logo}}" alt= "company logo"> </div> 
+<div id="company_cover_img"> <img height="200px" width="200px"src= "{% static "companies/"%}{{ company.cover_image }}" alt= "company cover image"> </div>
+<div id="company_logo"> <img height="200px" width="200px" src= "/{{ company.logo }}" alt= "company logo"> </div> 
 <div style="display: flex; justify-content: space-around;">
-  <div id="company_cover_img"> <img src= "{{company.cover_image}}" alt= "company cover image"> </div>
-  <div id="company_logo"> <img src= "{{company.logo}}" alt= "company logo"> </div>
   <div>
     <h1>{{company.name}}</h1>
   </div>
