@@ -3,7 +3,7 @@
 {% block content %}
 {% for company in companies%}
     <div class="card text-bg-dark">
-        <img src="static/{{ company.cover_image }}" class="card-img" alt="company cover image">
+        <img src="/static/companies/{{ company.cover_image }}" height=300px class="card-img" alt="company cover image">
         <a href="{{ company.id }}" class="card-img-overlay">
             <h5 class="card-title">{{ company.name }}</h5>
             <p class="card-text">{{ company.description}}</p>
