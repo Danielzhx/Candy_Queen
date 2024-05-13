@@ -34,3 +34,4 @@ class IndividualForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         super(IndividualForm, self).__init__(*args, **kwargs)
+        self.fields['pic'].required = False
