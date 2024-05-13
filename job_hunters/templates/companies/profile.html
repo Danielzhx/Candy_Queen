@@ -2,18 +2,47 @@
 {% block content %}
 {% load static %}
 <!-- TODO: Remove height and width and style images instead-->
-<div id="company_cover_img"> <img height="200px" width="200px"src= "{% static "companies/"%}{{ company.cover_image }}" alt= "company cover image"> </div>
-<div id="company_logo"> <img height="200px" width="200px" src= "/{{ company.logo }}" alt= "company logo"> </div> 
+<div class="row g-1 mx-auto w-75" style="margin-top:1rem">
+  <div class="col-md-12">
+    <img class="img-fluid w-100 rounded border border-tertiary" src= "{% static "companies/"%}{{ company.cover_image }}" alt= "company cover image" style="max-height:10rem">
+  </div>
+  <div class="col-md-4">
+    <img height="150px" width="150px" src= "/{{ company.logo }}" alt= "company logo">
+  </div>
+  <div class="col-md-4" style="display: flex;">
+    <h1 style="display: flex; align-self: flex-end">{{company.name}}</h1>
+  </div>
+  <div class="col-md-8 p-3 rounded" style="margin-right:2rem">
+    <p>{{company.description}}</p></div>
+  <div class="col-md-3 p-3 rounded border border-tertiary">
+    <div class="row">
+      <div class="col-md-12">
+        <h5>Contact:</h5>
+      </div>
+      <div class="col-md-12 text-end">
+        <p>{{company.contact_email}}<br/>
+        {{company.phone_number}}<br/>
+        {{company.address}}</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--
+<div id="company_cover_img w-100" style="overflow:hidden;">
+  <div id="company_logo">
+    <img height="200px" width="200px" src= "/{{ company.logo }}" alt= "company logo">
+  </div> 
+</div>
+
 <div style="display: flex; justify-content: space-around;">
   <div>
     <h1>{{company.name}}</h1>
   </div>
 
   <div>
-    <h3>Company's info:</h3>
     <p>{{company.address}}</p>
     <p>{{company.phone_number}}</p>
-    <p>{{company.contact_email}}</p>
   </div>
 
   <div>
@@ -21,4 +50,5 @@
     <p>{{company.description}}</p>
   </div>
 </div>
+-->
 {% endblock %}

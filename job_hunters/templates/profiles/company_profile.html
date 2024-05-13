@@ -1,5 +1,69 @@
 {% extends 'base.html' %}
 {% block content %}
+{% load static %}
+<div class="container-fluid">
+  <img class="img-fluid w-100 rounded border border-tertiary" src= "{% static "companies/"%}{{ company.cover_image }}" alt= "company cover image" style="max-height:10rem">
+</div>
+<div class="row w-50 my-3 mx-auto">
+  <div class="col-md-8">
+    <div class="row mx-auto rounded border-top border-bottom border-secondary bg-secondary-subtle">
+      <!-- Name -->
+      <div class="col-md-12 border-bottom border-secondary-subtle" style="margin-top:1rem">
+        <h2>{{ profile.name }}</h2>
+      </div>
+
+      <!-- Account Email -->
+      <div class="col-md-12" style="margin-top:1rem">
+        <h6>Account Email: {{ user.username }}</h6>
+      </div>
+
+      <!-- Contact Email -->
+      <div class="col-md-12" style="margin-top:1rem">
+        <h6>Contact Email: {{ profile.contact_email }}</h6>
+      </div>
+
+      <!-- Phone number -->
+      <div class="col-md-12">
+        <h6>Phone number: {{ profile.phone_number }}</h6>
+      </div>
+
+      <!-- Address -->
+      <div class="col-md-12">
+        <h6>Address: {{ profile.address }}</h6>
+      </div>
+
+      <!-- Description -->
+      <div class="col-md-12">
+        <h6>Description: {{ profile.description }}</h6>
+      </div>
+
+      <div class="col-md-12" style="height:5rem"></div>
+
+    </div>
+  </div>
+  <div class="col-md-3">
+    <div class="row w-75">
+      <!-- Profile Pic -->
+      <div class="col-md-4" style="margin-top:1rem;">
+        {% if profile.pic %}
+        <img src="/{{ profile.pic }}" alt="Profile picture" width=150 height=150>
+        {% else %}
+        <!-- TODO: Set default profile pic?-->
+        <script> document.getElementsByClassName('col-md-8')[0].setAttribute('class', 'col-md-12')</script>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+  
+  <div class="col-md-12 my-5">
+    <div class="mx-auto" style="display:flex; justify-content: space-evenly">
+      <!-- Edit profile button -->
+      <a href="edit"><input type="button" value="Edit profile"></a>
+    </div>
+</div>
+{% endblock %}
+
+<!-- 
 <div>
   <div><img src="{{profile.cover_image}}" alt="Cover image"></div>
   <div><img src="{{profile.logo}}" alt="Company's logo"></div>
@@ -12,4 +76,4 @@
   </div>
   <a href="edit"><input type="button" value="Edit profile"></a>
 </div>
-{% endblock %}
+-->

@@ -1,21 +1,21 @@
 {% extends 'base.html' %}
 {% block content %}
 {% load static %}
-<div class="row w-50 my-3 mx-auto rounded border border-secondary bg-secondary-subtle">
+<div class="row w-50 my-3 mx-auto">
   <div class="col-md-8">
-    <div class="row w-75 mx-auto">
+    <div class="row mx-auto rounded border-top border-bottom border-secondary bg-secondary-subtle">
       <!-- Username -->
-      <div class="col-md-12" style="margin-top:1rem">
+      <div class="col-md-12 border-bottom border-secondary-subtle" style="margin-top:1rem">
         <h2>{{ user.username }}</h2>
       </div>
 
       <!-- Phone -->
-      <div class="col-md-7" style="margin-top:1rem">
+      <div class="col-md-12" style="margin-top:1rem">
         <h6>Phone: {{ profile.phone_number }}</h6>
       </div>
 
       <!-- Address -->
-      <div class="col-md-7" style="margin-top:1rem">
+      <div class="col-md-12" style="margin-top:1rem">
         <h6 m>Address: {{ profile.address }}</h6>
       </div>
 
@@ -26,28 +26,23 @@
 
       <div class="col-md-12" style="height:5rem"></div>
 
-      <!-- Edit button -->
-      <div class="col-md-4">
-        <a class="btn btn-secondary" href="edit">Edit profile</a>
-      </div>
-
-      <!-- View applications button -->
-      <div class="col-md-6">
-        <a class="btn btn-secondary" href="applications">View all my applications</a>
-      </div>
-
-
     </div>
-    
-    <h3>{{ user.email }}</h3>
   </div>
-  <div class="col-md-4">
+  <div class="col-md-3">
     <div class="row w-75">
       <!-- Profile Pic -->
       <div class="col-md-4" style="margin-top:1rem;">
-        <h2><img class="rounded border border-secondary" src="/{{ profile.pic }}" alt="Profile picture" width=150 height=150></h2>
+        <img src="/{{ profile.pic }}" alt="Profile picture" width=150 height=150>
       </div>
     </div>
   </div>
+  
+  <div class="col-md-12 my-5">
+    <div class="mx-auto" style="display:flex; justify-content: space-evenly">
+      <!-- View applications button -->
+      <a class="btn btn-secondary" href="applications">View all my applications</a>
+      <!-- Edit button -->
+      <a class="btn btn-secondary mx-4" href="edit">Edit profile</a>
+    </div>
 </div>
 {% endblock %}
