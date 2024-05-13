@@ -1,4 +1,6 @@
 from django.shortcuts import render, redirect
+from Forms.signup_form import ISignupForm
+from Forms.edit_profile import EditForm 
 from signup.models import Individual
 from companies.models import Company
 from jobs.models import Application, Experiences, References
@@ -19,6 +21,13 @@ def index(request):
     content["profile"] = user
     content["user"] = request.user
     return render(request, template_name, content)
+
+def edit(request):
+    form = EditForm()
+    content = {
+        "form":form
+    }
+    return render(request, "profiles/edit.html", content)
 
 def view_applications(request):
     """Allows a user to see and manage their applications."""
