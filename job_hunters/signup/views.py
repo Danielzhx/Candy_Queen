@@ -33,6 +33,7 @@ def reg_individual(request):
     
     template_name = "signup/reg_individual.html"
     if request.method == 'POST':
+        print(request.POST['individual-pic'])
         signup = ISignupForm(data=request.POST)
         if signup.is_valid():
             signup.save()
