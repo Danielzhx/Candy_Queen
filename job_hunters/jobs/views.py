@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.http import Http404
-from .models import Category, Company, Job, Application, JobType
+from .models import Category, Company, Job, Application, Experiences, References
 from signup.models import Individual
 from Forms.filter_form import FilterForm, ORDERS
 from Forms.application_form import ApplicationForm, ExperienceForm, ReferencesForm
@@ -55,6 +55,28 @@ def create(request):
     }
     return render(request, "jobs/create.html", content) 
 
+def company_applications(request, job_id, company_id):
+    applications = Application.objects.all()
+    company = Company.objects.get(pk = company_id)
+    job = Job.objects.get(pk = job_id)
+    applications = applications.filter(job = job)
+    applications = applications.filter(job__company = company)
+    content = {
+        'applications':applications
+    }
+    return render(request,"applications/index.html", content)
+
+def company_application_details(request, job_id, company_id, application_id):
+    application = Application.objects.get(pk = application_id)
+    experiences = Experiences.objects.all().filter(application_id = application_id)
+    references = References.objects.all().filter(application_id = application_id)
+    content = {
+        'application':application,
+        'references':references,
+        'experiences':experiences,
+        'is_company': True
+    }
+    return render(request, "applications/details.html", content)
 
 def detail(request, job_id):
     """Detail view for individual job posting.
@@ -67,10 +89,19 @@ def detail(request, job_id):
         application = None
         applied = False
 
+    try:
+        company = get_object_or_404(Company, user_id=request.user.id)
+        is_company = True
+    except Http404:
+        company = None 
+        is_company = False
+
     context = {
         'job': job,
         'applied': applied,
-        'application':application
+        'application':application,
+        'is_company':is_company,
+        'company':company
     }
     return render(request, 'jobs/profile.html', context)
 

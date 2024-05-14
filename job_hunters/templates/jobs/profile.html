@@ -33,6 +33,8 @@
                 <p>Start date: {{ job.start_date}}</p>
                 {% if applied %}
                     <a class="btn btn-secondary" href="/profiles/applications/{{ application.id }}" style="margin-bottom:0.1rem">Review Application</a>
+                {% elif is_company%}
+                    <a class="btn btn-secondary" href="companies/{{ company.id }}/applications">Review</a>
                 {% else %}
                     <a class="btn btn-secondary" href="applications" style="margin-bottom:0.1rem">Apply now!</a>
                 {% endif %}
