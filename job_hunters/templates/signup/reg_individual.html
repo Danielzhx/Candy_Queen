@@ -6,15 +6,12 @@
     <form class="row gx-3 gy-4 w-75 mx-auto" method="post" action="{% url 'signup:reg_individual' %}">
       {% csrf_token %}
       <!-- Email/Username -->
-      <div class="col-md-12
-      ">
-        <!-- <label for="login_email" class="form-label">Email address</label> -->
+      <div class="col-md-12">
         <input type="email" class="form-control" id="login_email" name="user-username" placeholder="Email">
       </div>
 
       <!-- Password -->
       <div class="col-md-6">
-        <!-- <label for="login_password" class="form-label">Password</label> -->
         <input type="password" class="form-control" id="form_password" name="user-password1" placeholder="Password">
       </div>
       <div class="col-md-6"></div>
