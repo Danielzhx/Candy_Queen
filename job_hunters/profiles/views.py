@@ -23,11 +23,7 @@ def index(request):
     return render(request, template_name, content)
 
 def edit(request):
-    form = EditForm()
-    content = {
-        "form":form
-    }
-    return render(request, "profiles/edit.html", content)
+    pass
 
 def view_applications(request):
     """Allows a user to see and manage their applications."""

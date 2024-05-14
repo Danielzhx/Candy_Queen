@@ -1,7 +1,7 @@
-from .signup_form import ISignupForm
 from .individual_form import IndividualForm
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.models import User
+from django.forms import ModelForm
+from betterforms.multiform import MultiModelForm
 
-class EditForm():
+class EditForm(MultiModelForm):
     pass
-

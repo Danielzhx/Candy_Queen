@@ -1,6 +1,7 @@
 {% extends "base.html"%}
 {% block content %}
-<form>
+<form method="post" action="edit">
     {{ form.as_p }} 
+    <input type=submit>
 </form>
 {% endblock %}
