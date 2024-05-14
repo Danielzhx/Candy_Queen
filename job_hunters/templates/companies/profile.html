@@ -1,7 +1,6 @@
 {% extends 'base.html' %}
 {% block content %}
 {% load static %}
-<!-- TODO: Remove height and width and style images instead-->
 <div class="row g-1 mx-auto w-75" style="margin-top:1rem">
   <div class="col-md-12">
     <img class="img-fluid w-100 rounded border border-tertiary" src= "{% static "companies/"%}{{ company.cover_image }}" alt= "company cover image" style="max-height:10rem">
@@ -26,29 +25,19 @@
       </div>
     </div>
   </div>
+    <div class="row row-cols-4 row-cols-md-2" id="job_list" style="margin-top:0.25rem; margin-left: 16%;">
+        <div class="col-3 w-75" style="margin-top:1rem">
+        {% for job in jobs%}
+        <!-- Each job card -->
+            <div class="card d-inline-flex p-2 bg-body-secondary h-100" style="width: 10rem; height: 8rem; margin-right:0.25rem; margin-bottom:0.25rem;">
+                <img src="/{{ job.company.logo }}" alt="Logo" style="max-width:60%; max-width:60%; align-self:center">
+                <div class="card-body border-top border-secondary-subtle w-100">
+                    <h5 class="card-title"><a href="/jobs/{{ job.id }}">{{ job.title }}</a></h5>
+                    <p class="card-text">{{ job.description }}</p>
+                </div>
+            </div>
+        {% endfor %}
+        </div>
+    </div>
 </div>
-
-<!--
-<div id="company_cover_img w-100" style="overflow:hidden;">
-  <div id="company_logo">
-    <img height="200px" width="200px" src= "/{{ company.logo }}" alt= "company logo">
-  </div> 
-</div>
-
-<div style="display: flex; justify-content: space-around;">
-  <div>
-    <h1>{{company.name}}</h1>
-  </div>
-
-  <div>
-    <p>{{company.address}}</p>
-    <p>{{company.phone_number}}</p>
-  </div>
-
-  <div>
-    <h3>Company's description:</h3>
-    <p>{{company.description}}</p>
-  </div>
-</div>
--->
 {% endblock %}
