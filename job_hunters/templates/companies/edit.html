@@ -6,6 +6,12 @@
         <h1 class="mb-3" style="text-align: center;">Edit profile</h1>
         <form class="row gx-3 gy-4 w-75 mx-auto" method="post" action="{% url 'companies:edit' %}" enctype="multipart/form-data">
             {% csrf_token %}
+
+            <!-- Name -->
+            <div class="col-md-12 gy-2">
+                <input type="text" class="form-control" id="name" name="company-name" placeholder="Company name" value="{{ auto_name }}">
+            </div>
+
             <!-- Email/Username -->
             <div class="col-md-12">
                 <input type="email" class="form-control" id="login_email" name="user-username" placeholder="Account Email" value="{{ auto_username }}">
