@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from Forms.signup_form import ISignupForm
-from Forms.edit_profile import IEditMultiForm 
+from Forms.edit_forms import IEditForm 
 from signup.models import Individual
 from companies.models import Company
 from datetime import datetime
@@ -38,7 +38,7 @@ def edit(request):
     }
     if request.method == 'POST':
         # Handle input data
-        profile = IEditMultiForm(data=request.POST, instance={'User': request.user, 'Individual': current})
+        profile = IEditForm(data=request.POST, instance={'User': request.user, 'Individual': current})
         print(request.FILES)
         if validate(profile.data['user-username'], 
                     profile.data['user-first_name'], 

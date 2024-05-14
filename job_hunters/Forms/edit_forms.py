@@ -24,5 +24,12 @@ class IEditMultiForm(MultiModelForm):
         }
 
     def save(self, commit=True):
-        objects = super(CSignupForm, self).save(commit=False)
-        print(objects)
+        objects = super(ISignupForm, self).save(commit=False)
+        if commit:
+            user = objects['user']
+            user.save()
+            individual = objects['individual']
+            individual.parent_user = user
+            individual.save()
+
+        return objects
