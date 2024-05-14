@@ -40,10 +40,8 @@ def create(request):
             category.save()
 
         if form.is_valid():
-            job_type = JobType.objects.get(pk=int(request.POST['job_type']))
             job = form.save(commit = False)
             job.category = category
-            job.job_type = job_type
             job.company = company
             job.save()
             
