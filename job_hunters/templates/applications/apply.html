@@ -4,7 +4,7 @@
 <div class="container bg-body-secondary w-50 rounded border border-secondary" style="margin-top:1rem">
     <div class="col">
     <h2 class="mb-3" style="text-align: center; margin-top:1rem">Apply for {{ job.title }}</h2>
-        <form class="row g-3 w-75 mx-auto" method="post" action="applications">
+    <form class="row g-3 w-75 mx-auto" method="post" action="../applications/">
             {% csrf_token %}
             <!-- Error display -->
             {% if form.errors %}

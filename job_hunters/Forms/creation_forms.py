@@ -1,4 +1,4 @@
-from django.forms import ModelForm, widgets
+from django.forms import ModelForm 
 from jobs.models import Job
 from django import forms
 

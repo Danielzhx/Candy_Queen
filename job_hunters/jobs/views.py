@@ -34,7 +34,7 @@ def create(request):
         form = JobCreationForm(request.POST)
         company  = Company.objects.get(user_id = request.user.id)
         try:
-            category = Category.objects.get(name = request.POST["category"])
+            category = Category.objects.get(category = request.POST["category"])
         except:
             category = Category(category = request.POST['category'])
             category.save()
@@ -114,6 +114,12 @@ def apply(request, job_id):
         individual = Individual.objects.get(parent_user_id=request.user.id)
     except:
         return redirect('/jobs')
+
+    application = Application.objects.all()\
+                .filter(job = Job.objects.get(pk = job_id))\
+                .filter(user = individual)
+    if application:
+        application.delete()
     
     # Autofill form based on user info
     autofill = {"country":"Country"}
@@ -130,7 +136,6 @@ def apply(request, job_id):
             application.job = job
             application.user = individual
             application.save()
-            # TODO: Change redirect to application review page
             return redirect('/jobs/%d/applications/%d/experiences'%(job.id,application.id))
 
     else:
