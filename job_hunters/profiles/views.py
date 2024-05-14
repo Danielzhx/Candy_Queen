@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from Forms.signup_form import ISignupForm
-from Forms.edit_profile import EditForm 
+from Forms.edit_profile import IEditForm 
 from signup.models import Individual
 from companies.models import Company
 from jobs.models import Application, Experiences, References
@@ -23,7 +23,35 @@ def index(request):
     return render(request, template_name, content)
 
 def edit(request):
-    pass
+    template_name = "profiles/edit.html"
+    current = Individual.objects.get(pk = request.user.id)
+    context = {
+        'auto_username': request.user.username,
+        'auto_firstname': request.user.first_name,
+        'auto_lastname': request.user.last_name,
+        'auto_phone': current.phone_number,
+        'auto_address': current.address,
+        'auto_DoB': current.date_of_birth,
+        'auto_avatar': current.pic
+    }
+    if request.method == 'POST':
+        # Handle input data
+        profile = IEditForm(data=request.POST)
+        if profile.is_valid():
+            for attr in profile:
+                print(attr)
+
+            return redirect('profiles')
+
+        else:
+            print(profile.errors)
+            context['errors'] = profile.errors
+            return render(request, template_name, context)
+
+    else:
+        # display page
+        
+        return render(request, template_name, context)
 
 def view_applications(request):
     """Allows a user to see and manage their applications."""

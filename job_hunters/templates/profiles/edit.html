@@ -1,7 +1,67 @@
 {% extends "base.html"%}
 {% block content %}
-<form method="post" action="edit">
-    {{ form.as_p }} 
-    <input type=submit>
-</form>
+{% load static %}
+<div class="container bg-body-secondary w-50 rounded border border-secondary" style="margin-top:1rem">
+    <div class="col">
+        <h1 class="mb-3" style="text-align: center;">Edit profile</h1>
+        <form class="row gx-3 gy-4 w-75 mx-auto" method="post" action="edit">
+            {% csrf_token %}
+            <!-- Email/Username -->
+            <div class="col-md-12">
+                <input type="email" class="form-control" id="login_email" name="user-username" placeholder="Email" value="{{ auto_username }}">
+            </div>
+
+            <!-- First name -->
+            <div class="col-md-6">
+                <input type="text" class="form-control" id="first_name" name="user-first_name" placeholder="First name" value="{{ auto_firstname }}">
+            </div>
+
+            <!-- Last name -->
+            <div class="col-md-6">
+                <input type="text" class="form-control" id="last_name" name="user-last_name" placeholder="Last name" value="{{ auto_lastname }}">
+            </div>
+
+            <!-- Phone -->
+            <div class="col-md-6 gy-2">
+                <input type="text" class="form-control" id="phone" name="individual-phone_number" placeholder="Phone" value="{{ auto_phone }}">
+            </div>
+            
+            <!-- Address -->
+            <div class="col-md-6 gy-2">
+                <input type="text" class="form-control" id="address" name="individual-address" placeholder="Address" value="{{ auto_address }}">
+            </div>
+
+            <!-- DoB label -->
+            <div class="col-md-3">
+                <input type="text" readonly class="form-control-plaintext" value="Date of birth:" style="text-align:right">
+            </div>
+            
+
+            <!-- Date of birth -->
+            <div class="col-md-6">
+                <input type="date" class="form-control" id="date_of_birth" name="individual-date_of_birth" value="{{ auto_DoB }}">
+            </div>
+
+            <!-- Profile pic -->
+            <div class="col-md-12">
+                <input type="file" class="form-control" id="profile_pic" name="individual-pic" accept="image/*" value="auto_avatar">
+            </div>
+
+            <!-- Errors -->
+            {% if errors%}
+            <div class="col-md-12">
+                {% for key, value in errors %}
+                <p> {{key}}: {{ value }} </p>
+                {% endfor %}
+            </div>
+            {% endif %}
+
+            <!-- Sign up button -->
+            <div class="col-md-4 offset-md-4" style="text-align: center;">
+              <input class="btn btn-secondary btn-lg" type="submit" value="Update" >
+            </div>
+        </form>
+    </div>
+</body>
 {% endblock %}
+{% block footer %}{% endblock %}
