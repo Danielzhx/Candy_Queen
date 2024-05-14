@@ -34,7 +34,7 @@ def create(request):
         form = JobCreationForm(request.POST)
         company  = Company.objects.get(user_id = request.user.id)
         try:
-            category = Category.objects.get(name = request.POST["category"])
+            category = Category.objects.get(category = request.POST["category"])
         except:
             category = Category(category = request.POST['category'])
             category.save()
