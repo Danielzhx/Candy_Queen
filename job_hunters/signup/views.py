@@ -33,7 +33,7 @@ def reg_individual(request):
     
     template_name = "signup/reg_individual.html"
     if request.method == 'POST':
-        signup = ISignupForm(data=request.POST)
+        signup = ISignupForm(request.POST, request.FILES)
         if signup.is_valid():
             signup.save()
             return redirect("jobs:index")
@@ -52,7 +52,7 @@ def reg_company(request):
     
     template_name = "signup/reg_company.html"
     if request.method == 'POST':
-        signup = CSignupForm(data=request.POST)
+        signup = CSignupForm(request.POST, request.FILES)
         if signup.is_valid():
             signup.save()
             return redirect("jobs:index")

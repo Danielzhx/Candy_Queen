@@ -12,15 +12,16 @@ def index(request):
     "Displays an individual profile."
     content = {}
     try:
-        user = Individual.objects.get(parent_user_id=request.user.id)
+        profile = Individual.objects.get(parent_user_id=request.user.id)
         template_name = "profiles/indiv_profile.html"
 
     except:
-        user = Company.objects.get(user_id=request.user.id)
+        profile = Company.objects.get(user_id=request.user.id)
         template_name = "profiles/company_profile.html"
 
-    content["profile"] = user
+    content["profile"] = profile
     content["user"] = request.user
+    print(content['profile'].logo)
     return render(request, template_name, content)
 
 def edit(request):
@@ -39,7 +40,6 @@ def edit(request):
     if request.method == 'POST':
         # Handle input data
         profile = IEditForm(data=request.POST, instance={'User': request.user, 'Individual': current})
-        print(request.FILES)
         if validate(profile.data['user-username'], 
                     profile.data['user-first_name'], 
                     profile.data['user-last_name'],
@@ -63,9 +63,7 @@ def edit(request):
             context['errors'] = profile.errors
             return render(request, template_name, context)
 
-    else:
-        # display page
-        
+    else:        
         return render(request, template_name, context)
 
 def view_applications(request):
