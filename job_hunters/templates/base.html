@@ -53,6 +53,11 @@
                   <a class="nav-link" href="{% url 'companies:index' %}" id="companies_tab">Companies</a>
                   {% endif %}
                 </li>
+                <li class="nav-item">
+                  {% if is_company %}
+                      <a class="nav-link active" aria-current="page" href="{% url 'jobs:create' %}" id="jobs_tab">Post Offering</a>
+                  {% endif %}
+                </li>
                 
             </div>
               <!-- Profile and logout if user is logged in-->

@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from django.http import HttpResponse, Http404
-from .models import Category, Company, Job, Application, Experiences, References
+from django.http import Http404
+from .models import Category, Company, Job, Application
 from signup.models import Individual
 from Forms.filter_form import FilterForm, ORDERS
 from Forms.application_form import ApplicationForm, ExperienceForm, ReferencesForm
@@ -9,15 +9,27 @@ from django.forms import formset_factory
 
 # Create your views here.
 def index(request):
+    try:
+        company = Company.objects.get(user_id = request.user.id)
+        is_company = True
+    except:
+        is_company = False
+
     form = FilterForm(request.GET)
     context = {
         'form': form,
         "categories": Category.objects.all(),
         "companies": Company.objects.all(),
+        "is_company":is_company
     }
     context['jobs'] = filter_jobs(request)
+    if is_company:
+        context['jobs'] = context['jobs'].filter(company = company)
+
     return render(request, 'jobs/index.html', context)
 
+def create(request):
+   return render(request, "jobs/create.html") 
 
 def detail(request, job_id):
     """Detail view for individual job posting.
@@ -118,9 +130,7 @@ def reference(request,job_id, application_id):
             reference = form.save(commit = False)
             reference.application = application
             reference.save()
-    print("redirect to jobs")
-    # TODO: Change redirect to the applications detail page
-    return redirect('/jobs')
+    return redirect('/profiles/applications/%d'%(application_id))
 
 def filter_jobs(request):
     jobs = Job.objects.all()
