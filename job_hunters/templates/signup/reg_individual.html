@@ -3,7 +3,7 @@
 <div class="container bg-body-secondary w-50 rounded border border-secondary" style="margin-top:1rem">
   <div class="col">
     <h1 class="mb-3" style="text-align: center;">Sign Up</h1>
-    <form class="row gx-3 gy-4 w-75 mx-auto" method="post" action="{% url 'signup:reg_individual' %}">
+    <form class="row gx-3 gy-4 w-75 mx-auto" method="post" action="{% url 'signup:reg_individual' %}" enctype="multipart/form-data">
       {% csrf_token %}
       <!-- Email/Username -->
       <div class="col-md-12">

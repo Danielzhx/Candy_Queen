@@ -3,7 +3,7 @@
 <div class="container bg-body-secondary w-50 rounded border border-secondary" style="margin-top:1rem">
     <div class="col">
       <h1 class="mb-3" style="text-align: center;">Sign Up</h1>
-      <form class="row gx-3 gy-4 w-75 mx-auto" method="post" action="{% url 'signup:reg_company' %}">
+      <form class="row gx-3 gy-4 w-75 mx-auto" method="post" action="{% url 'signup:reg_company' %}" enctype="multipart/form-data">
         {% csrf_token %}
         {{ form }}
 
@@ -59,6 +59,18 @@
         <div class="col-md-12" style="height:12rem">
             <textarea class="form-control h-100" id="description" name="company-description" placeholder="Company Description"  style="height=20rem"></textarea>
           </div>
+
+        <!-- Logo -->
+        <div class="col-md-12">
+          <label for="logo"><h6>Logo</h6></label>
+          <input type="file" class="form-control" id="logo" name="company-logo" accept="image/*">
+        </div>
+        
+        <!-- Cover Image -->
+        <div class="col-md-12">
+          <label for="logo"><h6>Cover image</h6></label>
+          <input type="file" class="form-control" id="cover" name="company-cover_image" accept="image/*">
+        </div>
 
         <!-- Sign up button -->
         <div class="col-md-4 offset-md-4" style="text-align: center;">

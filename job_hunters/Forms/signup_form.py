@@ -13,6 +13,8 @@ class ISignupForm(MultiModelForm):
         objects = super(ISignupForm, self).save(commit=False)
         if commit:
             user = objects['user']
+            user.first_name = self.data['user-first_name']
+            user.last_name = self.data['user-last_name']
             user.save()
             individual = objects['individual']
             individual.parent_user = user

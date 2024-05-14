@@ -3,10 +3,10 @@
 {% load static %}
 <div class="row g-1 mx-auto w-75" style="margin-top:1rem">
   <div class="col-md-12">
-    <img class="img-fluid w-100 rounded border border-tertiary" src= "{% static "companies/"%}{{ company.cover_image }}" alt= "company cover image" style="max-height:10rem">
+    <img class="img-fluid w-100 rounded border border-tertiary" src= "/media/{{ company.cover_image }}" alt= "company cover image" style="max-height:10rem">
   </div>
   <div class="col-md-4">
-    <img height="150px" width="150px" src= "/{{ company.logo }}" alt= "company logo">
+    <img height="150px" width="150px" src= "/media/{{ company.logo }}" alt= "company logo">
   </div>
   <div class="col-md-4" style="display: flex;">
     <h1 style="display: flex; align-self: flex-end">{{company.name}}</h1>
