@@ -38,7 +38,6 @@ INSTALLED_APPS = [
     'companies.apps.CompaniesConfig',
     'login.apps.LoginConfig',
     'signup.apps.SignupConfig',
-    'accounts.apps.AccountsConfig',
     'jobs.apps.JobsConfig',
     'django.contrib.admin',
     'django.contrib.auth',

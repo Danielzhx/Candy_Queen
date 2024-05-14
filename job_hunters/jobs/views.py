@@ -6,6 +6,7 @@ from Forms.filter_form import FilterForm, ORDERS
 from Forms.application_form import ApplicationForm, ExperienceForm, ReferencesForm
 from Forms.creation_forms import JobCreationForm
 from django.forms import formset_factory
+from django.contrib.auth.decorators import login_required
 
 
 # Create your views here.
@@ -29,6 +30,7 @@ def index(request):
 
     return render(request, 'jobs/index.html', context)
 
+@login_required
 def create(request):
     if request.method == "POST":
         form = JobCreationForm(request.POST)
@@ -55,6 +57,7 @@ def create(request):
     }
     return render(request, "jobs/create.html", content) 
 
+@login_required
 def company_applications(request, job_id, company_id):
     applications = Application.objects.all()
     company = Company.objects.get(pk = company_id)
@@ -66,6 +69,7 @@ def company_applications(request, job_id, company_id):
     }
     return render(request,"applications/index.html", content)
 
+@login_required
 def company_application_details(request, job_id, company_id, application_id):
     application = Application.objects.get(pk = application_id)
     experiences = Experiences.objects.all().filter(application_id = application_id)
@@ -105,11 +109,11 @@ def detail(request, job_id):
     }
     return render(request, 'jobs/profile.html', context)
 
+@login_required
 def apply(request, job_id):
     """
         Application view for job posting.
     """
-    # TODO: Remove the try except and replace with djangos permissions
     try:
         individual = Individual.objects.get(parent_user_id=request.user.id)
     except:
@@ -148,6 +152,7 @@ def apply(request, job_id):
 
     return render(request, 'applications/apply.html', content)
 
+@login_required
 def experience(request, job_id, application_id):
     experience_form_set = formset_factory(ExperienceForm, extra = 3)
     post_data = request.POST.copy()
@@ -171,6 +176,7 @@ def experience(request, job_id, application_id):
 
     return redirect("/jobs/%d/applications/%d/references"%(job_id, application_id))
             
+@login_required
 def reference(request,job_id, application_id):
     reference_form_set = formset_factory(ReferencesForm, extra = 3)
     post_data = request.POST.copy()

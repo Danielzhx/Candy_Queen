@@ -28,7 +28,6 @@ urlpatterns = [
     path('jobs/', include('jobs.urls')),
     path('signup/', include('signup.urls')),
     path('login/', include('login.urls')),
-    path('accounts/', include('accounts.urls')),
     path('companies/', include('companies.urls')),
     path('profiles/', include('profiles.urls')),
     path("get_pic/<int:user_id>", views.get_pic, name="get_pic")

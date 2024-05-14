@@ -5,9 +5,10 @@ from signup.models import Individual
 from companies.models import Company
 from datetime import datetime
 from jobs.models import Application, Experiences, References
-
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
+@login_required
 def index(request):
     "Displays an individual profile."
     content = {}
@@ -24,6 +25,7 @@ def index(request):
     print(content['profile'].logo)
     return render(request, template_name, content)
 
+@login_required
 def edit(request):
     template_name = "profiles/edit.html"
     user = request.user
@@ -65,7 +67,7 @@ def edit(request):
 
     else:        
         return render(request, template_name, context)
-
+@login_required
 def view_applications(request):
     """Allows a user to see and manage their applications."""
     try:
@@ -77,6 +79,7 @@ def view_applications(request):
     temp = {"applications": [application for application in applications]}
     return render(request, 'applications/index.html', temp)
 
+@login_required
 def application_details(request,application_id):
     application = Application.objects.get(pk=application_id)
     experiences = Experiences.objects.all().filter(application=application)
