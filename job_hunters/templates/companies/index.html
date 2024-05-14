@@ -1,14 +1,23 @@
 {% extends "base.html" %}
 {% load static %}
-{% block content %}
-{% for company in companies%}
-    <div class="card text-bg-dark">
-        <img src="/static/companies/{{ company.cover_image }}" height=300px class="card-img" alt="company cover image">
-        <a href="{{ company.id }}" class="card-img-overlay">
-            <h5 class="card-title">{{ company.name }}</h5>
-            <p class="card-text">{{ company.description}}</p>
-        </a>
-    </div>
-{% endfor %}
+{% block sidebar %}
 {% endblock %}
-
+{% block content %}
+<div class="row row-cols-4 row-cols-md-2" id="job_list" style="margin-top:0.25rem; margin-left: 16%;">
+    <div class="col-3 w-75" style="margin-top:1rem">
+    {% for company in companies%}
+    <!-- Each job card -->
+        <div class="card d-inline-flex p-2 bg-body-secondary" style="width: 16rem; height: 16rem;  margin-right:0.25rem; margin-bottom:0.25rem;">
+            
+            <div class="card-body mx-auto" style="height:8rem">
+                <img src="/{{ company.logo }}" class="card-img" alt="logo" style="max-width:6rem; max-width:6rem; align-self:center">
+            </div>
+            <div class="card-body border-top border-secondary-subtle">
+                <h5 class="card-title"><a href="{{ company.id }}">{{ company.name }}</a></h5>
+                <p class="card-text">{{ company.description }}</p>
+            </div>
+        </div>
+    {% endfor %}
+    </div>
+</div>
+{% endblock %}

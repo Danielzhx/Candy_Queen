@@ -37,3 +37,4 @@ $(document).ready(function() {
     /* Trigger the function on page load, to get an initial job list */
     get_jobs(new Event('click'))
 });
+
