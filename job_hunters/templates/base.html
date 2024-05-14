@@ -65,12 +65,12 @@
               <!-- Profile pic -->
               <div class="nav-item mx-3">
                 <!-- TODO: Get profile pic working on all pages (get Individual everywhere?)-->
-                <img src="{% static images.avatars.default_avatar %}" id="profile_pic" width=40, height=40 style="border-radius:50%">
+                <img src="/media/{{ profile.pic }}" id="profile_pic" width=40, height=40 style="border-radius:50%">
               </div>
               <script>
                 $.get('/get_pic/' + "{{ user.id }}",
                     getPic = (data, status) => {
-                      $('#profile_pic').attr('src', "/" + data)
+                      $('#profile_pic').attr('src', "/media/" + data)
                         console.log(data)
                 })
               </script>

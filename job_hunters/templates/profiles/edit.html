@@ -4,7 +4,7 @@
 <div class="container bg-body-secondary w-50 rounded border border-secondary" style="margin-top:1rem">
     <div class="col">
         <h1 class="mb-3" style="text-align: center;">Edit profile</h1>
-        <form class="row gx-3 gy-4 w-75 mx-auto" method="post" action="edit">
+        <form class="row gx-3 gy-4 w-75 mx-auto" method="post" action="edit" enctype="multipart/form-data">
             {% csrf_token %}
             <!-- Email/Username -->
             <div class="col-md-12">
@@ -48,10 +48,11 @@
             </div>
 
             <!-- Errors -->
-            {% if errors%}
+            {% if errors %}
             <div class="col-md-12">
-                {% for key, value in errors %}
-                <p> {{key}}: {{ value }} </p>
+                
+                {% for error in errors.values %}
+                <p> {{ error }} </p>
                 {% endfor %}
             </div>
             {% endif %}

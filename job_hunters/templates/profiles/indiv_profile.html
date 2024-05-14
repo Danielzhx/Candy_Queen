@@ -9,6 +9,11 @@
         <h2>{{ user.username }}</h2>
       </div>
 
+      <!-- Name -->
+      <div class="col-md-12" style="margin-top:1rem">
+        <h6>Full name: {{ user.first_name }} {{ user.last_name }}</h6>
+      </div>
+
       <!-- Phone -->
       <div class="col-md-12" style="margin-top:1rem">
         <h6>Phone: {{ profile.phone_number }}</h6>
@@ -32,7 +37,7 @@
     <div class="row w-75">
       <!-- Profile Pic -->
       <div class="col-md-4" style="margin-top:1rem;">
-        <img src="/{{ profile.pic }}" alt="Profile picture" width=150 height=150>
+        <img src="/media/{{ profile.pic }}" alt="Profile picture" width=150 style="max-height:100%">
       </div>
     </div>
   </div>
