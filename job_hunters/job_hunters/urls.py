@@ -30,5 +30,6 @@ urlpatterns = [
     path('login/', include('login.urls')),
     path('companies/', include('companies.urls')),
     path('profiles/', include('profiles.urls')),
-    path("get_pic/<int:user_id>", views.get_pic, name="get_pic")
+    path("get_pic/<int:user_id>", views.get_pic, name="get_pic"),
+    path("is_company/", views.is_company, name='is_company')
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

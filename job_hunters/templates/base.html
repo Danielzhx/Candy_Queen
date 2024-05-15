@@ -39,7 +39,7 @@
               <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <!-- Jobs -->
                 <li class="nav-item">
-                  {% if "jobs" in request.path %}
+                  {% if request.path == "/jobs/" %}
                   <a class="nav-link active" aria-current="page" href="{% url 'jobs:index' %}" id="jobs_tab">Jobs</a>
                   {% else %}
                   <a class="nav-link" aria-current="page" href="{% url 'jobs:index' %}" id="jobs_tab">Jobs</a>
@@ -53,10 +53,22 @@
                   <a class="nav-link" href="{% url 'companies:index' %}" id="companies_tab">Companies</a>
                   {% endif %}
                 </li>
+                <!-- Create Posting-->
                 <li class="nav-item">
-                  {% if is_company %}
-                      <a class="nav-link active" aria-current="page" href="{% url 'jobs:create' %}" id="jobs_tab">Post Offering</a>
+                  {% if "create" in request.path %}
+                    <a class="nav-link active" aria-current="page" href="{% url 'jobs:create' %}" id="jobs_tab">Post Offering</a>
+                  {% else %}
+                      <a class="nav-link" aria-current="page" href="{% url 'jobs:create' %}" id="jobs_tab" style="display:hidden">Post Offering</a>
                   {% endif %}
+                  <script> 
+                    $.get('/is_company/',
+                      (data, status) => {
+                        if (data === '1') {
+                          $('#jobs_tab').attr('style', "")
+                        }
+                      }
+                    )
+                  </script>
                 </li>
                 
             </div>
@@ -71,7 +83,6 @@
                 $.get('/get_pic/' + "{{ user.id }}",
                     getPic = (data, status) => {
                       $('#profile_pic').attr('src', "/media/" + data)
-                        console.log(data)
                 })
               </script>
               <span class="navbar-text">                

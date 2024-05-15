@@ -17,3 +17,11 @@ def get_pic(request, user_id):
         return HttpResponse(str(company.logo))
     except Company.DoesNotExist:
         return HttpResponse('images/default_avatar.jpg')
+    
+
+def is_company(request):
+    try:
+        profile = Company.objects.get(user=request.user.id)
+        return HttpResponse('1')
+    except Company.DoesNotExist:
+        return HttpResponse('0')
