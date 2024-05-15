@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 {% block sidebar %}
-<div class="container bg-secondary-subtle rounded border border-secondary" style="width: 15%; margin-left: 0.25rem; position:fixed">
+<button data-bs-toggle="collapse" class="btn btn-secondary" style="position:fixed;top:10;left:0;z-index:1060;" data-bs-target="#filter_container">Filter</button>
+<div id="filter_container" class="container-sm collapse bg-secondary-subtle rounded border border-secondary" style="margin-left: 0.25rem; position:fixed; z-index:1050;">
     <form id="job_filter">
         {{ form }}
         <input class="btn btn-secondary mb-3 float-end" type="submit">
@@ -16,21 +17,29 @@
         margin:1%; 
         width: 98%;
     }
+    #job_container{
+        margin-left:20%;
+    }
+    @media only screen and (max-width:600px){
+        #job_container{
+            margin-left:0;
+        }
+    }
 </style>
 {% endblock %}
 {% block content %}
-<div class="row row-cols-4 row-cols-md-2" id="job_list" style="margin-top:0.25rem; margin-left: 16%;">
-    <div class="col-3 w-75" style="margin-top:1rem">
-    {% for job in jobs%}
+<div id="job_container" class="container-sm text-center">
     <!-- Each job card -->
-        <div class="card d-inline-flex p-2 bg-body-secondary h-100" style="width: 10rem; height: 8rem; margin-right:0.25rem; margin-bottom:0.25rem;">
-            <img src="/media/{{ job.company.logo }}" alt="Logo" style="max-width:60%; max-width:60%; align-self:center">
-            <div class="card-body border-top border-secondary-subtle w-100">
-                <h5 class="card-title"><a href="{{ job.id }}">{{ job.title }}</a></h5>
-                <p class="card-text">{{ job.description }}</p>
+    <div class="row">
+        {% for job in jobs%}
+            <div class="card col-sm-4 d-inline-flex p-2 bg-body-secondary h-100" style="margin-right:0.25rem; margin-bottom: 0.25rem">
+                <img src="/media/{{ job.company.logo }}" alt="Logo" style="max-width:60%; max-width:60%; border-radius:25%; align-self:center">
+                <div class="card-body border-top border-secondary-subtle w-100">
+                    <h5 class="card-title"><a href="{{ job.id }}">{{ job.title }}</a></h5>
+                    <p class="card-text">{{ job.description }}</p>
+                </div>
             </div>
-        </div>
-    {% endfor %}
+        {% endfor %}
     </div>
 </div>
 {% endblock %}

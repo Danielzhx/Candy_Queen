@@ -37,6 +37,7 @@ def edit(request):
         print(request.FILES)
         if validate(form):
             user.username = form.data['user-username']
+            company.name = form.data['company-name']
             company.contact_email = form.data['company-contact_email']
             company.phone_number = form.data['company-phone_number']
             company.address = form.data['company-address']
