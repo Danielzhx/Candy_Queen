@@ -5,10 +5,11 @@
         <div class="row g-1 mx-auto">
         <!-- Insert image here -->
             <div class="col-md-12 bg-body-secondary rounded border border-secondary" style="padding-bottom:6rem">
-                <h1>Cover image here</h1>
                 <div>
-                    <!-- TODO: Get the logo working-->
-                    <img src="/media/images/{{ job.company.logo }}" alt="Logo">
+                    <img src="/media/{{ job.company.cover_image }}" alt="Logo">
+                </div>
+                <div>
+                    <img src="/media/{{ job.company.logo }}" alt="Logo">
                 </div>
             </div>
             <div class="col-md-12 bg-body-secondary rounded border border-secondary">
