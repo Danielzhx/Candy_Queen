@@ -53,6 +53,7 @@ def edit(request):
             current.address = profile.data['individual-address']
             current.phone_number = profile.data['individual-phone_number']
             current.pic = request.FILES['individual-pic']
+            
             if profile.data['individual-date_of_birth']:
                 current.date_of_birth = profile.data['individual-date_of_birth']
             user.save()
@@ -111,6 +112,7 @@ def validate_phone(phone: str):
     return phone.isnumeric()
 
 def validate_DoB(DoB):
+    DoB = datetime.strptime(DoB, '%Y-%m-%d')
     return DoB < datetime.now()
     
 def validate(email, firstname, lastname, address, phone, DoB):
