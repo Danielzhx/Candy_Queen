@@ -6,7 +6,7 @@ from django_countries import countries
 class ApplicationForm(ModelForm):
     class Meta:
         model = Application
-        exclude = ["id", "user", "job"]
+        exclude = ["id", "user", "job", "status"]
         widgets = {
             "name": widgets.TextInput(attrs={"placeholder":"Full name", "class":"form-control", "id":"name_field"}),
             "street_name": widgets.TextInput(attrs={"placeholder":"Street name", "class":"form-control"}),
