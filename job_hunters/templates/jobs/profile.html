@@ -4,13 +4,9 @@
     <div class="col-md-9">
         <div class="row g-1 mx-auto">
         <!-- Insert image here -->
-            <div class="col-md-12 bg-body-secondary rounded border border-secondary" style="padding-bottom:6rem">
-                <div>
-                    <img src="/media/{{ job.company.cover_image }}" alt="Logo">
-                </div>
-                <div>
-                    <img src="/media/{{ job.company.logo }}" alt="Logo">
-                </div>
+            <div class="card col-md-12 bg-body-secondary rounded border border-secondary">
+                <img class="card-img" src="/media/{{ job.company.cover_image }}" alt="Logo">
+                <img class="card-img-overlay" style="border-radius:50%;height:200px;width:225px;" src="/media/{{ job.company.logo }}" alt="Logo">
             </div>
             <div class="col-md-12 bg-body-secondary rounded border border-secondary">
             <!-- Job title -->
