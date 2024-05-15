@@ -56,15 +56,16 @@
                 <!-- Create Posting-->
                 <li class="nav-item">
                   {% if "create" in request.path %}
-                    <a class="nav-link active" aria-current="page" href="{% url 'jobs:create' %}" id="jobs_tab">Post Offering</a>
+                    <a class="nav-link active" aria-current="page" href="{% url 'jobs:create' %}" id="post_job" hidden>Post Offering</a>
                   {% else %}
-                      <a class="nav-link" aria-current="page" href="{% url 'jobs:create' %}" id="jobs_tab" style="display:hidden">Post Offering</a>
+                      <a class="nav-link" aria-current="page" href="{% url 'jobs:create' %}" id="post_job" hidden>Post Offering</a>
                   {% endif %}
                   <script> 
                     $.get('/is_company/',
                       (data, status) => {
+                        console.log('callback activated')
                         if (data === '1') {
-                          $('#jobs_tab').attr('style', "")
+                          document.getElementById('post_job').removeAttribute("hidden")
                         }
                       }
                     )
@@ -76,7 +77,6 @@
               {% if user.is_authenticated %}
               <!-- Profile pic -->
               <div class="nav-item mx-3">
-                <!-- TODO: Get profile pic working on all pages (get Individual everywhere?)-->
                 <img src="/media/images/{{ profile.pic }}" id="profile_pic" width=40, height=40 style="border-radius:50%">
               </div>
               <script>
