@@ -10,6 +10,8 @@ urlpatterns = [
     path("<int:job_id>/applications/<int:application_id>/experiences",views.experience, name="experiences"),
     path("<int:job_id>/applications/<int:application_id>/references",views.reference, name="references"),
     path("<int:job_id>/companies/<int:company_id>/applications",views.company_applications, name="applicants"),
-    path("<int:job_id>/companies/<int:company_id>/applications/<int:application_id>",views.company_application_details, name="applicants_detail")
+    path("<int:job_id>/companies/<int:company_id>/applications/<int:application_id>",views.company_application_details, name="applicants_detail"),
+    path("<int:job_id>/companies/<int:company_id>/applications/<int:application_id>/Accept",views.company_accept_application, name="applicants_detail"),
+    path("<int:job_id>/companies/<int:company_id>/applications/<int:application_id>/Deny",views.company_deny_application, name="applicants_detail")
     # Apply for job
     ]   

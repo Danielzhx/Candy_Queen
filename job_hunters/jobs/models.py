@@ -43,6 +43,7 @@ class Application(models.Model):
     country = CountryField(blank_label="Country")
     postal = models.IntegerField()
     cover_letter = models.TextField(max_length=1000)
+    status = models.TextField(default="Pending",max_length=200)
 
     class Meta:
         unique_together = ("user", "job")

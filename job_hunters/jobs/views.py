@@ -34,7 +34,11 @@ def index(request):
 def create(request):
     if request.method == "POST":
         form = JobCreationForm(request.POST)
-        company  = Company.objects.get(user_id = request.user.id)
+        try:
+            company  = Company.objects.get(user_id = request.user.id)
+        except:
+            return redirect('/jobs/')
+
         try:
             category = Category.objects.get(category = request.POST["category"])
         except:
@@ -81,6 +85,27 @@ def company_application_details(request, job_id, company_id, application_id):
         'is_company': True
     }
     return render(request, "applications/details.html", content)
+
+@login_required
+def company_accept_application(request,job_id, company_id, application_id):
+    try:
+        company = Company.objects.get(user_id = request.user.id)
+    except:
+        return redirect('/jobs/')
+
+    application = Application.objects.get(pk=application_id)
+    application.status = "Accepted"
+
+@login_required
+def company_deny_application(request,job_id, company_id, application_id):
+    try:
+        company = Company.objects.get(user_id = request.user.id)
+    except:
+        return redirect('/jobs/')
+
+    application = Application.objects.get(pk=application_id)
+    application.status = "Denied"
+
 
 def detail(request, job_id):
     """Detail view for individual job posting.
