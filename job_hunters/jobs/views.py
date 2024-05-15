@@ -95,6 +95,7 @@ def company_accept_application(request,job_id, company_id, application_id):
 
     application = Application.objects.get(pk=application_id)
     application.status = "Accepted"
+    application.save()
 
 @login_required
 def company_deny_application(request,job_id, company_id, application_id):
@@ -105,6 +106,7 @@ def company_deny_application(request,job_id, company_id, application_id):
 
     application = Application.objects.get(pk=application_id)
     application.status = "Denied"
+    application.save()
 
 
 def detail(request, job_id):
