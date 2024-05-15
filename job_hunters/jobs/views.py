@@ -68,6 +68,7 @@ def company_applications(request, job_id, company_id):
     job = Job.objects.get(pk = job_id)
     applications = applications.filter(job = job)
     applications = applications.filter(job__company = company)
+    applications = applications.filter(status="Pending")
     content = {
         'applications':applications
     }
@@ -96,6 +97,7 @@ def company_accept_application(request,job_id, company_id, application_id):
     application = Application.objects.get(pk=application_id)
     application.status = "Accepted"
     application.save()
+    return redirect("/jobs/%d/companies/%d/applications/%d"%(job_id,company_id,application_id))
 
 @login_required
 def company_deny_application(request,job_id, company_id, application_id):
@@ -107,6 +109,7 @@ def company_deny_application(request,job_id, company_id, application_id):
     application = Application.objects.get(pk=application_id)
     application.status = "Denied"
     application.save()
+    return redirect("/jobs/%d/companies/%d/applications/%d"%(job_id,company_id,application_id))
 
 
 def detail(request, job_id):

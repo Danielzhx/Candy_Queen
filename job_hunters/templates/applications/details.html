@@ -5,7 +5,7 @@
       <h2>{{ application.job.title }}</h2>
   </div>
   {% if is_company %}
-    <a class="btn btn-secondary" href="Deny">DENY</a><a class="btn btn-secondary" href="Accept">Accept</a>
+  <a class="btn btn-secondary" href="{{application.id}}/Deny">DENY</a><a class="btn btn-secondary" href="{{application.id}}/Accept">Accept</a>
   {% endif %}
   <div class="card-body">
     <h5 class="card-title">Application Details</h5>
@@ -21,6 +21,8 @@
     <span class="card-text">{{application.postal}}</span>
     <h6>Cover Letter:</h6>
     <span class="card-text">{{application.cover_letter}}</span>
+    <h6>Status:</h6>
+    <span class="card-text">{{application.status}}</span>
   </div>
 </div>
 <div class="card text-center">
