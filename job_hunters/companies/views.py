@@ -2,7 +2,7 @@ from django.shortcuts import render, get_list_or_404, redirect
 from django.views import generic
 from django.contrib.auth.decorators import login_required
 from django.core.exceptions import ValidationError, NON_FIELD_ERRORS
-
+from django.utils.datastructures import MultiValueDictKeyError
 from Forms.edit_forms import CEditForm
 from .models import Company
 from jobs.models import Job
@@ -34,12 +34,19 @@ def edit(request):
                'auto_desc': company.description}
     if request.method == 'POST':
         form = CEditForm(request.POST, request.FILES)
+        print(request.FILES)
         if validate(form):
             user.username = form.data['user-username']
             company.contact_email = form.data['company-contact_email']
             company.phone_number = form.data['company-phone_number']
             company.address = form.data['company-address']
             company.description = form.data['company-description']
+            try:
+                company.logo = request.FILES['company-logo']
+            except MultiValueDictKeyError: pass
+            try:
+                company.cover_image = request.FILES['company-cover_image']
+            except MultiValueDictKeyError: pass
             user.save()
             company.save()
             return redirect('profiles:profiles')
