@@ -1,13 +1,13 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
+from django.contrib.auth import authenticate, login
 
 from Forms.individual_form import IndividualForm
 from Forms.signup_form import ISignupForm
 from Forms.company_form import CompanyForm
 from Forms.signup_form import CSignupForm
 from companies.models import Company
-
 
 # Create your views here.
 def signup_type(request):
@@ -35,7 +35,10 @@ def reg_individual(request):
     if request.method == 'POST':
         signup = ISignupForm(request.POST, request.FILES)
         if signup.is_valid():
-            signup.save()
+            new = signup.save()
+            new = authenticate(username=signup.cleaned_data['username'],
+                                  password=signup.cleaned_data['password1'])
+            login(request, new)
             return redirect("jobs:index")
         else:
             return render(request, template_name, {'errors': signup.errors})
@@ -54,7 +57,10 @@ def reg_company(request):
     if request.method == 'POST':
         signup = CSignupForm(request.POST, request.FILES)
         if signup.is_valid():
-            signup.save()
+            new = signup.save()
+            new = authenticate(username=signup.cleaned_data['username'],
+                                  password=signup.cleaned_data['password1'])
+            login(request, new)
             return redirect("jobs:index")
         else:
             return render(request, template_name, {'errors': signup.errors})
