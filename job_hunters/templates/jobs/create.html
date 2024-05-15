@@ -1,8 +1,60 @@
 {% extends "base.html" %}
 {% block content %}
-<form method="post" action="create">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <input type=submit>
-</form>
+<div class="container bg-body-secondary w-50 rounded border border-secondary" style="margin-top:1rem">
+    <div class="col">
+      <h1 class="mb-3" style="text-align: center;">Create new job posting</h1>
+      <form class="row gx-3 gy-4 w-75 mx-auto" method="post" action="{% url 'jobs:create' %}">
+        {% csrf_token %}
+        <!-- Title -->
+        <div class="col-md-12">
+          <input type="text" class="form-control" id="title" name="title" placeholder="Title">
+        </div>
+  
+        <!-- Location-->
+        <div class="col-md-6">
+          <input type="text" class="form-control" id="location" name="location" placeholder="Location">
+        </div>
+        
+        <!-- Category -->
+        <div class="col-md-6">
+          <input type="text" class="form-control" id="category" name="category" placeholder="Category">
+        </div>
+  
+        <!-- Job Type -->
+        <div class="col-md-6 gy-2">
+          <h6>{{ form.job_type }}</h6>
+        </div>
+        <div class="col-md-6 gy-2"></div>
+  
+        <!-- Due Date -->
+        <div class="col-md-6 gy-2">
+          Due date: <input type="date" class="form-control" id="due_date" name="due_date">
+        </div>
+        
+        <!-- Start Date -->
+        <div class="col-md-6 gy-2">
+          Start date: <input type="date" class="form-control" id="start_date" name="start_date">
+        </div>
+        
+        <!-- Description -->
+        <div class="col-md-12" style="height:12rem">
+          <textarea class="form-control h-100" id="description" name="description" placeholder="Description"  style="height=20rem"></textarea>
+        </div>
+
+
+        <!-- Submit button -->
+        <div class="col-md-4 offset-md-4" style="text-align: center;">
+          <input class="btn btn-secondary btn-lg" type="submit" value="Submit" >
+        </div>
+  
+            {% if errors %}
+            {% for error in errors.values %}
+            {{ error }}
+            {% endfor %}
+            {% endif %}
+            <div style="text-align: center;"><br/></div>
+          </div>
+      </form>
+    </div>
+  </div>
 {% endblock %}
