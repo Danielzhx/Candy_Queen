@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from Forms.signup_form import ISignupForm
-from Forms.edit_forms import IEditForm 
+from Forms.edit_forms import IEditForm, IEditMultiForm 
 from signup.models import Individual
 from companies.models import Company
 from datetime import datetime
@@ -22,7 +22,6 @@ def index(request):
 
     content["profile"] = profile
     content["user"] = request.user
-    print(content['profile'].logo)
     return render(request, template_name, content)
 
 @login_required
@@ -41,7 +40,7 @@ def edit(request):
     }
     if request.method == 'POST':
         # Handle input data
-        profile = IEditForm(data=request.POST, instance={'User': request.user, 'Individual': current})
+        profile = IEditMultiForm(data=request.POST, instance={'User': request.user, 'Individual': current})
         if validate(profile.data['user-username'], 
                     profile.data['user-first_name'], 
                     profile.data['user-last_name'],
@@ -67,6 +66,7 @@ def edit(request):
 
     else:        
         return render(request, template_name, context)
+
 @login_required
 def view_applications(request):
     """Allows a user to see and manage their applications."""
