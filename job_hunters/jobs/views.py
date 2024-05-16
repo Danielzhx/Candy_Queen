@@ -7,6 +7,7 @@ from Forms.application_form import ApplicationForm, ExperienceForm, ReferencesFo
 from Forms.creation_forms import JobCreationForm
 from django.forms import formset_factory
 from django.contrib.auth.decorators import login_required
+from datetime import datetime
 
 
 # Create your views here.
@@ -27,6 +28,9 @@ def index(request):
     context['jobs'] = filter_jobs(request)
     if is_company:
         context['jobs'] = context['jobs'].filter(company = company)
+
+    else:
+        context['jobs'] = context['jobs'].filter(due_date__gte=datetime.now())
 
     return render(request, 'jobs/index.html', context)
 

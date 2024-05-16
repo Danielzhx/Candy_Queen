@@ -1,7 +1,7 @@
 {% extends "base.html"%}
 {% block content %}
 {% load static %}
-<div class="container bg-body-secondary w-50 rounded border border-secondary" style="margin-top:1rem">
+<div id="edit-form" class="container bg-body-secondary w-50 rounded border border-secondary" style="margin-top:1rem">
     <div class="col">
         <h1 class="mb-3" style="text-align: center;">Edit profile</h1>
         <form class="row gx-3 gy-4 w-75 mx-auto" method="post" action="edit" enctype="multipart/form-data">
@@ -71,6 +71,18 @@
             </div>
         </form>
     </div>
-</body>
+</div>
+<style>
+#edit-form{
+    min-width:330px;
+    padding-bottom:5px;
+} 
+@media only screen and (max-width:600px){
+    #edit-form{
+        margin:0;
+        min-width:100%;
+    }
+}
+</style>
 {% endblock %}
 {% block footer %}{% endblock %}

@@ -1,11 +1,11 @@
 from django.shortcuts import render, get_list_or_404, redirect
-from django.views import generic
 from django.contrib.auth.decorators import login_required
 from django.core.exceptions import ValidationError, NON_FIELD_ERRORS
 from django.utils.datastructures import MultiValueDictKeyError
 from Forms.edit_forms import CEditForm
 from .models import Company
 from jobs.models import Job
+from datetime import datetime
 
 
 # Create your views here.
@@ -19,6 +19,7 @@ def details(request, comp_id):
     template = "companies/profile.html"
     company = get_list_or_404(Company, pk=comp_id)
     jobs = Job.objects.all().filter(company = company[0])
+    jobs = jobs.filter(due_date__gte=datetime.now())
     return render(request, template, {'company': company[0],'jobs':jobs})
 
 @login_required

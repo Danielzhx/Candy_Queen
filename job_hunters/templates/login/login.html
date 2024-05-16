@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block content %}
 <!-- Login screen -->
-<div class="container bg-body-secondary w-25 rounded border border-secondary" style="margin-top:1rem">
+<div id="login" class="container bg-body-secondary w-25 rounded border border-secondary" style="margin-top:1rem">
   <div class="col">
     <form class="align-center" method="post" action="{% url 'login:login' %}">
       {% csrf_token %}
@@ -25,4 +25,9 @@
     </form>
   </div>
 </div>
+<style>
+    #login{
+        min-width:330px;
+    }
+</style>
 {% endblock %}
