@@ -36,7 +36,9 @@ def reg_individual(request):
         signup = ISignupForm(request.POST, request.FILES)
         if signup.is_valid():
             new = signup.save()
-            print(signup.cleaned_data)
+            if not new['individual'].pic:
+                new['individual'].pic = "images/default_avatar.jpg"
+            new['individual'].save()
             new = authenticate(username=signup.cleaned_data['user']['username'],
                                   password=signup.cleaned_data['user']['password1'])
             login(request, new)

@@ -1,10 +1,6 @@
 from django.shortcuts import render, redirect
-from Forms.signup_form import ISignupForm
-from Forms.edit_forms import UserEditForm, IndEditForm
+from Forms.edit_forms import IndEditForm
 from django.utils.datastructures import MultiValueDictKeyError
-from django.contrib.auth.forms import UserChangeForm, UserCreationForm
-from django.contrib.auth import authenticate, login
-from Forms.individual_form import IndividualForm
 from signup.models import Individual
 from companies.models import Company
 from datetime import datetime
@@ -59,57 +55,6 @@ def edit(request):
         else:
             print(indprofile.errors)
             context['individual_errors'] = indprofile.errors
-            return render(request, template_name, context)
-
-    else:        
-        return render(request, template_name, context)
-
-@login_required
-def edit2(request):
-    template_name = "profiles/edit.html"
-    user = request.user
-    current = Individual.objects.get(pk = request.user.id)
-    context = {
-        'auto_username': request.user.username,
-        'auto_firstname': request.user.first_name,
-        'auto_lastname': request.user.last_name,
-        'auto_phone': current.phone_number,
-        'auto_address': current.address,
-        'auto_DoB': current.date_of_birth,
-        'auto_avatar': current.pic
-    }
-    if request.method == 'POST':
-        # Handle input data
-        profile = IEditMultiForm(data=request.POST, instance={'User': request.user, 'Individual': current})
-        if validate(profile,
-                    profile.data['user-username'], 
-                    profile.data['user-first_name'], 
-                    profile.data['user-last_name'],
-                    profile.data['individual-address'],
-                    profile.data['individual-phone_number'],
-                    profile.data['individual-date_of_birth']):
-            user.username = profile.data['user-username']
-            user.first_name = profile.data['user-first_name']
-            user.last_name = profile.data['user-last_name']
-            current.address = profile.data['individual-address']
-            current.phone_number = profile.data['individual-phone_number']
-            try:
-                current.pic = request.FILES['individual-pic']
-            except MultiValueDictKeyError: pass
-            
-            if profile.data['individual-date_of_birth']:
-                current.date_of_birth = profile.data['individual-date_of_birth']
-            user.save()
-            current.save()
-            return redirect('profiles:profiles')
-
-        else:
-            print(profile.errors)
-            context['errors'] = profile.errors
-            # Not using this field
-            context['errors'].pop('user-date_joined') 
-            # Username should be allowed to be the same
-            context['errors'].pop('user-username')
             return render(request, template_name, context)
 
     else:        
