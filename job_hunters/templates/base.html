@@ -178,10 +178,10 @@
   </div>
 
     {% block footer %}
-    <div id="footer" class="footer bg-dark-subtle border-top border-secondary">
+    <div id="footer" class="footer bg-dark-subtle border-top border-secondary" style="max-height:200px;">
       <div class="container">
         <div class="row">
-          <div class="col-sm">
+          <div id="foot-header"style=" min-width:350px;" class="col-sm">
             <h4>About us</h4>
             <p>We are a group of 4 students from Reykjavik university. And in this project our aim 
               is to create a job seeking platform, where both job seekers and employers looking for additional employees
@@ -200,6 +200,13 @@
         </div>
       </div>
     </div>
+    <style>
+        @media only screen and (max-width:600px){
+            #foot-header{
+                display:none;
+            }
+        }
+    </style>
     {% endblock %}
   
 </body>
