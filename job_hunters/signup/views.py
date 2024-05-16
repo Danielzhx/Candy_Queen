@@ -36,9 +36,6 @@ def reg_individual(request):
         signup = ISignupForm(request.POST, request.FILES)
         if signup.is_valid():
             new = signup.save()
-            if not new['individual'].pic:
-                new['individual'].pic = "images/default_avatar.jpg"
-            new['individual'].save()
             new = authenticate(username=signup.cleaned_data['user']['username'],
                                   password=signup.cleaned_data['user']['password1'])
             login(request, new)
@@ -61,8 +58,8 @@ def reg_company(request):
         signup = CSignupForm(request.POST, request.FILES)
         if signup.is_valid():
             new = signup.save()
-            new = authenticate(username=signup.cleaned_data['username'],
-                                  password=signup.cleaned_data['password1'])
+            new = authenticate(username=signup.cleaned_data['user']['username'],
+                                  password=signup.cleaned_data['user']['password1'])
             login(request, new)
             return redirect("jobs:index")
         else:
