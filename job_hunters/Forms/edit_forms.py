@@ -1,3 +1,6 @@
+from typing import Any, Mapping
+from django.core.files.base import File
+from django.forms.utils import ErrorList
 from .individual_form import IndividualForm
 from django.contrib.auth.forms import UserChangeForm
 from django.contrib.auth.models import User
@@ -8,33 +11,12 @@ from betterforms.multiform import MultiModelForm
 from .signup_form import ISignupForm, CSignupForm
 from .company_form import CompanyForm
 
-class IEditForm(IndividualForm):
+
+class IndEditForm(IndividualForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.fields['phone_number'].required = False
-        self.fields['address'].required = False
         self.fields['date_of_birth'].required = False
-        self.fields['pic'].required = False
        
-
-
-class IEditMultiForm(MultiModelForm):
-    form_classes = {
-            'user': UserChangeForm,
-            'individual': IEditForm
-        }
-
-    def save(self, commit=True):
-        objects = super(ISignupForm, self).save(commit=False)
-        if commit:
-            user = objects['user']
-            user.save()
-            individual = objects['individual']
-            individual.parent_user = user
-            individual.save()
-
-        return objects
-
 class CEditForm(Form):
     fields = ['user-username', 
               'company-name', 
@@ -44,4 +26,3 @@ class CEditForm(Form):
               'company-phone_number', 
               'contact_email',
               'company-description']
-    

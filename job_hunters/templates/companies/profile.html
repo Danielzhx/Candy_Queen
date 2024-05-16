@@ -25,6 +25,7 @@
       </div>
     </div>
   </div>
+  {% if jobs %}
     <div class="card text-center">
         <h2 class="card-title">Available Jobs:</h2>
         <div id="job_container" class="container-sm text-center">
@@ -34,7 +35,7 @@
                     <div class="card col-sm-4 d-inline-flex p-2 bg-body-secondary h-100" style="margin-right:0.25rem; margin-bottom: 0.25rem">
                         <img src="/media/{{ job.company.logo }}" alt="Logo" style="max-width:60%; max-width:60%; border-radius:25%; align-self:center">
                         <div class="card-body border-top border-secondary-subtle w-100">
-                            <h5 class="card-title"><a href="{{ job.id }}">{{ job.title }}</a></h5>
+                            <h5 class="card-title"><a href="{% url 'jobs:detail' job.id %}">{{ job.title }}</a></h5>
                             <p class="card-text">{{ job.description }}</p>
                         </div>
                     </div>
@@ -42,6 +43,7 @@
             </div>
         </div>
     </div>
+  {% endif %}
 </div>
 <style>
 #job_container{

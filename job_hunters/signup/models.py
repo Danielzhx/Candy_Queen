@@ -9,7 +9,7 @@ from datetime import datetime
 # Create your models here.
 class Individual(models.Model):
     parent_user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
-    pic = models.ImageField('profile picture', upload_to='images/')
+    pic = models.ImageField('profile picture', upload_to='images/', default='images/default_avatar.jpg')
     address = models.CharField(max_length=200)
     date_of_birth = models.DateField("Date of Birth")
     phone_number = models.CharField(max_length=20)

@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
-from Forms.signup_form import ISignupForm
-from Forms.edit_forms import IEditForm, IEditMultiForm 
+from Forms.edit_forms import IndEditForm
+from django.utils.datastructures import MultiValueDictKeyError
 from signup.models import Individual
 from companies.models import Company
 from datetime import datetime
@@ -24,45 +24,37 @@ def index(request):
     content["user"] = request.user
     return render(request, template_name, content)
 
+
 @login_required
 def edit(request):
     template_name = "profiles/edit.html"
     user = request.user
     current = Individual.objects.get(pk = request.user.id)
     context = {
-        'auto_username': request.user.username,
-        'auto_firstname': request.user.first_name,
-        'auto_lastname': request.user.last_name,
+        'auto_username': user.username,
+        'auto_firstname': user.first_name,
+        'auto_lastname': user.last_name,
         'auto_phone': current.phone_number,
         'auto_address': current.address,
-        'auto_DoB': current.date_of_birth,
-        'auto_avatar': current.pic
+        'auto_DoB': datetime.strftime(current.date_of_birth, '%Y-%m-%d')
     }
     if request.method == 'POST':
-        # Handle input data
-        profile = IEditMultiForm(data=request.POST, instance={'User': request.user, 'Individual': current})
-        if validate(profile.data['user-username'], 
-                    profile.data['user-first_name'], 
-                    profile.data['user-last_name'],
-                    profile.data['individual-address'],
-                    profile.data['individual-phone_number'],
-                    profile.data['individual-date_of_birth']):
-            user.username = profile.data['user-username']
-            user.first_name = profile.data['user-first_name']
-            user.last_name = profile.data['user-last_name']
-            current.address = profile.data['individual-address']
-            current.phone_number = profile.data['individual-phone_number']
-            current.pic = request.FILES['individual-pic']
-            
-            if profile.data['individual-date_of_birth']:
-                current.date_of_birth = profile.data['individual-date_of_birth']
+        """
+        copy = request.POST.copy()
+        copy.update({'date_joined': user.date_joined})"""
+        indprofile = IndEditForm(request.POST, request.FILES, instance=current)
+        print(request.POST)
+        if indprofile.is_valid() and validate(indprofile, request.POST):
+            user.username = request.POST['username']
+            user.first_name = request.POST['first_name']
+            user.last_name = request.POST['last_name']
             user.save()
             current.save()
             return redirect('profiles:profiles')
-
+        
         else:
-            print(profile.errors)
-            context['errors'] = profile.errors
+            print(indprofile.errors)
+            context['individual_errors'] = indprofile.errors
             return render(request, template_name, context)
 
     else:        
@@ -113,20 +105,29 @@ def validate_phone(phone: str):
 
 def validate_DoB(DoB):
     DoB = datetime.strptime(DoB, '%Y-%m-%d')
+    print('\n\nDoB Check:')
+    print(f"DoB:{DoB}, type:{type(DoB)}")
+    print(f"Now:{datetime.now()}")
+    print(f"Result:{DoB < datetime.now()}")
+    print('\n\n')
     return DoB < datetime.now()
     
-def validate(email, firstname, lastname, address, phone, DoB):
+def validate(form, data):
     e, f, l, a, p, d = True, True, True, True, True, True
-    if email:
-        e = validate_email(email)
-    if firstname:
-        f = validate_name(firstname)
-    if lastname:
-        l = validate_name(lastname)
-    if address:
-        a = validate_address(address)
-    if phone:
-        p = validate_phone(phone)
-    if DoB:
-        d = validate_DoB(DoB)
+    if data['username']:
+        e = validate_email(data['username'])
+    if data['first_name']:
+        f = validate_name(data['first_name'])
+    if data['last_name']:
+        l = validate_name(data['last_name'])
+    if data['address']:
+        a = validate_address(data['address'])
+    if data['phone_number']:
+        p = validate_phone(data['phone_number'])
+    if data['date_of_birth']:
+        d = validate_DoB(data['date_of_birth'])
+        if not d:
+            form.errors['individual-phone_number'] = 'Phone number must be in the past.'
+            form.errors.pop('user-date_joined')
+
     return e and f and l and a and p and d
