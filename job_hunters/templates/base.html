@@ -89,7 +89,7 @@
               <!-- Profile Options -->
               <div class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="{% url 'profiles:profiles' %}" data-bs-toggle="dropdown">  {{ user.username }}  </a>
-                 <ul class="dropdown-menu">
+                 <ul class="dropdown-menu" style="z-index:1070;">
                  <li><a class="dropdown-item" href="{% url 'profiles:profiles' %}">Profile</a>
                  <li><form class="d-flex" method="post" action="{% url 'login:logout' %}">
                   {% csrf_token %}

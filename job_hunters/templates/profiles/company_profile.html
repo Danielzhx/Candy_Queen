@@ -4,9 +4,9 @@
 <div class="container-fluid">
   <img class="img-fluid w-100 rounded border border-tertiary" src= "/media/{{ profile.cover_image }}" alt= "company cover image" style="max-height:10rem">
 </div>
-<div class="row w-50 my-3 mx-auto">
+<div id="account-details" class="row w-50 my-3 mx-auto">
   <div class="col-md-8">
-    <div class="row mx-auto rounded border-top border-bottom border-secondary bg-secondary-subtle">
+    <div  class="row mx-auto rounded border-top border-bottom border-secondary bg-secondary-subtle">
       <!-- Name -->
       <div class="col-md-12 border-bottom border-secondary-subtle" style="margin-top:1rem">
         <h2>{{ profile.name }}</h2>
@@ -61,19 +61,14 @@
       <a href="{% url 'companies:edit' %}"><input type="button" value="Edit profile"></a>
     </div>
 </div>
+<style>
+    #account-details{
+        min-width:330px;
+    }
+    @media only screen and (max-width:600px){
+        #account-details{margin-left:0;}
+    }
+
+</style>
 {% endblock %}
 
-<!-- 
-<div>
-  <div><img src="{{profile.cover_image}}" alt="Cover image"></div>
-  <div><img src="{{profile.logo}}" alt="Company's logo"></div>
-  <h2>{{ profile.name }}</h2>
-  <div><h3>{{ profile.description }}</h3></div>
-  <div>
-    <h4>{{ profile.address }}</h4>
-    <h4>{{ profile.contact_email }}</h4>
-    <h4>{{ profile.phone_number }}</h4>
-  </div>
-  <a href="edit"><input type="button" value="Edit profile"></a>
-</div>
--->

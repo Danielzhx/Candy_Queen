@@ -1,8 +1,8 @@
 {% extends 'base.html' %}
 {% block content %}
 {% load static %}
-<div class="row w-50 my-3 mx-auto">
-  <div class="col-md-8">
+<div id="wrapper" class="row w-50 my-3 mx-auto">
+  <div id="info-card" class="col-md-8">
     <div class="row mx-auto rounded border-top border-bottom border-secondary bg-secondary-subtle">
       <!-- Username -->
       <div class="col-md-12 border-bottom border-secondary-subtle" style="margin-top:1rem">
@@ -50,4 +50,13 @@
       <a class="btn btn-secondary mx-4" href="edit">Edit profile</a>
     </div>
 </div>
+<style>
+    #info-card{
+        min-width:310px;
+    }
+    #wrapper{
+        min-width:310px;
+        max-width:600px;
+    }
+</style>
 {% endblock %}

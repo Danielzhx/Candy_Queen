@@ -2,14 +2,14 @@
 {% block content %}
 <div class="container-xl">
     <div class="row">
-        <div class="card text-center col">
+        <div id="details" class="card text-center col">
           <div class="card-header">
               <h2>{{ application.job.title }}</h2>
               {% if is_company %}
-                  <a class="btn btn-secondary" href="{{application.id}}/Deny">DENY</a><a class="btn btn-secondary" href="{{application.id}}/Accept">Accept</a>
+                  <a class="btn btn-secondary" href="{{application.id}}/Deny">Deny</a><a class="btn btn-secondary" href="{{application.id}}/Accept">Accept</a>
               {% endif %}
               </div>
-          <div class="card-body">
+          <div  class="card-body">
             <h5 class="card-title">Application Details</h5>
             <ul class="list-group list-group-flush">
                 <li class="list-group-item">
@@ -43,7 +43,7 @@
             </ul>
           </div>
         </div>
-        <div class="card text-center col">
+        <div id="experiences" class="card text-center col">
           <div class="card-header">
               <h2>Experiences</h2>
           </div>
@@ -67,7 +67,7 @@
           </div>
           {% endfor %}
         </div>
-        <div class="card text-center col">
+        <div id="references" class="card text-center col">
           <div class="card-header">
               <h2>References</h2>
           </div>
@@ -96,6 +96,15 @@
         </div>
     </div>
 </div>
+<style>
+    @media only screen and (max-width:600px){
+        #details,
+        #experiences,
+        #references{
+            min-width:100%;
+        }
+    }
+</style>
 {% endblock %}
 {% block footer%}
 {% endblock %}

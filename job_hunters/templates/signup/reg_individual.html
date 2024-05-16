@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% block content %}
-<div class="container bg-body-secondary w-50 rounded border border-secondary" style="margin-top:1rem">
+<div id="edit-form" class="container bg-body-secondary w-50 rounded border border-secondary" style="margin-top:1rem">
   <div class="col">
     <h1 class="mb-3" style="text-align: center;">Sign Up</h1>
     <form class="row gx-3 gy-4 w-75 mx-auto" method="post" action="{% url 'signup:reg_individual' %}" enctype="multipart/form-data">
@@ -55,7 +55,7 @@
       </div>
 
       <!-- Profile pic -->
-      <div class="col-md-6">
+      <div class="col-md-12">
         <input type="file" class="form-control" id="profile_pic" name="individual-pic" accept="image/*">
       </div>
       
@@ -75,4 +75,17 @@
     </form>
   </div>
 </div>
+<style>
+#edit-form{
+    min-width:330px;
+    margin-top:1rem;
+    padding-bottom:5px;
+} 
+@media only screen and (max-width:600px){
+    #edit-form{
+        margin:0;
+        min-width:100%;
+    }
+}
+</style>
 {% endblock %}

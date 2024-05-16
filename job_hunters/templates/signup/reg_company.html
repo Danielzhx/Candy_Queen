@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% block content %}
-<div class="container bg-body-secondary w-50 rounded border border-secondary" style="margin-top:1rem">
+<div id="edit-form" class="container bg-body-secondary w-50 rounded border border-secondary" style="margin-top:1rem">
     <div class="col">
       <h1 class="mb-3" style="text-align: center;">Sign Up</h1>
       <form class="row gx-3 gy-4 w-75 mx-auto" method="post" action="{% url 'signup:reg_company' %}" enctype="multipart/form-data">
@@ -88,6 +88,19 @@
       </form>
     </div>
   </div>
+<style>
+#edit-form{
+    min-width:330px;
+    margin-top:1rem;
+    padding-bottom:5px;
+} 
+@media only screen and (max-width:600px){
+    #edit-form{
+        margin:0;
+        min-width:100%;
+    }
+}
+</style>
 {% endblock %}
 {% block footer %}
 {% endblock %}
