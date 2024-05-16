@@ -21,159 +21,192 @@
   <script
     src="{% static 'js/mode.js' %}">
   </script>
+
+  <style>
+    html {
+    position: relative;
+    min-height: 100%;
+    }
+
+    body {
+      margin: 0;
+      padding-bottom: 200px; 
+    }
+
+    #main-container {
+    min-height: 100vh;
+    display: block;
+    position: relative;
+    padding-bottom: 150px;
+    }
+
+    #footer {
+    position: absolute;
+    bottom: 0;
+    min-height: 200px;
+    width: 100%;
+    text-align: center;
+    border-top: 1px solid #ccc;
+    padding-top: 20px;
+    }
+
+  
+
+  </style>
 </head>
 <body>
-  <div class="container w-100">
-    {% if user.is_authenticated %}
-    
-    {% endif %}
-  </div>
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg bg-body-tertiary bg-gradient justify-content-end border-bottom">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="#">Job Hunters</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-              <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <!-- Jobs -->
-                <li class="nav-item">
-                  {% if request.path == "/jobs/" %}
-                  <a class="nav-link active" aria-current="page" href="{% url 'jobs:index' %}" id="jobs_tab">Jobs</a>
-                  {% else %}
-                  <a class="nav-link" aria-current="page" href="{% url 'jobs:index' %}" id="jobs_tab">Jobs</a>
-                  {% endif %}
-                </li>
-                <!-- Companies -->
-                <li class="nav-item">
-                  {% if "companies" in request.path %}
-                  <a class="nav-link active" href="{% url 'companies:index' %}" id="companies_tab">Companies</a>
-                  {% else %}
-                  <a class="nav-link" href="{% url 'companies:index' %}" id="companies_tab">Companies</a>
-                  {% endif %}
-                </li>
-                <!-- Create Posting-->
-                <li class="nav-item">
-                  {% if "create" in request.path %}
-                    <a class="nav-link active" aria-current="page" href="{% url 'jobs:create' %}" id="post_job" hidden>Post Offering</a>
-                  {% else %}
-                      <a class="nav-link" aria-current="page" href="{% url 'jobs:create' %}" id="post_job" hidden>Post Offering</a>
-                  {% endif %}
-                  <script> 
-                    $.get('/is_company/',
-                      (data, status) => {
-                        console.log('callback activated')
-                        if (data === '1') {
-                          document.getElementById('post_job').removeAttribute("hidden")
+  <div id="main-container">
+    <div class="container w-100">
+      {% if user.is_authenticated %}
+
+      {% endif %}
+    </div>
+      <!-- Navbar -->
+      <nav class="navbar navbar-expand-lg bg-body-tertiary bg-gradient justify-content-end border-bottom">
+          <div class="container-fluid">
+              <a class="navbar-brand" href="#">Job Hunters</a>
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                  <!-- Jobs -->
+                  <li class="nav-item">
+                    {% if request.path == "/jobs/" %}
+                    <a class="nav-link active" aria-current="page" href="{% url 'jobs:index' %}" id="jobs_tab">Jobs</a>
+                    {% else %}
+                    <a class="nav-link" aria-current="page" href="{% url 'jobs:index' %}" id="jobs_tab">Jobs</a>
+                    {% endif %}
+                  </li>
+                  <!-- Companies -->
+                  <li class="nav-item">
+                    {% if "companies" in request.path %}
+                    <a class="nav-link active" href="{% url 'companies:index' %}" id="companies_tab">Companies</a>
+                    {% else %}
+                    <a class="nav-link" href="{% url 'companies:index' %}" id="companies_tab">Companies</a>
+                    {% endif %}
+                  </li>
+                  <!-- Create Posting-->
+                  <li class="nav-item">
+                    {% if "create" in request.path %}
+                      <a class="nav-link active" aria-current="page" href="{% url 'jobs:create' %}" id="post_job" hidden>Post Offering</a>
+                    {% else %}
+                        <a class="nav-link" aria-current="page" href="{% url 'jobs:create' %}" id="post_job" hidden>Post Offering</a>
+                    {% endif %}
+                    <script> 
+                      $.get('/is_company/',
+                        (data, status) => {
+                          console.log('callback activated')
+                          if (data === '1') {
+                            document.getElementById('post_job').removeAttribute("hidden")
+                          }
                         }
-                      }
-                    )
-                  </script>
-                </li>
-                
-            </div>
-              <!-- Profile and logout if user is logged in-->
-              {% if user.is_authenticated %}
-              <!-- Profile pic -->
-              <div class="nav-item mx-3">
-                <img src="/media/images/{{ profile.pic }}" id="profile_pic" width=40, height=40 style="border-radius:50%">
+                      )
+                    </script>
+                  </li>
+
               </div>
-              <script>
-                $.get('/get_pic/' + "{{ user.id }}",
-                    getPic = (data, status) => {
-                      $('#profile_pic').attr('src', "/media/" + data)
-                })
-              </script>
-              <span class="navbar-text">                
-              <!-- Profile Options -->
-              <div class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="{% url 'profiles:profiles' %}" data-bs-toggle="dropdown">  {{ user.username }}  </a>
-                 <ul class="dropdown-menu" style="z-index:1070;">
-                 <li><a class="dropdown-item" href="{% url 'profiles:profiles' %}">Profile</a>
-                 <li><form class="d-flex" method="post" action="{% url 'login:logout' %}">
-                  {% csrf_token %}
-                  <button class="dropdown-item" type="submit" style="--bs-btn-padding-y: .2rem">Log Out</button>
-                  </form></li>
-                 </ul>
+                <!-- Profile and logout if user is logged in-->
+                {% if user.is_authenticated %}
+                <!-- Profile pic -->
+                <div class="nav-item mx-3">
+                  <img src="/media/images/{{ profile.pic }}" id="profile_pic" width=40, height=40 style="border-radius:50%">
                 </div>
-              <style>
-                @media all and (min-width: 992px) {
-                  .navbar .nav-item .dropdown-menu{ display: none; }
-                  .navbar .nav-item:hover .nav-link{   }
-                  .navbar .nav-item:hover .dropdown-menu{ display: block; }
-                  .navbar .nav-item .dropdown-menu{ margin-top:0; }
-                }	
-              </style>
-              </span>
-              <!-- Log in and Sign up if user isn't signed in -->
-              {% else %}
-              <span class="navbar-nav">
-                <li class="nav-item">
-                  <a class="nav-link" href="{% url 'login:login' %}">Log In</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="{% url 'signup:index' %}">Sign Up</a>
-                </li>
-              </span>
-              {% endif %}
-              </span>
-              <!-- Toggle light/dark mode -->
-              <li class="nav-item d-flex align-self-bottom" style="margin-left:3rem">
-                <div class="form-check form-switch">
-                  <label class="form-check-label" for="mode_button">Theme</label>
-                  <input class="form-check-input bg-dark-subtle" type="checkbox" role="switch" name="mode_button" id="mode_button">
-                </div>
+                <script>
+                  $.get('/get_pic/' + "{{ user.id }}",
+                      getPic = (data, status) => {
+                        $('#profile_pic').attr('src', "/media/" + data)
+                  })
+                </script>
+                <span class="navbar-text">                
+                <!-- Profile Options -->
+                <div class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="{% url 'profiles:profiles' %}" data-bs-toggle="dropdown">  {{ user.username }}  </a>
+                   <ul class="dropdown-menu" style="z-index:1070;">
+                   <li><a class="dropdown-item" href="{% url 'profiles:profiles' %}">Profile</a>
+                   <li><form class="d-flex" method="post" action="{% url 'login:logout' %}">
+                    {% csrf_token %}
+                    <button class="dropdown-item" type="submit" style="--bs-btn-padding-y: .2rem">Log Out</button>
+                    </form></li>
+                   </ul>
+                  </div>
                 <style>
-                  .form-check-input:focus {
-                    display:none;
-                  }
-                  .form-check-input:selected {
-                    display:none;
-                  }
+                  @media all and (min-width: 992px) {
+                    .navbar .nav-item .dropdown-menu{ display: none; }
+                    .navbar .nav-item:hover .nav-link{   }
+                    .navbar .nav-item:hover .dropdown-menu{ display: block; }
+                    .navbar .nav-item .dropdown-menu{ margin-top:0; }
+                  }	
                 </style>
-              </li>
-          </div>        
-    </nav>
+                </span>
+                <!-- Log in and Sign up if user isn't signed in -->
+                {% else %}
+                <span class="navbar-nav">
+                  <li class="nav-item">
+                    <a class="nav-link" href="{% url 'login:login' %}">Log In</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="{% url 'signup:index' %}">Sign Up</a>
+                  </li>
+                </span>
+                {% endif %}
+                </span>
+                <!-- Toggle light/dark mode -->
+                <li class="nav-item d-flex align-self-bottom" style="margin-left:3rem">
+                  <div class="form-check form-switch">
+                    <label class="form-check-label" for="mode_button">Theme</label>
+                    <input class="form-check-input bg-dark-subtle" type="checkbox" role="switch" name="mode_button" id="mode_button">
+                  </div>
+                  <style>
+                    .form-check-input:focus {
+                      display:none;
+                    }
+                    .form-check-input:selected {
+                      display:none;
+                    }
+                  </style>
+                </li>
+            </div>        
+      </nav>
 
 
-    <!-- <div style="display: flex; justify-content: space-between; width: 100vw;"> -->
-        {% block nosidebar %}
-        <nav class="sidebar" >
-          {% block sidebar %}{% endblock %}
+      <!-- <div style="display: flex; justify-content: space-between; width: 100vw;"> -->
+          {% block nosidebar %}
+          <nav class="sidebar" >
+            {% block sidebar %}{% endblock %}
+          </nav>
+          {% endblock %}
+            {% block content %}{% endblock %}
+      <!-- Bootstrap -->
+      <script 
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" 
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" 
+        crossorigin="anonymous"></script>
+  </div>
+
+    {% block footer %}
+    <div id="footer" class="footer bg-dark-subtle border-top border-secondary">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm">
+            <h4>About us</h4>
+            <p>We are a group of 4 students from Reykjavik university. And in this project our aim 
+              is to create a job seeking platform, where both job seekers and employers looking for additional employees
+              can achive their needs in the best possible way.
+            </p>
+          </div>
+        
+          <div class="col-sm">
+            <h4>Contact us</h4>
+            <p>daniele23@ru.is <br />
+              fridriks23@ru.is <br />
+              bergur23@ru.is   <br />
+              maximiliang23@ru.is <br />
+            </p>
+          </div>
         </div>
-        {% endblock %}
-          {% block content %}{% endblock %}
-    <!-- Bootstrap -->
-    <script 
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" 
-      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" 
-      crossorigin="anonymous"></script>
-
-
-</body>
-
-{% block footer %}
-<div class="footer bg-dark-subtle border-top border-secondary" style="text-align:center">
-  <div class="container">
-    <div class="row">
-      <div class="col-sm">
-        <h4>About us</h4>
-        <p>We are a group of 4 students from Reykjavik university. And in this project our aim 
-          is to create a job seeking platform, where both job seekers and employers looking for additional employees
-          can achive their needs in the best possible way.
-        </p>
-      </div>
-
-      <div class="col-sm">
-        <h4>Contact us</h4>
-        <p>daniele23@ru.is <br />
-          fridriks23@ru.is <br />
-          bergur23@ru.is   <br />
-          maximiliang23@ru.is <br />
-        </p>
       </div>
     </div>
-  </div>
-</div>
-{% endblock %}
+    {% endblock %}
+  
+</body>
